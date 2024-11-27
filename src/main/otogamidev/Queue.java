@@ -1,4 +1,4 @@
-package otogamidev;
+package main.otogamidev;
 
 /**
  * Classe responsavel por uma implementacao de Fila.

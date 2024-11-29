@@ -1,5 +1,7 @@
 package main.otogamidev;
 
+import java.util.Arrays;
+
 /**
  * Classe responsavel por uma implementacao de Fila.
  *
@@ -9,7 +11,62 @@ public class Queue {
 
     final String CLASS_NAME = this.getClass().getName();
 
+    /**
+     * Armazena os elementos da lista.
+     */
+    private Object[] elements = new Object[0];
+
     public Queue() {
+    }
+
+    /**
+     * @return Retorna o tamanho da lista.
+     */
+    public int getSize() { return elements.length; }
+
+    /**
+     * @return Retorna true se a lista está vazia.
+     */
+    public boolean isEmpty() { return (elements.length == 0); }
+
+    /**
+     * @return Retorna todos os elementos da lista.
+     */
+    public Object[] getAllElements() { return elements; }
+
+    /**
+     * Adiciona todos os elementos da lista.
+     * @param elements Elementos para serem adicionados na lista.
+     */
+    public void setAllElements(final Object[] elements) {
+        for(int index = 0; elements.length > index; index++) {
+            System.out.println(CLASS_NAME.concat("setAllElements(): elements = " + String.valueOf(elements[index])));
+        }
+        this.elements = elements;
+    }
+
+    /**
+     * Metodo responsavel pela adicao de um novo elemento na lista de elementos.
+     * @param element elemento que sera adicionado.
+     */
+    public void addElement(final Object element) {
+        System.out.println(CLASS_NAME.concat("addElement(): BEGIN"));
+        System.out.println(CLASS_NAME.concat("addElement(): element = " + String.valueOf(element)));
+        final int actualSize = getSize();
+        final int sizeNewElements = isEmpty() ? 0 : actualSize + 1;
+        Object[] newElements = new Object[sizeNewElements];
+
+        if(actualSize > 0) {
+            for (int index = 0; actualSize > index; index++) {
+                newElements[index] = elements[index];
+            }
+            newElements[actualSize] = element;
+        } else {
+            newElements = new Object[] { element };
+        }
+
+        setAllElements(newElements);
+        System.out.println(CLASS_NAME.concat("addElement(): END"));
     }
 
     /**
@@ -38,5 +95,9 @@ public class Queue {
         System.out.println(CLASS_NAME.concat("searchElement(): " + foundElementIndex));
         System.out.println(CLASS_NAME.concat("searchElement(): END"));
         return foundElementIndex;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

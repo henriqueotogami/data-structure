@@ -1,7 +1,9 @@
 package test.otogamidev;
 
 import main.otogamidev.Queue;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class QueueTest {
 
@@ -79,13 +81,15 @@ class QueueTest {
             "Gray (Gy)      - Unidade de dose absorvida de radiação"
     };
 
+    private final Queue queue = new Queue();
+
     @org.junit.jupiter.api.Test
     void addElementTest() {
-        System.out.println(CLASS_NAME.concat(" - searchElementIntArray(): BEGIN"));
-        final Queue queue = new Queue();
-        int size = queue.getSize();
+        System.out.println(CLASS_NAME.concat(" - addElementTest(): BEGIN"));
 
-        System.out.println(CLASS_NAME.concat(" - searchElementIntArray(): Initialing - Queue size = " + size));
+        int size = queue.getSize();
+        System.out.println(CLASS_NAME.concat(" - addElementTest(): Initialing - Queue size = " + size));
+
         queue.addElement(fibonacciFirstFifteen);
         queue.addElement(sequenceHarmonica);
         queue.addElement(halfLifeRadioactiveSubstance);
@@ -97,9 +101,28 @@ class QueueTest {
         queue.addElement(internationalSystemUnits);
 
         size = queue.getSize();
-        System.out.println(CLASS_NAME.concat(" - searchElementIntArray(): After adding elements - Queue size = " + size));
-        System.out.println(CLASS_NAME.concat(" - searchElementIntArray(): END"));
+        System.out.println(CLASS_NAME.concat(" - addElementTest(): After adding elements - Queue size = " + size));
+        System.out.println(CLASS_NAME.concat(" - addElementTest(): END"));
         Assertions.assertEquals(9, size);
+    }
+
+    @Test
+    void removeElementTest() {
+        System.out.println(CLASS_NAME.concat(" - removeElementTest(): BEGIN"));
+
+        this.addElementTest();
+
+        final int size = queue.getSize();
+        final int randomIndex = (int) (Math.random() * size);
+        System.out.println(CLASS_NAME.concat(" - removeElementTest(): randomIndex = " + randomIndex));
+
+        final Object element = queue.getElement(randomIndex);
+        System.out.println(CLASS_NAME.concat(" - removeElementTest(): element = " + element));
+
+        final boolean wasRemoved = queue.removeElement(randomIndex);
+        final int indexRemoved = queue.searchElement(element);
+        System.out.println(CLASS_NAME.concat(" - removeElementTest(): END"));
+        Assertions.assertEquals(Queue.NOT_FOUND, indexRemoved);
     }
 
 

@@ -14,6 +14,8 @@ public class Queue {
      */
     private Object[] elements = new Object[0];
 
+    public static final int NOT_FOUND = -1;
+
     public Queue() {
     }
 
@@ -51,7 +53,7 @@ public class Queue {
         System.out.println("\n".concat(CLASS_NAME).concat(" - addElement(): BEGIN"));
         System.out.println(CLASS_NAME.concat(" - addElement(): element = " + getObjectType(element)));
         final int actualSize = getSize();
-        final int sizeNewElements = isEmpty() ? 0 : actualSize + 1;
+        final int sizeNewElements = isEmpty() ? 1 : actualSize + 1;
         Object[] newElements = new Object[sizeNewElements];
 
         if(actualSize > 0) {
@@ -80,7 +82,6 @@ public class Queue {
         final int arrayLength = array.length;
         if(arrayLength == 0) throw new ArrayIndexOutOfBoundsException(arrayLength);
 
-        final int NOT_FOUND = -1;
         int foundElementIndex = NOT_FOUND;
         for (int index = 0; arrayLength > index; index++) {
             if(array[index] == element) {
@@ -95,6 +96,78 @@ public class Queue {
         System.out.println(CLASS_NAME.concat(" - searchElement(): END"));
         System.out.println(CLASS_NAME.concat(" ===================="));
         return foundElementIndex;
+    }
+
+    /**
+     * Metodo responsavel pela busca de um elemento em um array.
+     * @param element Elemento a ser procurado
+     * @return Retorna o indice do elemento encontrado no array. Se nao encontrar, retorna o valor -1.
+     */
+    public int searchElement(final Object element) {
+        return searchElement(this.getAllElements(), element);
+    }
+
+    /**
+     * Metodo responsavel para pegar um elemento a partir do indice informado.
+     * @param indexElement indice do elemento no Array
+     * @return Retorna o elemento do indice informado.
+     */
+    public Object getElement(final int indexElement) {
+        System.out.println("\n".concat(CLASS_NAME).concat(" - getElement(): BEGIN"));
+        final Object element = this.getAllElements()[indexElement];
+        System.out.println(CLASS_NAME.concat(" - getElement(): " + element));
+        System.out.println(CLASS_NAME.concat(" - getElement(): END"));
+        System.out.println(CLASS_NAME.concat(" ===================="));
+        return element;
+    }
+
+    /**
+     * Metodo responsavel por remover um elemento a partir do indice informado.
+     * @param indexElement indice do elemento no array
+     * @return Retorna true indicando que foi removido ou falso indicando que nao foi removido.
+     */
+    public boolean removeElement(final int indexElement) {
+        System.out.println("\n".concat(CLASS_NAME).concat(" - removeElement(): BEGIN"));
+
+        if (this.isEmpty()) {
+            System.out.println(CLASS_NAME.concat(" - removeElement(): Array is empty"));
+            return false;
+        } else if((indexElement + 1) > this.getSize()) throw new ArrayIndexOutOfBoundsException(indexElement);
+
+        Object element = this.getAllElements()[indexElement];
+        final int sizeNewElements = (this.getSize() - 2);
+        Object[] newElements = new Object[sizeNewElements];
+
+        for(int oldIndex = 0, newIndex = 0; (this.getSize()-1) > oldIndex; oldIndex++) {
+            if (oldIndex != indexElement) {
+                newElements[newIndex] = this.getAllElements()[oldIndex];
+                newIndex++;
+            }
+        }
+
+        System.out.println(CLASS_NAME.concat(" - removeElement(): " + element));
+        this.setAllElements(newElements);
+
+        System.out.println(CLASS_NAME.concat(" - removeElement(): END"));
+        System.out.println(CLASS_NAME.concat(" ===================="));
+        return true;
+    }
+
+    /**
+     * Metodo responsavel para apagar o array.
+     * @return Retorna true indicando que o array foi apagado ou false se já estava vazio.
+     */
+    public boolean eraseAllElements() {
+        System.out.println("\n".concat(CLASS_NAME).concat(" - removeElement(): BEGIN"));
+        if(this.isEmpty()){
+            System.out.println(CLASS_NAME.concat(" - removeElement(): the array is already empty"));
+            return false;
+        }
+
+        this.setAllElements(new Object[0]);
+        System.out.println(CLASS_NAME.concat(" - removeElement(): END"));
+        System.out.println(CLASS_NAME.concat(" ===================="));
+        return true;
     }
 
     /**

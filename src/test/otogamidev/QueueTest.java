@@ -1,10 +1,14 @@
 package test.otogamidev;
 
 import main.otogamidev.Queue;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+/**
+ * Classe responsavel pelos testes da classe Queue (Fila), dos estudos de estruturas de dados.
+ *
+ * @author henriquematheusalvespereira
+ */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class QueueTest {
 
     final String CLASS_NAME = this.getClass().getName();
@@ -83,7 +87,33 @@ class QueueTest {
 
     private final Queue queue = new Queue();
 
-    @org.junit.jupiter.api.Test
+    private int getRandomIndex() {
+        final int size = queue.getSize();
+        final int randomIndex = (int) (Math.random() * size);
+        return randomIndex;
+    }
+
+    /**
+     * Teste 1 - Criação de Fila.
+     * Cenário = Verificar se a fila é criada corretamente e está vazia.
+     */
+    @Test
+    @Order(1)
+    void createQueueTest() {
+        System.out.println(CLASS_NAME.concat(" - createQueueTest(): BEGIN"));
+        final Queue queue1 = new Queue();
+        final boolean isEmpty = queue1.isEmpty();
+        System.out.println(CLASS_NAME.concat(" - createQueueTest(): isEmtpy = " + isEmpty));
+        System.out.println(CLASS_NAME.concat(" - createQueueTest(): END"));
+        Assertions.assertEquals(true, isEmpty);
+    }
+
+    /**
+     * Teste 2 - Testar a operação de enfileiramento.
+     * Cenário: Adicionar elementos à fila.
+     */
+    @Test
+    @Order(2)
     void addElementTest() {
         System.out.println(CLASS_NAME.concat(" - addElementTest(): BEGIN"));
 
@@ -106,24 +136,50 @@ class QueueTest {
         Assertions.assertEquals(9, size);
     }
 
+    /**
+     * Teste 3 - Testar a operação de desenfileiramento.
+     * Cenário: Remover elementos da fila.
+     */
     @Test
+    @Order(3)
     void removeElementTest() {
         System.out.println(CLASS_NAME.concat(" - removeElementTest(): BEGIN"));
 
+//      Parece que o Junit reinicia a instancia depois de terminar os metodos.
+//      Por isso, chamei aqui o metodo addElementTest.
         this.addElementTest();
 
-        final int size = queue.getSize();
-        final int randomIndex = (int) (Math.random() * size);
+        final int randomIndex = getRandomIndex();
         System.out.println(CLASS_NAME.concat(" - removeElementTest(): randomIndex = " + randomIndex));
-
         final Object element = queue.getElement(randomIndex);
-        System.out.println(CLASS_NAME.concat(" - removeElementTest(): element = " + element));
 
+        System.out.println(CLASS_NAME.concat(" - removeElementTest(): element = " + element));
         final boolean wasRemoved = queue.removeElement(randomIndex);
+
+        System.out.println(CLASS_NAME.concat(" - removeElementTest(): wasRemoved = " + wasRemoved));
         final int indexRemoved = queue.searchElement(element);
+
         System.out.println(CLASS_NAME.concat(" - removeElementTest(): END"));
         Assertions.assertEquals(Queue.NOT_FOUND, indexRemoved);
     }
 
+    /**
+     * Teste 4 - Consultar o elemento
+     * Cenário: Consultar o elemento da fila sem remover.
+     */
+    @Test
+    @Order(4)
+    void searchElementTest() {
+        System.out.println(CLASS_NAME.concat(" - searchElementTest(): BEGIN"));
+//      Parece que o Junit reinicia a instancia depois de terminar os metodos.
+//      Por isso, chamei aqui o metodo addElementTest.
+        this.addElementTest();
+        final int randomIndex = getRandomIndex();
+        final Object element = queue.getElement(randomIndex);
+        final boolean isFoundElement = ( queue.searchElement(element) != Queue.NOT_FOUND );
+        System.out.println(CLASS_NAME.concat(" - searchElementTest(): isFoundElement = " + isFoundElement));
+        System.out.println(CLASS_NAME.concat(" - searchElementTest(): END"));
+        Assertions.assertEquals(true, isFoundElement);
+    }
 
 }

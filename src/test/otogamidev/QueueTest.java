@@ -87,7 +87,7 @@ class QueueTest {
 
     private final Queue queue = new Queue();
 
-    private int getRandomIndex() {
+    private int getRandomIndexQueueSize() {
         final int size = queue.getSize();
         final int randomIndex = (int) (Math.random() * size);
         return randomIndex;
@@ -149,7 +149,7 @@ class QueueTest {
 //      Por isso, chamei aqui o metodo addElementTest.
         this.addElementTest();
 
-        final int randomIndex = getRandomIndex();
+        final int randomIndex = getRandomIndexQueueSize();
         System.out.println(CLASS_NAME.concat(" - removeElementTest(): randomIndex = " + randomIndex));
         final Object element = queue.getElement(randomIndex);
 
@@ -174,12 +174,36 @@ class QueueTest {
 //      Parece que o Junit reinicia a instancia depois de terminar os metodos.
 //      Por isso, chamei aqui o metodo addElementTest.
         this.addElementTest();
-        final int randomIndex = getRandomIndex();
+        final int randomIndex = getRandomIndexQueueSize();
         final Object element = queue.getElement(randomIndex);
         final boolean isFoundElement = ( queue.searchElement(element) != Queue.NOT_FOUND );
         System.out.println(CLASS_NAME.concat(" - searchElementTest(): isFoundElement = " + isFoundElement));
         System.out.println(CLASS_NAME.concat(" - searchElementTest(): END"));
         Assertions.assertEquals(true, isFoundElement);
+    }
+
+    /**
+     * Teste 5 - Testar o estado da fila.
+     * Cenário: Métodos auxiliares como isEmpty() e tamanho da fila.
+     */
+    @Test
+    @Order(5)
+    void isEmptyTest() {
+        System.out.println(CLASS_NAME.concat(" - isEmptyTest(): BEGIN"));
+
+        final boolean isZeroInitialQueueSize = queue.isEmpty();
+        System.out.println(CLASS_NAME.concat(" - isEmptyTest(): isZeroInitialQueueSize = " + isZeroInitialQueueSize));
+
+        this.addElementTest();
+        final boolean isFullQueueSize = ( queue.isEmpty() == false );
+        System.out.println(CLASS_NAME.concat(" - isEmptyTest(): isFullQueueSize = " + isFullQueueSize));
+
+        queue.eraseAllElements();
+        final boolean isErasedQueue = queue.isEmpty();
+        System.out.println(CLASS_NAME.concat(" - isEmptyTest(): isErasedQueue = " + isErasedQueue));
+
+        System.out.println(CLASS_NAME.concat(" - isEmptyTest(): END"));
+        Assertions.assertEquals(true, (isZeroInitialQueueSize && isFullQueueSize && isErasedQueue));
     }
 
 }

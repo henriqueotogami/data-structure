@@ -206,4 +206,22 @@ class QueueTest {
         Assertions.assertEquals(true, (isZeroInitialQueueSize && isFullQueueSize && isErasedQueue));
     }
 
+    /**
+     * Teste 6 - Testar se a fila contem o elemento.
+     * Cenário: Verifica se um elemento especifico está presente na fila.
+     */
+    @Test
+    @Order(6)
+    void containsTest() {
+        System.out.println(CLASS_NAME.concat(" - containsTest(): BEGIN"));
+        this.addElementTest();
+        final int randomIndex = getRandomIndexQueueSize();
+        final Object randomElement = queue.getElement(randomIndex);
+        System.out.println(CLASS_NAME.concat(" - containsTest(): randomElement.getType = " + queue.getObjectType(randomElement)));
+        final boolean isFoundElement = queue.contains(randomElement);
+        System.out.println(CLASS_NAME.concat(" - containsTest(): isFoundElement = " + isFoundElement));
+        System.out.println(CLASS_NAME.concat(" - containsTest(): END"));
+        Assertions.assertEquals(true, isFoundElement);
+    }
+
 }

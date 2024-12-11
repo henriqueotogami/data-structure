@@ -46,7 +46,7 @@ public class Queue {
     }
 
     /**
-     * Metodo responsavel pela adicao de um novo elemento na lista de elementos.
+     * Metodo responsavel pela adicao de um novo elemento no final da lista de elementos.
      * @param element elemento que sera adicionado.
      */
     public void addElement(final Object element) {
@@ -115,7 +115,7 @@ public class Queue {
     public Object getElement(final int indexElement) {
         System.out.println("\n".concat(CLASS_NAME).concat(" - getElement(): BEGIN"));
         final Object element = this.getAllElements()[indexElement];
-        System.out.println(CLASS_NAME.concat(" - getElement(): " + element));
+        System.out.println(CLASS_NAME.concat(" - getElement(): " + getObjectType(element)));
         System.out.println(CLASS_NAME.concat(" - getElement(): END"));
         System.out.println(CLASS_NAME.concat(" ===================="));
         return element;
@@ -169,6 +169,17 @@ public class Queue {
         System.out.println(CLASS_NAME.concat(" ===================="));
         return true;
     }
+
+    /**
+     * Metodo responsavel para verificar se a fila contem o elemento informado.
+     * @param element elemento a ser procurado na fila.
+     * @return Retorna true indicado se contem o elemento ou false para nao.
+     */
+    public boolean contains(final Object element) {
+        System.out.println("\n".concat(CLASS_NAME).concat(" - contains(): BEGIN"));
+        return ( searchElement(element) != NOT_FOUND );
+    }
+
 
     /**
      * Metodo responsável por identificar a instancia do elemento.
@@ -239,7 +250,4 @@ public class Queue {
         return objectType;
     }
 
-    public static void main(String[] args) {
-
-    }
 }

@@ -42,7 +42,7 @@ public class Queue {
      */
     public void setAllElements(final Object[] elements) {
         for(int index = 0; elements.length > index; index++) {
-            System.out.println(CLASS_NAME.concat(" - setAllElements(): elements[" + index + "] = " + this.getObjectType(elements[index])));
+            System.out.println(CLASS_NAME + " - setAllElements(): elements[" + index + "] = " + this.getObjectType(elements[index]));
         }
         this.elements = elements;
     }
@@ -52,8 +52,8 @@ public class Queue {
      * @param element elemento que sera adicionado.
      */
     public void addElement(final Object element) {
-        System.out.println("\n".concat(CLASS_NAME).concat(" - addElement(): BEGIN"));
-        System.out.println(CLASS_NAME.concat(" - addElement(): element = " + getObjectType(element)));
+        System.out.println("\n" + CLASS_NAME + " - addElement(): BEGIN");
+        System.out.println(CLASS_NAME + " - addElement(): element = " + getObjectType(element));
         final int actualSize = getSize();
         final int sizeNewElements = this.isEmpty() ? 1 : actualSize + 1;
         Object[] newElements = new Object[sizeNewElements];
@@ -79,7 +79,7 @@ public class Queue {
      * @return Retorna o indice do elemento encontrado no array. Se nao encontrar, retorna o valor -1.
      */
     public int searchElement(final Object[] array, final Object element) {
-        System.out.println("\n".concat(CLASS_NAME).concat(" - searchElement(): BEGIN"));
+        System.out.println("\n" + CLASS_NAME + " - searchElement(): BEGIN");
 
         final int arrayLength = array.length;
         if(arrayLength == 0) throw new ArrayIndexOutOfBoundsException(arrayLength);
@@ -94,7 +94,7 @@ public class Queue {
 
         if(foundElementIndex == NOT_FOUND) System.out.println(CLASS_NAME.concat(" - searchElement(): Element not found."));
 
-        System.out.println(CLASS_NAME.concat(" - searchElement(): " + foundElementIndex));
+        System.out.println(CLASS_NAME + " - searchElement(): " + foundElementIndex);
         System.out.println(CLASS_NAME.concat(" - searchElement(): END"));
         System.out.println(CLASS_NAME.concat(" ===================="));
         return foundElementIndex;
@@ -115,9 +115,9 @@ public class Queue {
      * @return Retorna o elemento do indice informado.
      */
     public Object getElement(final int indexElement) {
-        System.out.println("\n".concat(CLASS_NAME).concat(" - getElement(): BEGIN"));
+        System.out.println("\n" + CLASS_NAME + " - getElement(): BEGIN");
         final Object element = this.getAllElements()[indexElement];
-        System.out.println(CLASS_NAME.concat(" - getElement(): " + this.getObjectType(element)));
+        System.out.println(CLASS_NAME + " - getElement(): " + this.getObjectType(element));
         System.out.println(CLASS_NAME.concat(" - getElement(): END"));
         System.out.println(CLASS_NAME.concat(" ===================="));
         return element;
@@ -129,7 +129,7 @@ public class Queue {
      * @return Retorna true indicando que foi removido ou falso indicando que nao foi removido.
      */
     public boolean removeElement(final int indexElement) {
-        System.out.println("\n".concat(CLASS_NAME).concat(" - removeElement(): BEGIN"));
+        System.out.println("\n" + CLASS_NAME + " - removeElement(): BEGIN");
 
         if (this.isEmpty()) {
             System.out.println(CLASS_NAME.concat(" - removeElement(): Array is empty"));
@@ -147,7 +147,7 @@ public class Queue {
             }
         }
 
-        System.out.println(CLASS_NAME.concat(" - removeElement(): " + element));
+        System.out.println(CLASS_NAME + " - removeElement(): " + element);
         this.setAllElements(newElements);
 
         System.out.println(CLASS_NAME.concat(" - removeElement(): END"));
@@ -160,7 +160,7 @@ public class Queue {
      * @return Retorna true indicando que o array foi apagado ou false se já estava vazio.
      */
     public boolean eraseAllElements() {
-        System.out.println("\n".concat(CLASS_NAME).concat(" - removeElement(): BEGIN"));
+        System.out.println("\n" + CLASS_NAME + " - removeElement(): BEGIN");
         if(this.isEmpty()){
             System.out.println(CLASS_NAME.concat(" - removeElement(): the array is already empty"));
             return false;
@@ -178,7 +178,7 @@ public class Queue {
      * @return Retorna true indicado se contem o elemento ou false para nao.
      */
     public boolean contains(final Object element) {
-        System.out.println("\n".concat(CLASS_NAME).concat(" - contains(): BEGIN"));
+        System.out.println("\n" + CLASS_NAME + " - contains(): BEGIN");
         return ( this.searchElement(element) != NOT_FOUND );
     }
 
@@ -188,15 +188,15 @@ public class Queue {
      * @return Retorna o nome do objeto e conteudo formatados em string.
      */
     public String toString(final Object element) {
-        System.out.println("\n".concat(CLASS_NAME).concat(" - toString(): BEGIN"));
+        System.out.println("\n" + CLASS_NAME + " - toString(): BEGIN");
 
         if (element == null) return "null";
 
         String elementToString = NONE;
         final String elementType = this.getObjectType(element);
         final String elementGroup = MapTypes.getGroup(elementType);
-        System.out.println(CLASS_NAME.concat(" - toString(): elementType = " + elementType));
-        System.out.println(CLASS_NAME.concat(" - toString(): elementGroup = " + elementGroup));
+        System.out.println(CLASS_NAME + " - toString(): elementType = " + elementType);
+        System.out.println(CLASS_NAME + " - toString(): elementGroup = " + elementGroup);
 
         switch (elementGroup) {
             case MapTypes.GROUP_PRIMITIVE -> {
@@ -219,7 +219,7 @@ public class Queue {
                 elementToString = MapTypes.getObjectArrayToString(element, elementType);
             }
         }
-        System.out.println(CLASS_NAME.concat(" - toString(): elementToString = " + elementToString));
+        System.out.println(CLASS_NAME + " - toString(): elementToString = " + elementToString);
         System.out.println(CLASS_NAME.concat(" - toString(): END"));
         return elementToString;
     }
@@ -230,7 +230,7 @@ public class Queue {
      * @return Retorna o nome do tipo do elemento, se for encontrado. Se não, retorna NONE
      */
     public String getObjectType(final Object object) {
-        System.out.println("\n".concat(CLASS_NAME).concat(" - getObjectType(): BEGIN"));
+        System.out.println("\n" + CLASS_NAME + " - getObjectType(): BEGIN");
 
         String objectType = object.getClass().getSimpleName();
         if(objectType.equals(NONE)) System.out.println(CLASS_NAME.concat(" - getObjectType(): Object type does not found"));

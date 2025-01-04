@@ -1,4 +1,6 @@
-package main.otogamidev;
+package main.otogamidev.queue;
+
+import main.otogamidev.queue.utils.MapTypes;
 
 /**
  * Classe responsavel por uma implementacao de Fila.

@@ -1,7 +1,7 @@
-package test.otogamidev;
+package test.otogamidev.queue;
 
-import main.otogamidev.DefaultValues;
-import main.otogamidev.Queue;
+import main.otogamidev.queue.utils.DefaultValues;
+import main.otogamidev.queue.Queue;
 import org.junit.jupiter.api.*;
 
 /**
@@ -15,6 +15,7 @@ class QueueTest {
     final String CLASS_NAME = this.getClass().getName();
 
     private final Queue queue = new Queue();
+    private final int QUEUE_MAX_SIZE = 34;
 
     private int getRandomIndexQueueSize() {
         final int size = queue.getSize();
@@ -49,6 +50,25 @@ class QueueTest {
         int size = queue.getSize();
         System.out.println(CLASS_NAME + " - addElementTest(): Initialing - Queue size = " + size);
 
+        queue.addElement(DefaultValues.PRIMITIVE_INTEGER);
+        queue.addElement(DefaultValues.PRIMITIVE_DOUBLE);
+        queue.addElement(DefaultValues.PRIMITIVE_FLOAT);
+        queue.addElement(DefaultValues.PRIMITIVE_LONG);
+        queue.addElement(DefaultValues.PRIMITIVE_SHORT);
+        queue.addElement(DefaultValues.PRIMITIVE_BYTE);
+        queue.addElement(DefaultValues.PRIMITIVE_CHAR);
+        queue.addElement(DefaultValues.PRIMITIVE_BOOLEAN);
+
+        queue.addElement(DefaultValues.OBJECT_INTEGER);
+        queue.addElement(DefaultValues.OBJECT_DOUBLE);
+        queue.addElement(DefaultValues.OBJECT_FLOAT);
+        queue.addElement(DefaultValues.OBJECT_LONG);
+        queue.addElement(DefaultValues.OBJECT_SHORT);
+        queue.addElement(DefaultValues.OBJECT_BYTE);
+        queue.addElement(DefaultValues.OBJECT_CHAR);
+        queue.addElement(DefaultValues.OBJECT_BOOLEAN);
+        queue.addElement(DefaultValues.OBJECT_STRING);
+
         queue.addElement(DefaultValues.PRIMITIVE_ARRAY_INTEGER);
         queue.addElement(DefaultValues.PRIMITIVE_ARRAY_DOUBLE);
         queue.addElement(DefaultValues.PRIMITIVE_ARRAY_FLOAT);
@@ -57,12 +77,21 @@ class QueueTest {
         queue.addElement(DefaultValues.PRIMITIVE_ARRAY_BYTE);
         queue.addElement(DefaultValues.PRIMITIVE_ARRAY_CHAR);
         queue.addElement(DefaultValues.PRIMITIVE_ARRAY_BOOLEAN);
+
+        queue.addElement(DefaultValues.OBJECT_ARRAY_INTEGER);
+        queue.addElement(DefaultValues.OBJECT_ARRAY_DOUBLE);
+        queue.addElement(DefaultValues.OBJECT_ARRAY_FLOAT);
+        queue.addElement(DefaultValues.OBJECT_ARRAY_LONG);
+        queue.addElement(DefaultValues.OBJECT_ARRAY_SHORT);
+        queue.addElement(DefaultValues.OBJECT_ARRAY_BYTE);
+        queue.addElement(DefaultValues.OBJECT_ARRAY_CHAR);
+        queue.addElement(DefaultValues.OBJECT_ARRAY_BOOLEAN);
         queue.addElement(DefaultValues.OBJECT_ARRAY_STRING);
 
         size = queue.getSize();
         System.out.println(CLASS_NAME + " - addElementTest(): After adding elements - Queue size = " + size);
         System.out.println(CLASS_NAME.concat(" - addElementTest(): END"));
-        Assertions.assertEquals(9, size);
+        Assertions.assertEquals(QUEUE_MAX_SIZE, size);
     }
 
     /**

@@ -1,4 +1,4 @@
-package main.otogamidev;
+package main.otogamidev.queue.utils;
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
@@ -38,7 +38,7 @@ public class MapTypes {
     public static final String TYPE_OBJECT_LONG         = "Long";
     public static final String TYPE_OBJECT_SHORT        = "Short";
     public static final String TYPE_OBJECT_BYTE         = "Byte";
-    public static final String TYPE_OBJECT_CHAR         = "Char";
+    public static final String TYPE_OBJECT_CHAR         = "Character";
     public static final String TYPE_OBJECT_BOOLEAN      = "Boolean";
     public static final String TYPE_OBJECT_STRING       = "String";
 
@@ -57,7 +57,7 @@ public class MapTypes {
     public static final String TYPE_OBJECT_ARRAY_LONG       = "Long[]";
     public static final String TYPE_OBJECT_ARRAY_SHORT      = "Short[]";
     public static final String TYPE_OBJECT_ARRAY_BYTE       = "Byte[]";
-    public static final String TYPE_OBJECT_ARRAY_CHAR       = "Char[]";
+    public static final String TYPE_OBJECT_ARRAY_CHAR       = "Character[]";
     public static final String TYPE_OBJECT_ARRAY_BOOLEAN    = "Boolean[]";
     public static final String TYPE_OBJECT_ARRAY_STRING     = "String[]";
 

@@ -7,7 +7,7 @@ package main.otogamidev;
  */
 public class Queue {
 
-    final String CLASS_NAME = this.getClass().getName();
+    final String CLASS_NAME = "Queue";
 
     /**
      * Armazena os elementos da lista.
@@ -15,6 +15,8 @@ public class Queue {
     private Object[] elements = new Object[0];
 
     public static final int NOT_FOUND = -1;
+
+    private final String NONE = "NONE";
 
     public Queue() {
     }
@@ -40,7 +42,7 @@ public class Queue {
      */
     public void setAllElements(final Object[] elements) {
         for(int index = 0; elements.length > index; index++) {
-            System.out.println(CLASS_NAME.concat(" - setAllElements(): elements[" + index + "] = " + getObjectType(elements[index])));
+            System.out.println(CLASS_NAME.concat(" - setAllElements(): elements[" + index + "] = " + this.getObjectType(elements[index])));
         }
         this.elements = elements;
     }
@@ -53,7 +55,7 @@ public class Queue {
         System.out.println("\n".concat(CLASS_NAME).concat(" - addElement(): BEGIN"));
         System.out.println(CLASS_NAME.concat(" - addElement(): element = " + getObjectType(element)));
         final int actualSize = getSize();
-        final int sizeNewElements = isEmpty() ? 1 : actualSize + 1;
+        final int sizeNewElements = this.isEmpty() ? 1 : actualSize + 1;
         Object[] newElements = new Object[sizeNewElements];
 
         if(actualSize > 0) {
@@ -104,7 +106,7 @@ public class Queue {
      * @return Retorna o indice do elemento encontrado no array. Se nao encontrar, retorna o valor -1.
      */
     public int searchElement(final Object element) {
-        return searchElement(this.getAllElements(), element);
+        return this.searchElement(this.getAllElements(), element);
     }
 
     /**
@@ -115,7 +117,7 @@ public class Queue {
     public Object getElement(final int indexElement) {
         System.out.println("\n".concat(CLASS_NAME).concat(" - getElement(): BEGIN"));
         final Object element = this.getAllElements()[indexElement];
-        System.out.println(CLASS_NAME.concat(" - getElement(): " + getObjectType(element)));
+        System.out.println(CLASS_NAME.concat(" - getElement(): " + this.getObjectType(element)));
         System.out.println(CLASS_NAME.concat(" - getElement(): END"));
         System.out.println(CLASS_NAME.concat(" ===================="));
         return element;
@@ -177,74 +179,62 @@ public class Queue {
      */
     public boolean contains(final Object element) {
         System.out.println("\n".concat(CLASS_NAME).concat(" - contains(): BEGIN"));
-        return ( searchElement(element) != NOT_FOUND );
+        return ( this.searchElement(element) != NOT_FOUND );
     }
 
+    /**
+     * Metodo responsavel pela conversao de um tipo de dados em string.
+     * @param element elemento que sera convertido em string
+     * @return Retorna o nome do objeto e conteudo formatados em string.
+     */
+    public String toString(final Object element) {
+        System.out.println("\n".concat(CLASS_NAME).concat(" - toString(): BEGIN"));
+
+        if (element == null) return "null";
+
+        String elementToString = NONE;
+        final String elementType = this.getObjectType(element);
+        final String elementGroup = MapTypes.getGroup(elementType);
+        System.out.println(CLASS_NAME.concat(" - toString(): elementType = " + elementType));
+        System.out.println(CLASS_NAME.concat(" - toString(): elementGroup = " + elementGroup));
+
+        switch (elementGroup) {
+            case MapTypes.GROUP_PRIMITIVE -> {
+                System.out.println(CLASS_NAME.concat(" - toString(): Group Primitive"));
+                elementToString = MapTypes.getPrimitiveToString(element, elementType);
+            }
+
+            case MapTypes.GROUP_OBJECT -> {
+                System.out.println(CLASS_NAME.concat(" - toString(): Group Object"));
+                elementToString = MapTypes.getObjectToString(element, elementType);
+            }
+
+            case MapTypes.GROUP_PRIMITIVE_ARRAY -> {
+                System.out.println(CLASS_NAME.concat(" - toString(): Group Primitive Array"));
+                elementToString = MapTypes.getPrimitiveArrayToString(element, elementType);
+            }
+
+            case MapTypes.GROUP_OBJECT_ARRAY -> {
+                System.out.println(CLASS_NAME.concat(" - toString(): Group Object Array"));
+                elementToString = MapTypes.getObjectArrayToString(element, elementType);
+            }
+        }
+        System.out.println(CLASS_NAME.concat(" - toString(): elementToString = " + elementToString));
+        System.out.println(CLASS_NAME.concat(" - toString(): END"));
+        return elementToString;
+    }
 
     /**
      * Metodo responsável por identificar a instancia do elemento.
      * @param object elemento a ser identificado
-     * @return Retorna o nome do tipo do elemento
+     * @return Retorna o nome do tipo do elemento, se for encontrado. Se não, retorna NONE
      */
     public String getObjectType(final Object object) {
         System.out.println("\n".concat(CLASS_NAME).concat(" - getObjectType(): BEGIN"));
-        String objectType = "";
-        if(object instanceof Integer){
-            objectType = "Integer";
-        } else if (object instanceof Double) {
-            objectType = "Double";
-        } else if (object instanceof Float) {
-            objectType = "Float";
-        } else if (object instanceof Long) {
-            objectType = "Long";
-        } else if (object instanceof Short) {
-            objectType = "Short";
-        } else if (object instanceof Byte) {
-            objectType = "Byte";
-        } else if (object instanceof Character) {
-            objectType = "Character";
-        } else if (object instanceof Boolean) {
-            objectType = "Boolean";
-        } else if (object instanceof String) {
-            objectType = "String";
-        } else if(object instanceof Integer[]){
-            objectType = "Integer[]";
-        } else if (object instanceof Double[]) {
-            objectType = "Double[]";
-        } else if (object instanceof Float[]) {
-            objectType = "Float[]";
-        } else if (object instanceof Long[]) {
-            objectType = "Long[]";
-        } else if (object instanceof Short[]) {
-            objectType = "Short[]";
-        } else if (object instanceof Byte[]) {
-            objectType = "Byte[]";
-        } else if (object instanceof Character[]) {
-            objectType = "Character[]";
-        } else if (object instanceof Boolean[]) {
-            objectType = "Boolean[]";
-        } else if (object instanceof String[]) {
-            objectType = "String[]";
-        } else if(object instanceof int[]){
-            objectType = "integer[]";
-        } else if (object instanceof double[]) {
-            objectType = "double[]";
-        } else if (object instanceof float[]) {
-            objectType = "float[]";
-        } else if (object instanceof long[]) {
-            objectType = "long[]";
-        } else if (object instanceof short[]) {
-            objectType = "short[]";
-        } else if (object instanceof byte[]) {
-            objectType = "byte[]";
-        } else if (object instanceof char[]) {
-            objectType = "char[]";
-        } else if (object instanceof boolean[]) {
-            objectType = "boolean[]";
-        } else {
-            objectType = "NONE";
-            System.out.println(CLASS_NAME.concat(" - getObjectType(): Object type does not found"));
-        }
+
+        String objectType = object.getClass().getSimpleName();
+        if(objectType.equals(NONE)) System.out.println(CLASS_NAME.concat(" - getObjectType(): Object type does not found"));
+
         System.out.println(CLASS_NAME.concat(" - getObjectType(): END"));
         System.out.println(CLASS_NAME.concat(" ===================="));
         return objectType;

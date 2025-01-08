@@ -230,7 +230,7 @@ public class Queue {
                 elementToString = MapTypes.getObjectArrayToString(element, elementType);
             }
         }
-        logger.info(CLASS_NAME + " - toString(): elementToString = {}", elementToString);
+//        logger.info(CLASS_NAME + " - toString(): elementToString = {}", elementToString);
         logger.debug(CLASS_NAME.concat(" - toString(): END"));
         return elementToString;
     }

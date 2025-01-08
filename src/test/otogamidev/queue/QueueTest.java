@@ -200,7 +200,7 @@ class QueueTest {
     void toStringTest() {
         logger.debug(CLASS_NAME.concat(" - toStringTest(): BEGIN"));
         this.addElementTest();
-        for(Object element : queue.getAllElements()) logger.info(CLASS_NAME + " - toStringTest(): {}", queue.toString(element));
+        for(Object element : queue.getAllElements()) logger.info(CLASS_NAME + " - toStringTest(): Element = {} : Value = {}", queue.getObjectType(element), queue.toString(element));
         logger.debug(CLASS_NAME.concat(" - toStringTest(): END"));
     }
 

@@ -101,7 +101,7 @@ public class DefaultValues {
     public static final Long[]        OBJECT_ARRAY_LONG      = new Long[] { Long.MIN_VALUE, Long.MAX_VALUE };
     public static final Short[]       OBJECT_ARRAY_SHORT     = new Short[] { Short.MIN_VALUE, Short.MAX_VALUE };
     public static final Byte[]        OBJECT_ARRAY_BYTE      = new Byte[] { Byte.MIN_VALUE, Byte.MAX_VALUE };
-    public static final Character[]   OBJECT_ARRAY_CHAR      = new Character[] { Character.MIN_LOW_SURROGATE, Character.MAX_LOW_SURROGATE};
+    public static final Character[]   OBJECT_ARRAY_CHAR      = new Character[] { 'B', 'C'};
     public static final Boolean[]     OBJECT_ARRAY_BOOLEAN   = new Boolean[] { Boolean.FALSE, Boolean.TRUE };
     /**
      * 15 valores de grandezas físicas do sistema internacional de unidades

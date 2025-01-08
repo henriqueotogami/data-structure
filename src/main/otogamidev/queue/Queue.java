@@ -1,6 +1,9 @@
 package main.otogamidev.queue;
 
 import main.otogamidev.queue.utils.MapTypes;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  * Classe responsavel por uma implementacao de Fila.
@@ -11,6 +14,8 @@ public class Queue {
 
     final String CLASS_NAME = "Queue";
 
+    private final Logger logger = LogManager.getLogger(Queue.class);
+
     /**
      * Armazena os elementos da lista.
      */
@@ -18,6 +23,7 @@ public class Queue {
 
     public static final int NOT_FOUND = -1;
 
+    private final int EMPTY = 0;
     private final String NONE = "NONE";
 
     public Queue() {
@@ -31,7 +37,7 @@ public class Queue {
     /**
      * @return Retorna true se a lista está vazia.
      */
-    public boolean isEmpty() { return (elements.length == 0); }
+    public boolean isEmpty() { return (elements.length == EMPTY); }
 
     /**
      * @return Retorna todos os elementos da lista.
@@ -43,9 +49,12 @@ public class Queue {
      * @param elements Elementos para serem adicionados na lista.
      */
     public void setAllElements(final Object[] elements) {
+        final StringBuilder stringBuilder = new StringBuilder();
         for(int index = 0; elements.length > index; index++) {
-            System.out.println(CLASS_NAME + " - setAllElements(): elements[" + index + "] = " + this.getObjectType(elements[index]));
+            stringBuilder.append("\nsetAllElements(): elements[").append(index).append("] = ");
+            stringBuilder.append(this.getObjectType(elements[index]));
         }
+        logger.info(stringBuilder.toString()+"\n");
         this.elements = elements;
     }
 
@@ -54,8 +63,8 @@ public class Queue {
      * @param element elemento que sera adicionado.
      */
     public void addElement(final Object element) {
-        System.out.println("\n" + CLASS_NAME + " - addElement(): BEGIN");
-        System.out.println(CLASS_NAME + " - addElement(): element = " + getObjectType(element));
+        logger.debug(CLASS_NAME + " - addElement(): BEGIN");
+        logger.info(CLASS_NAME + " - addElement(): element = {}", getObjectType(element));
         final int actualSize = getSize();
         final int sizeNewElements = this.isEmpty() ? 1 : actualSize + 1;
         Object[] newElements = new Object[sizeNewElements];
@@ -70,8 +79,8 @@ public class Queue {
         }
 
         setAllElements(newElements);
-        System.out.println(CLASS_NAME.concat(" - addElement(): END"));
-        System.out.println(CLASS_NAME.concat(" ===================="));
+        logger.debug(CLASS_NAME.concat(" - addElement(): END"));
+        logger.debug(CLASS_NAME.concat(" ===================="));
     }
 
     /**
@@ -81,7 +90,7 @@ public class Queue {
      * @return Retorna o indice do elemento encontrado no array. Se nao encontrar, retorna o valor -1.
      */
     public int searchElement(final Object[] array, final Object element) {
-        System.out.println("\n" + CLASS_NAME + " - searchElement(): BEGIN");
+        logger.debug(CLASS_NAME + " - searchElement(): BEGIN");
 
         final int arrayLength = array.length;
         if(arrayLength == 0) throw new ArrayIndexOutOfBoundsException(arrayLength);
@@ -94,11 +103,11 @@ public class Queue {
             }
         }
 
-        if(foundElementIndex == NOT_FOUND) System.out.println(CLASS_NAME.concat(" - searchElement(): Element not found."));
+        if(foundElementIndex == NOT_FOUND) logger.info(CLASS_NAME.concat(" - searchElement(): Element not found."));
 
-        System.out.println(CLASS_NAME + " - searchElement(): " + foundElementIndex);
-        System.out.println(CLASS_NAME.concat(" - searchElement(): END"));
-        System.out.println(CLASS_NAME.concat(" ===================="));
+        logger.info(CLASS_NAME + " - searchElement(): {}", foundElementIndex);
+        logger.debug(CLASS_NAME.concat(" - searchElement(): END"));
+        logger.debug(CLASS_NAME.concat(" ===================="));
         return foundElementIndex;
     }
 
@@ -117,11 +126,11 @@ public class Queue {
      * @return Retorna o elemento do indice informado.
      */
     public Object getElement(final int indexElement) {
-        System.out.println("\n" + CLASS_NAME + " - getElement(): BEGIN");
+        logger.debug(CLASS_NAME + " - getElement(): BEGIN");
         final Object element = this.getAllElements()[indexElement];
-        System.out.println(CLASS_NAME + " - getElement(): " + this.getObjectType(element));
-        System.out.println(CLASS_NAME.concat(" - getElement(): END"));
-        System.out.println(CLASS_NAME.concat(" ===================="));
+        logger.info(CLASS_NAME + " - getElement(): {}", this.getObjectType(element));
+        logger.debug(CLASS_NAME.concat(" - getElement(): END"));
+        logger.debug(CLASS_NAME.concat(" ===================="));
         return element;
     }
 
@@ -131,10 +140,10 @@ public class Queue {
      * @return Retorna true indicando que foi removido ou falso indicando que nao foi removido.
      */
     public boolean removeElement(final int indexElement) {
-        System.out.println("\n" + CLASS_NAME + " - removeElement(): BEGIN");
+        logger.debug(CLASS_NAME + " - removeElement(): BEGIN");
 
         if (this.isEmpty()) {
-            System.out.println(CLASS_NAME.concat(" - removeElement(): Array is empty"));
+            logger.info(CLASS_NAME.concat(" - removeElement(): Array is empty"));
             return false;
         } else if((indexElement + 1) > this.getSize()) throw new ArrayIndexOutOfBoundsException(indexElement);
 
@@ -149,11 +158,11 @@ public class Queue {
             }
         }
 
-        System.out.println(CLASS_NAME + " - removeElement(): " + element);
+        logger.info(CLASS_NAME + " - removeElement(): {}", element);
         this.setAllElements(newElements);
 
-        System.out.println(CLASS_NAME.concat(" - removeElement(): END"));
-        System.out.println(CLASS_NAME.concat(" ===================="));
+        logger.debug(CLASS_NAME.concat(" - removeElement(): END"));
+        logger.debug(CLASS_NAME.concat(" ===================="));
         return true;
     }
 
@@ -162,15 +171,15 @@ public class Queue {
      * @return Retorna true indicando que o array foi apagado ou false se já estava vazio.
      */
     public boolean eraseAllElements() {
-        System.out.println("\n" + CLASS_NAME + " - removeElement(): BEGIN");
+        logger.debug("\n" + CLASS_NAME + " - removeElement(): BEGIN");
         if(this.isEmpty()){
-            System.out.println(CLASS_NAME.concat(" - removeElement(): the array is already empty"));
+            logger.info(CLASS_NAME.concat(" - removeElement(): the array is already empty"));
             return false;
         }
 
         this.setAllElements(new Object[0]);
-        System.out.println(CLASS_NAME.concat(" - removeElement(): END"));
-        System.out.println(CLASS_NAME.concat(" ===================="));
+        logger.debug(CLASS_NAME.concat(" - removeElement(): END"));
+        logger.debug(CLASS_NAME.concat(" ===================="));
         return true;
     }
 
@@ -180,7 +189,7 @@ public class Queue {
      * @return Retorna true indicado se contem o elemento ou false para nao.
      */
     public boolean contains(final Object element) {
-        System.out.println("\n" + CLASS_NAME + " - contains(): BEGIN");
+        logger.debug(CLASS_NAME + " - contains(): BEGIN");
         return ( this.searchElement(element) != NOT_FOUND );
     }
 
@@ -190,39 +199,39 @@ public class Queue {
      * @return Retorna o nome do objeto e conteudo formatados em string.
      */
     public String toString(final Object element) {
-        System.out.println("\n" + CLASS_NAME + " - toString(): BEGIN");
+        logger.debug(CLASS_NAME + " - toString(): BEGIN");
 
         if (element == null) return "null";
 
         String elementToString = NONE;
         final String elementType = this.getObjectType(element);
         final String elementGroup = MapTypes.getGroup(elementType);
-        System.out.println(CLASS_NAME + " - toString(): elementType = " + elementType);
-        System.out.println(CLASS_NAME + " - toString(): elementGroup = " + elementGroup);
+        logger.debug(CLASS_NAME + " - toString(): elementType = {}", elementType);
+        logger.debug(CLASS_NAME + " - toString(): elementGroup = {}", elementGroup);
 
         switch (elementGroup) {
             case MapTypes.GROUP_PRIMITIVE -> {
-                System.out.println(CLASS_NAME.concat(" - toString(): Group Primitive"));
+                logger.debug(CLASS_NAME.concat(" - toString(): Group Primitive"));
                 elementToString = MapTypes.getPrimitiveToString(element, elementType);
             }
 
             case MapTypes.GROUP_OBJECT -> {
-                System.out.println(CLASS_NAME.concat(" - toString(): Group Object"));
+                logger.debug(CLASS_NAME.concat(" - toString(): Group Object"));
                 elementToString = MapTypes.getObjectToString(element, elementType);
             }
 
             case MapTypes.GROUP_PRIMITIVE_ARRAY -> {
-                System.out.println(CLASS_NAME.concat(" - toString(): Group Primitive Array"));
+                logger.debug(CLASS_NAME.concat(" - toString(): Group Primitive Array"));
                 elementToString = MapTypes.getPrimitiveArrayToString(element, elementType);
             }
 
             case MapTypes.GROUP_OBJECT_ARRAY -> {
-                System.out.println(CLASS_NAME.concat(" - toString(): Group Object Array"));
+                logger.debug(CLASS_NAME.concat(" - toString(): Group Object Array"));
                 elementToString = MapTypes.getObjectArrayToString(element, elementType);
             }
         }
-        System.out.println(CLASS_NAME + " - toString(): elementToString = " + elementToString);
-        System.out.println(CLASS_NAME.concat(" - toString(): END"));
+        logger.info(CLASS_NAME + " - toString(): elementToString = {}", elementToString);
+        logger.debug(CLASS_NAME.concat(" - toString(): END"));
         return elementToString;
     }
 
@@ -232,13 +241,13 @@ public class Queue {
      * @return Retorna o nome do tipo do elemento, se for encontrado. Se não, retorna NONE
      */
     public String getObjectType(final Object object) {
-        System.out.println("\n" + CLASS_NAME + " - getObjectType(): BEGIN");
+        logger.debug(CLASS_NAME + " - getObjectType(): BEGIN");
 
         String objectType = object.getClass().getSimpleName();
-        if(objectType.equals(NONE)) System.out.println(CLASS_NAME.concat(" - getObjectType(): Object type does not found"));
+        if(objectType.equals(NONE)) logger.debug(CLASS_NAME.concat(" - getObjectType(): Object type does not found"));
 
-        System.out.println(CLASS_NAME.concat(" - getObjectType(): END"));
-        System.out.println(CLASS_NAME.concat(" ===================="));
+        logger.debug(CLASS_NAME.concat(" - getObjectType(): END"));
+        logger.debug(CLASS_NAME.concat(" ===================="));
         return objectType;
     }
 

@@ -1,5 +1,7 @@
 package main.otogamidev.queue.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +21,9 @@ import java.util.Map;
  */
 public class MapTypes {
 
-    final String CLASS_NAME = "MapTypes";
+    private static final String CLASS_NAME = "MapTypes";
+
+    private final Logger logger = LogManager.getLogger(MapTypes.class);
 
     private static final Map<String, String> typeConverters = new HashMap<>();
 

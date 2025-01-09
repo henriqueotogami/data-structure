@@ -1,5 +1,6 @@
 # Compiled class file
 *.class
+out/
 
 # Log file
 *.log
@@ -24,4 +25,6 @@ hs_err_pid*
 replay_pid*
 
 ### IntelliJ IDEA ###
-.idea/
+.idea
+
+#

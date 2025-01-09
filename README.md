@@ -1,2 +1,102 @@
-# data-structure
-Repositório dedicado aos estudos de estrutura de dados
+<div align="center">
+
+## Estrutura de Dados em Java
+### Henrique Otogami
+#### Início: 26-11-2024
+##### Readme versão 1.0
+
+</div>
+<br>
+<div align="center">
+<img width="500" src="https://github.com/henriqueotogami/todolistyoutube/blob/master/JAVA-Cover.png?raw=true">
+</div>
+<br>
+<div align="center">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/henriqueotogami/data-structure">
+</div>
+<br>
+<div align="center">
+<img src="https://img.shields.io/github/issues/henriqueotogami/data-structure">
+<img src="https://img.shields.io/github/forks/henriqueotogami/data-structure">
+<img src="https://img.shields.io/github/stars/henriqueotogami/data-structure">
+<img src="https://img.shields.io/github/license/henriqueotogami/data-structure">
+</div>
+<br>
+
+### Descrição
+
+> Repositório dedicado aos estudos de estrutura de dados em Java e sem framework.
+
+### Sumário
+
+- [x] Filas
+
+### Resumo das Implementações
+
+<details>
+    <summary> Implementação de Listas </summary>
+<br>
+
+> Métodos:
+> - [x] addElement(Object): void
+> - [x] contains(Object): boolean
+> - [x] eraseAllElements(): boolean
+> - [x] getAllElements(): Object[]
+> - [x] getElement(int): Object
+> - [x] getObjectType(Object): String
+> - [x] getSize(): int
+> - [x] isEmpty(): boolean
+> - [x] removeElement(int): boolean
+> - [x] searchElement(Object): int
+> - [x] searchElement(Object[], Object): int
+> - [x] setAllElements(Object[]): void
+> - [x] toString(Object): String
+
+> Testes Unitários:
+> - [x] addElementTest(): void
+> - [x] containsTest(): void
+> - [x] createQueueTest(): void
+> - [x] isEmptyTest(): void
+> - [x] removeElementTest(): void
+> - [x] searchElementTest(): void
+> - [x] toStringTest(): void
+<hr>
+</details>
+
+### Bibliotecas
+#### Log4j
+> API para gerenciamento de logs.
+- [x] [log4j-api-2.3.2.jar](https://logging.apache.org/log4j/2.3.x/download.html)
+- [x] [log4j-core-2.3.2.jar](https://logging.apache.org/log4j/2.3.x/download.html)
+
+#### JUnit 5
+> API para escrita de testes.
+- [x] [junit-jupiter-5.8.1.jar](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.8.1)
+
+### Créditos
+
+- [x] [Foto de capa by Clay Banks | Unsplash - Photos for everyone;](https://unsplash.com/photos/oO6Gm16Cqcg)
+- [x] [Shields.io | Badges Info from Github](https://img.shields.io)
+- [x] [Alexandre Sanlim | Badges Tech](https://github.com/alexandresanlim/Badges4-README.md-Profile)
+
+<hr>
+
+> ### Caso você queira ajudar a melhorar este repositório, qualquer ajuda é bem vinda.
+
+- [x] Faça um **fork** deste repositório (https://github.com/henriqueotogami/todolistyoutube/fork);
+- [x] Crie um **branch** com as suas modificações ` git checkout -b meu-novo-recurso `;
+- [x] Faça um **commit** ` git commit -am 'Adicionando um novo recurso ...'`;
+- [x] Faça um **push** ` git push origin meu-novo-recurso ` ;
+- [x] Crie uma nova **pull request** neste repositório.
+
+**Depois que sua solicitação (pull request) for aceita e adicionada (merged) ao ramo principal (branch main), você pode excluir sua branch tranquilamente.**
+
+<div align="center">
+
+<br>
+
+> ### **Muito obrigado, e que a força esteja com você.**
+>
+> ### Desenvolvido por **Henrique Otogami** 🦁
+
+</div>

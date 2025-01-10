@@ -54,7 +54,7 @@ public class Queue {
             stringBuilder.append("\nsetAllElements(): elements[").append(index).append("] = ");
             stringBuilder.append(this.getObjectType(elements[index]));
         }
-        logger.info(stringBuilder.toString()+"\n");
+        logger.info("{}\n", stringBuilder.toString());
         this.elements = elements;
     }
 
@@ -70,9 +70,7 @@ public class Queue {
         Object[] newElements = new Object[sizeNewElements];
 
         if(actualSize > 0) {
-            for (int index = 0; actualSize > index; index++) {
-                newElements[index] = elements[index];
-            }
+            System.arraycopy(elements, 0, newElements, 0, actualSize);
             newElements[actualSize] = element;
         } else {
             newElements = new Object[] { element };
@@ -147,7 +145,7 @@ public class Queue {
             return false;
         } else if((indexElement + 1) > this.getSize()) throw new ArrayIndexOutOfBoundsException(indexElement);
 
-        Object element = this.getAllElements()[indexElement];
+        Object element = this.getElement(indexElement);
         final int sizeNewElements = (this.getSize() - 2);
         Object[] newElements = new Object[sizeNewElements];
 

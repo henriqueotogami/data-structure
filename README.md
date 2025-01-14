@@ -22,6 +22,9 @@
 <img src="https://img.shields.io/github/license/henriqueotogami/data-structure">
 </div>
 <br>
+<div align=center>
+<a href="https://wakatime.com/badge/user/1e53636e-c916-4d50-9ce1-f3ac75a883e3/project/2c40b207-f4f2-4e1f-977c-e502cadca573"><img src="https://wakatime.com/badge/user/1e53636e-c916-4d50-9ce1-f3ac75a883e3/project/2c40b207-f4f2-4e1f-977c-e502cadca573.svg" alt="wakatime"></a>
+</div>
 
 ### Descrição
 

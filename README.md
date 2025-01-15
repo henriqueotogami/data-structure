@@ -86,7 +86,7 @@
 
 > ### Caso você queira ajudar a melhorar este repositório, qualquer ajuda é bem vinda.
 
-- [x] Faça um **fork** deste repositório (https://github.com/henriqueotogami/todolistyoutube/fork);
+- [x] Faça um **fork** deste repositório (https://github.com/henriqueotogami/data-structure/fork);
 - [x] Crie um **branch** com as suas modificações ` git checkout -b meu-novo-recurso `;
 - [x] Faça um **commit** ` git commit -am 'Adicionando um novo recurso ...'`;
 - [x] Faça um **push** ` git push origin meu-novo-recurso ` ;

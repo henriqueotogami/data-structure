@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 1.1
+##### Readme versão 1.2
 
 </div>
 <br>
@@ -73,7 +73,7 @@
 ### Documentação
 ### Javadoc
 > Documentação técnica gerada a partir das classes e métodos implementados.
-- [x] [Javadoc - Estrutura de Dados](henriqueotogami.github.io/data-structure/)
+- [x] [Javadoc - Estrutura de Dados](https://henriqueotogami.github.io/data-structure/)
 
 ### Wiki
 > Informações gerais sobre o projeto deste repositório de estudos de estruturas de dados.

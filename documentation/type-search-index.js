@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"main.otogamidev.queue.utils","l":"DefaultValues"},{"p":"main.otogamidev.list","l":"LinkedList"},{"p":"main.otogamidev.queue.utils","l":"MapTypes"},{"p":"main.otogamidev.list","l":"Node"},{"p":"main.otogamidev.queue","l":"Queue"}];updateSearchResults();

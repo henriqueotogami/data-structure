@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 1.0
+##### Readme versão 1.1
 
 </div>
 <br>
@@ -27,14 +27,16 @@
 </div>
 
 ### Descrição
-
 > Repositório dedicado aos estudos de estrutura de dados em Java e sem framework.
 
-### Sumário
+<hr>
 
+### Sumário
 - [x] Filas
 
-### Resumo das Implementações
+<hr>
+
+### Resumos
 
 <details>
     <summary> Implementação de Listas </summary>
@@ -66,6 +68,24 @@
 <hr>
 </details>
 
+<hr>
+
+### Documentação
+### Javadoc
+> Documentação técnica gerada a partir das classes e métodos implementados.
+- [x] [Javadoc - Estrutura de Dados](henriqueotogami.github.io/data-structure/)
+
+### Wiki
+> Informações gerais sobre o projeto deste repositório de estudos de estruturas de dados.
+- [x] [Wiki - Estrutura de Dados](https://github.com/henriqueotogami/data-structure/wiki)
+
+### Kanban
+> Informações sobre as tarefas que estão sendo desenvolvidas nesse repositório de estrutura de dados.
+- [x] [Kanban - Estrutura de Dados](https://github.com/users/henriqueotogami/projects/4)
+
+<hr>
+
+### Dependências
 ### Bibliotecas
 #### Log4j
 > API para gerenciamento de logs.
@@ -76,15 +96,18 @@
 > API para escrita de testes.
 - [x] [junit-jupiter-5.8.1.jar](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.8.1)
 
-### Créditos
+<hr>
 
+### Créditos
 - [x] [Foto de capa by Clay Banks | Unsplash - Photos for everyone;](https://unsplash.com/photos/oO6Gm16Cqcg)
 - [x] [Shields.io | Badges Info from Github](https://img.shields.io)
 - [x] [Alexandre Sanlim | Badges Tech](https://github.com/alexandresanlim/Badges4-README.md-Profile)
 
 <hr>
 
-> ### Caso você queira ajudar a melhorar este repositório, qualquer ajuda é bem vinda.
+### Contribuição
+> Caso você queira ajudar a melhorar este repositório, siga as etapas abaixo.
+> Qualquer ajuda é bem-vinda.
 
 - [x] Faça um **fork** deste repositório (https://github.com/henriqueotogami/data-structure/fork);
 - [x] Crie um **branch** com as suas modificações ` git checkout -b meu-novo-recurso `;

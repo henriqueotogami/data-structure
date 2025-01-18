@@ -3,7 +3,6 @@ package test.otogamidev.list;
 import main.otogamidev.list.LinkedList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.util.Assert;
 import org.junit.jupiter.api.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -33,12 +32,14 @@ public class LinkedListTest {
     void appendTest() {
         logger.debug("appendTest() - BEGIN");
         this.linkedList.append(1);
+        this.linkedList.append(2);
+        this.linkedList.append(3);
         final int initialSize = this.linkedList.getSize();
         logger.info("appendTest() - initialSize = {}", initialSize);
         logger.debug("appendTest() - END");
 //       Gambiarra pra printar linha inteira vazia
         System.out.println("");
-        Assertions.assertEquals(1, initialSize);
+        Assertions.assertEquals(3, initialSize);
     }
 
 //    ===========================

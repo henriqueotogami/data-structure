@@ -10,8 +10,8 @@ public class LinkedList {
     private final Logger logger = LogManager.getLogger(LinkedList.class);
 
     private Node head = null;
+    private Node next = null;
     private int size = 0;
-    private Node pointer = null;
 
     public LinkedList() {
         this.head = null;
@@ -25,17 +25,20 @@ public class LinkedList {
         logger.info("LinkedList() - head = {} | size = {}", this.head, this.size);
     }
 
-    public void append(final Object element) {
-        this.head = new Node(element);
+    public void append(final Node element) {
+        final Node node = element;
+        if(this.size == 0) {
+            this.head = node;
+        } else {
+            this.next.setNextElement(node);
+        }
+        this.next = node;
         this.size++;
-        logger.info("append() - head = {} | size = {}", this.head, this.size);
+        logger.info("append() - head = {} ", this.head);
+        logger.info("append() - size = {} | next = {}\n", this.size, this.next);
     }
 
-    public void append(final Node element) {
-        this.head = element;
-        this.size++;
-        logger.info("append() - head = {} | size = {}", this.head, this.size);
-    }
+    public void append(final Object element) { this.append(new Node(element)); }
 
     public int getSize() { return this.size; }
 

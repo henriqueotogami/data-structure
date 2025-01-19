@@ -70,7 +70,22 @@ public class LinkedList {
      * @return retorna conteudo formatado em string
      */
     @Override
-    public String toString() { return "LinkedList { head = " + this.head + " } "; }
+    public String toString() {
+
+        if(this.isEmpty()) return "[]";
+
+        final StringBuilder stringBuilder = new StringBuilder("[]");
+        Node linkedNodes = this.head;
+
+        for(int index = 0; (this.size - 1) > index; index++) {
+            final Object contents = linkedNodes.getElement();
+            stringBuilder.append(contents).append(",");
+            linkedNodes = linkedNodes.getNextElement();
+        }
+        stringBuilder.append(linkedNodes.getElement()).append("]");
+        return stringBuilder.toString();
+
+    }
 
     /**
      * Metodo responsavel pela obtencao do nome da classe

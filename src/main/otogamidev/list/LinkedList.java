@@ -66,6 +66,18 @@ public class LinkedList {
     public boolean isEmpty() { return (this.size == 0); }
 
     /**
+     * Metodo responsavel pela limpeza das variaveis, utilizando recurso similar ao garbage collector.
+     */
+    public void clear() {
+        for(Node actualNode = this.head; actualNode != null;) {
+            final Node nextNode = actualNode.getNextElement();
+            actualNode.setElement(null);
+            actualNode.setNextElement(null);
+            actualNode = nextNode;
+        }
+    }
+
+    /**
      * Metodo responsavel pela conversão da lista em string
      * @return retorna conteudo formatado em string
      */
@@ -74,7 +86,7 @@ public class LinkedList {
 
         if(this.isEmpty()) return "[]";
 
-        final StringBuilder stringBuilder = new StringBuilder("[]");
+        final StringBuilder stringBuilder = new StringBuilder("[");
         Node linkedNodes = this.head;
 
         for(int index = 0; (this.size - 1) > index; index++) {

@@ -8,40 +8,40 @@ import org.apache.logging.log4j.Logger;
  *
  * @author henriquematheusalvespereira
  */
-public class Node extends Object {
+public class Node <T> {
 
     final String CLASS_NAME = "Node";
 
     private final Logger logger = LogManager.getLogger(Node.class);
 
-    private Object element = null;
+    private T element = null;
     private Node nextElement = null;
 
-    public Node(final Object object) { this.element = object; }
+    public Node(final T object) { this.element = object; }
 
     /**
      * Metodo responsavel pela obtencao do elemento armazenado no No
      * @return retorna um elemento do tipo objeto
      */
-    public Object getElement() { return element; }
+    public T getElement() { return element; }
 
     /**
      * Metodo responsavel pelo armazenamento do elemento
      * @param element elemento do tipo objeto
      */
-    public void setElement(final Object element) { this.element = element; }
+    public void setElement(final T element) { this.element = element; }
 
     /**
      * Metodo responsavel pela obtencao do proximo No da Lista Encadeada
      * @return retorna o proximo No da Lista Encadeada
      */
-    public Node getNextElement() { return nextElement; }
+    public Node<T> getNextElement() { return nextElement; }
 
     /**
      * Metodo responsavel pelo armazenamento do proximo No da Lista Encadeada
      * @param nextObject elemento do tipo No
      */
-    public void setNextElement(final Node nextObject) { this.nextElement = nextObject; }
+    public void setNextElement(final Node<T> nextObject) { this.nextElement = nextObject; }
 
     /**
      * Metodo responsavel pela conversão da lista em string

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class QueueTest {
 
+    /** Nome da Classe QueueTest */
     private static final String CLASS_NAME = "QueueTest";
 
     private final Logger logger = LogManager.getLogger(QueueTest.class);
@@ -23,6 +24,7 @@ class QueueTest {
     private final int QUEUE_MAX_SIZE = 34;
 
     /**
+     * Metodo para gerar numero aleatorio de tamanho de lista
      * @return Retorna um índice "aleatorio" para que os metodos dos testes abaixos utilizem tipos de objetos diferentes.
      */
     private int getRandomIndexQueueSize() {
@@ -32,8 +34,8 @@ class QueueTest {
     }
 
     /**
-     * Teste 1 - Criação de Fila.
-     * Cenário = Verificar se a fila é criada corretamente e está vazia.
+     * @Test 1 - Criação de Fila.
+     * @Scenario Verificar se a fila é criada corretamente e está vazia.
      */
     @Test
     @Order(1)
@@ -47,8 +49,8 @@ class QueueTest {
     }
 
     /**
-     * Teste 2 - Testar a operação de enfileiramento.
-     * Cenário: Adicionar elementos à fila.
+     * @Test 2 - Testar a operação de enfileiramento.
+     * @Scenario Adicionar elementos à fila.
      */
     @Test
     @Order(2)
@@ -103,8 +105,8 @@ class QueueTest {
     }
 
     /**
-     * Teste 3 - Testar a operação de desenfileiramento.
-     * Cenário: Remover elementos da fila.
+     * @Test 3 - Testar a operação de desenfileiramento.
+     * @Scenario Remover elementos da fila.
      */
     @Test
     @Order(3)
@@ -130,8 +132,8 @@ class QueueTest {
     }
 
     /**
-     * Teste 4 - Consultar o elemento
-     * Cenário: Consultar o elemento da fila sem remover.
+     * @Test 4 - Consultar o elemento
+     * @Scenario Consultar o elemento da fila sem remover.
      */
     @Test
     @Order(4)
@@ -149,8 +151,8 @@ class QueueTest {
     }
 
     /**
-     * Teste 5 - Testar o estado da fila.
-     * Cenário: Métodos auxiliares como isEmpty() e tamanho da fila.
+     * @Test 5 - Testar o estado da fila.
+     * @Scenario Métodos auxiliares como isEmpty() e tamanho da fila.
      */
     @Test
     @Order(5)
@@ -173,8 +175,8 @@ class QueueTest {
     }
 
     /**
-     * Teste 6 - Testar se a fila contem o elemento.
-     * Cenário: Verifica se um elemento especifico está presente na fila.
+     * @Test 6 - Testar se a fila contem o elemento.
+     * @Scenario Verifica se um elemento especifico está presente na fila.
      */
     @Test
     @Order(6)
@@ -191,8 +193,8 @@ class QueueTest {
     }
 
     /**
-     * Teste 7 - Testar a conversão do valor(es) de um(ns) objeto(s) em string.
-     * Cenário: Tipos primitivos serão convertidos em string, enquanto arrays de objetos terão seus
+     * @Test 7 - Testar a conversão do valor(es) de um(ns) objeto(s) em string.
+     * @Scenario Tipos primitivos serão convertidos em string, enquanto arrays de objetos terão seus
      * valores armazenados convertidos e formatados em string.
      */
     @Test

@@ -21,6 +21,7 @@ import java.util.Map;
  */
 public class MapTypes {
 
+    /** Nome da Classe Queue */
     private static final String CLASS_NAME = "MapTypes";
 
     private final Logger logger = LogManager.getLogger(MapTypes.class);
@@ -241,6 +242,7 @@ public class MapTypes {
     }
 
     /**
+     * Metodo responsavel pela obtencao do grupo de tipo de dados
      * @param typeElement tipo de objeto esperado no map
      * @return Retorna o grupo categorizado desse objeto
      */
@@ -249,6 +251,7 @@ public class MapTypes {
     }
 
     /**
+     * Metodo responsavel pela obtencao do tipo de objeto
      * @param element tipo de dado primitivo ou objeto
      * @return Retorna o nome do tipo de dado ou objeto
      */

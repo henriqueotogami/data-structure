@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class LinkedList<T> {
 
+    /** Nome da Classe LinkedList */
     final String CLASS_NAME = "LinkedList";
 
     private final Logger logger = LogManager.getLogger(LinkedList.class);
@@ -18,14 +19,22 @@ public class LinkedList<T> {
     private Node<T> next = null;
     private int size = 0;
 
+    /** Constante indica objeto nao encontrado */
     private final int NOT_FOUND = -1;
 
+    /**
+     * Metodo construtor da classe de Lista Encadeada.
+     */
     public LinkedList() {
         this.head = null;
         this.size = 0;
         logger.info("LinkedList() - head = null | size = 0");
     }
 
+    /**
+     * Metodo construtor da classe de Lista Encadeada.
+     * @param element Elemento inicial da lista
+     */
     public LinkedList(final Node<T> element) {
         this.head = element;
         this.size++;
@@ -77,23 +86,39 @@ public class LinkedList<T> {
             actualNode.setNextElement(null);
             actualNode = nextNode;
         }
+        this.size = 0;
     }
 
-    private Node<T> searchPosition(final int position) {
+    /**
+     * Metodo responsavel pela busca de um No na lista encadeada pela posicao, sem remove-lo da lista.
+     * @param position posicao do elemento a ser procurado
+     * @return Retorna o No da posicao informada
+     */
+    private Node<T> searchNode(final int position) throws IllegalArgumentException {
         final boolean isValidSize = (position >= 0) && (this.size >= position);
         if(!isValidSize) throw new IllegalArgumentException("Position is not exist");
 
         Node<T> actualNode = this.head;
         for(int index = 0; position > index; index++) actualNode = actualNode.getNextElement();
 
-        return null;
+        return actualNode;
     }
 
-    public T searchNode(final int position) {
-        return this.searchPosition(position).getElement();
+    /**
+     * Metodo responsavel pela busca de um elemento pela posicao, sem remove-lo da lista.
+     * @param position posicao do elemento a ser procurado
+     * @return
+     */
+    public T searchElementByPosition(final int position) throws IllegalArgumentException {
+        return this.searchNode(position).getElement();
     }
 
-    public int searchElement(final Node<T> element) {
+    /**
+     * Metodo responsavel pela busca de um elemento na lista encadeada, sem remove-lo da lista.
+     * @param element elemento a ser procurado
+     * @return Retorna o indice do elemento encontrado. Se nao for encontrado, retorna o valor -1.
+     */
+    public int searchElement(final T element) {
         Node<T> actualNode = this.head;
         int position = 0;
 
@@ -104,7 +129,7 @@ public class LinkedList<T> {
             position++;
             actualNode = actualNode.getNextElement();
         }
-        return NOT_FOUND;
+        return this.NOT_FOUND;
     }
 
     /**

@@ -2,6 +2,8 @@ package main.otogamidev.queue.utils;
 
 /**
  * Classe responsavel pela declaração das variáveis de tipos primitivos e de objetos.
+ *
+ * @author henriquematheusalvespereira
  */
 public class DefaultValues {
 

@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class Queue {
 
+    /** Nome da Classe Queue */
     final String CLASS_NAME = "Queue";
 
     private final Logger logger = LogManager.getLogger(Queue.class);
@@ -21,25 +22,35 @@ public class Queue {
      */
     private Object[] elements = new Object[0];
 
+    /** Constante indica objeto nao encontrado */
     public static final int NOT_FOUND = -1;
 
+    /** Constante indica valor de lista vazia */
     private final int EMPTY = 0;
+
+    /** Constante indica tipo de objeto nao encontrado */
     private final String NONE = "NONE";
 
+    /**
+     * Metodo construtor da classe de Fila.
+     */
     public Queue() {
     }
 
     /**
+     * Metodo responsavel pelo tamanho da lista
      * @return Retorna o tamanho da lista.
      */
     public int getSize() { return elements.length; }
 
     /**
+     * Metodo responsavel pela indicacao de lista vazia
      * @return Retorna true se a lista está vazia.
      */
     public boolean isEmpty() { return (elements.length == EMPTY); }
 
     /**
+     * Metodo responsavel pela obtencao de todos os elementos da lista
      * @return Retorna todos os elementos da lista.
      */
     public Object[] getAllElements() { return elements; }

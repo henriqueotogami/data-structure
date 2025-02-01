@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 1.2
+##### Readme versão 1.3
 
 </div>
 <br>
@@ -13,12 +13,13 @@
 <br>
 <div align="center">
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/henriqueotogami/data-structure">
+<img src="https://img.shields.io/github/checks-status/henriqueotogami/data-structure/main">
+<img src="https://img.shields.io/github/issues/henriqueotogami/data-structure">
 </div>
 <br>
 <div align="center">
-<img src="https://img.shields.io/github/issues/henriqueotogami/data-structure">
-<img src="https://img.shields.io/github/forks/henriqueotogami/data-structure">
-<img src="https://img.shields.io/github/stars/henriqueotogami/data-structure">
+<img src="https://img.shields.io/github/forks/henriqueotogami/data-structure?style=flat">
+<img src="https://img.shields.io/github/stars/henriqueotogami/data-structure?style=flat">
 <img src="https://img.shields.io/github/license/henriqueotogami/data-structure">
 </div>
 <br>

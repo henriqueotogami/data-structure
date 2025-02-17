@@ -33,9 +33,7 @@ public class LinkedListTest {
         logger.debug("createLinkedListTest() - BEGIN");
         final int initialSize = this.linkedList.getSize();
         logger.info("createLinkedListTest() - initialSize = {}", initialSize);
-        logger.debug("createLinkedListTest() - END");
-//       Gambiarra pra printar linha inteira vazia
-        System.out.println("");
+        logger.debug("createLinkedListTest() - END\n");
         Assertions.assertEquals(0, initialSize);
     }
 
@@ -52,9 +50,7 @@ public class LinkedListTest {
         this.linkedList.append(3);
         final int initialSize = this.linkedList.getSize();
         logger.info("appendTest() - initialSize = {}", initialSize);
-        logger.debug("appendTest() - END");
-//       Gambiarra pra printar linha inteira vazia
-        System.out.println("");
+        logger.debug("appendTest() - END\n");
         Assertions.assertEquals(3, initialSize);
     }
 
@@ -74,9 +70,7 @@ public class LinkedListTest {
         this.linkedList.clear();
         final int updateSize = this.linkedList.getSize();
         logger.info("clearTest() - update size = {}", updateSize);
-        logger.debug("clearTest() - END");
-//       Gambiarra pra printar linha inteira vazia
-        System.out.println("");
+        logger.debug("clearTest() - END\n");
         Assertions.assertTrue(this.linkedList.isEmpty());
     }
 
@@ -94,11 +88,73 @@ public class LinkedListTest {
 
         final Object element = this.linkedList.searchElement(1);
         logger.info("searchElementTest() - element = {}", element);
-        logger.debug("searchElementTest() - END");
-//       Gambiarra pra printar linha inteira vazia
-        System.out.println("");
+        logger.debug("searchElementTest() - END\n");
         Assertions.assertEquals(0, element);
     }
+
+    /**
+     * @Test 5 - Adicionar elemento no início da lista encadeada.
+     * @Scenario Verificar se o elemento será adicionado na primeira posição e se irá preservar a conexão inteira de nós
+     */
+    @Test
+    @Order(5)
+    void appendBeginTest() {
+        logger.debug("appendPositionBegin() - BEGIN");
+        this.linkedList.append(2);
+        this.linkedList.append(3);
+        this.linkedList.append(4);
+        this.linkedList.append(5);
+        this.linkedList.append(0, 1);
+        final String expectedLinkedList = "[1,2,3,4,5]";
+        final String resultLinkedList = this.linkedList.toString();
+        logger.debug("appendPositionBegin() - Expected Linked List = {}", expectedLinkedList);
+        logger.info("appendPositionBegin() - Result Linked List = {}", resultLinkedList);
+        logger.debug("appendPositionBegin() - END\n");
+        Assertions.assertEquals(expectedLinkedList, resultLinkedList);
+    }
+
+    /**
+     * @Test 6 - Adicionar elemento no meio da lista encadeada
+     * @Scenario Verificar se o elemento será adicionado na posição informada e se irá preservar a conexão inteira de nós
+     */
+    @Test
+    @Order(6)
+    void appendMiddleTest() {
+        logger.debug("appendMiddleTest() - BEGIN");
+        this.linkedList.append(1);
+        this.linkedList.append(2);
+        this.linkedList.append(4);
+        this.linkedList.append(5);
+        this.linkedList.append(2, 3);
+        final String expectedLinkedList = "[1,2,3,4,5]";
+        final String resultLinkedList = this.linkedList.toString();
+        logger.debug("appendMiddleTest() - Expected Linked List = {}", expectedLinkedList);
+        logger.info("appendMiddleTest() - Result Linked List = {}", resultLinkedList);
+        logger.debug("appendMiddleTest() - END\n");
+        Assertions.assertEquals(expectedLinkedList, resultLinkedList);
+    }
+
+    /**
+     * @Test 7 - Adicionar elemento no fim da lista encadeada
+     * @Scenario Verificar se o elemento será adicionado na posição final e se irá preservar a conexão inteira de nós
+     */
+    @Test
+    @Order(7)
+    void appendEndTest() {
+        logger.debug("appendEndTest() - BEGIN");
+        this.linkedList.append(1);
+        this.linkedList.append(2);
+        this.linkedList.append(3);
+        this.linkedList.append(4);
+        this.linkedList.append(4, 5);
+        final String expectedLinkedList = "[1,2,3,4,5]";
+        final String resultLinkedList = this.linkedList.toString();
+        logger.debug("appendEndTest() - Expected Linked List = {}", expectedLinkedList);
+        logger.info("appendEndTest() - Result Linked List = {}", resultLinkedList);
+        logger.debug("appenappendEndTestdMiddleTest() - END\n");
+        Assertions.assertEquals(expectedLinkedList, resultLinkedList);
+    }
+
 //    ===========================
 //    Testes Unitarios - Fim
 //    ===========================

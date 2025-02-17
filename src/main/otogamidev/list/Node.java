@@ -17,7 +17,15 @@ public class Node <T> {
     private T element = null;
     private Node nextElement = null;
 
-    public Node(final T object) { this.element = object; }
+    public Node(final T element) {
+        this.element = element;
+        this.nextElement = null;
+    }
+
+    public Node(final T element, final Node<T> nextElement) {
+        this.element = element;
+        this.nextElement = nextElement;
+    }
 
     /**
      * Metodo responsavel pela obtencao do elemento armazenado no No

@@ -65,6 +65,60 @@ public class LinkedList<T> {
     public void append(final T element) { this.append(new Node<T>(element)); }
 
     /**
+     * Metodo responsavel pela adicao de um nó dentro de uma lista encadeada.
+     * @param position posição do nó a ser adicionado
+     * @param element elemento a ser adicionado
+     */
+    public void append(final int position, final T element) {
+
+        final boolean isInvalidPosition = (0 > position) || (position > this.size);
+        if(isInvalidPosition) throw new IllegalArgumentException("Posição inválida.");
+
+        if(position == 0) {
+            this.appendBegin(element);
+        } else if(position == this.size) {
+            this.append(element);
+        } else {
+            this.appendMiddle(position, element);
+        }
+    }
+
+    /**
+     * Metodo responsável pela adição de um nó no início de uma lista encadeada.
+     * @param element elemento a ser adicionado
+     */
+    private void appendBegin(final T element) {
+        if(this.isEmpty()) {
+            final Node<T> newNode = new Node<>(element);
+            this.head = newNode;
+            this.next = newNode;
+        } else {
+            final Node<T> newNode = new Node<>(element, this.head);
+            this.head = newNode;
+        }
+        this.size++;
+    }
+
+    /**
+     * Metodo responsável pela adição de um nó no meio de uma lista encadeada.
+     * @param position posição do alvo do nó a ser adicionado
+     * @param element elemento a ser adicionado
+     */
+    private void appendMiddle(final int position, final T element) {
+        final int realPosition = position - 1;
+//          Imagine a lista encadeada: | 1 | 2 | 4 | 5
+//          Para inserir o elemento 3, primeiramente vamos pegar o Nó 2
+        final Node<T> previousNode = this.searchNode(realPosition);
+//          Depois, vamos pegar a referência do 4 e 5
+        final Node<T> nextNode = previousNode.getNextElement();
+//          Depois, vamos definir o link do 3, 4 e 5
+        final Node<T> middleNode = new Node<>(element, nextNode);
+//          Agora vamos adicionar a nova sequência no Nó 2
+        previousNode.setNextElement(middleNode);
+        this.size++;
+    }
+
+    /**
      * Metodo responsavel pela obtencao do tamanho da lista encadeada
      * @return retorna numero inteiro indicando o tamanho da lista
      */

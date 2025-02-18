@@ -144,6 +144,22 @@ public class LinkedList<T> {
     }
 
     /**
+     * Metodo responsável pela remoção do primeiro elemento da lista encadeada.
+     * @return Retorna o primeiro elemento da lista encadeada, que foi removido
+     */
+    public T removeFirstElement() {
+
+        if(this.isEmpty()) throw new RuntimeException("A lista está vazia");
+
+        final T firstElement = this.head.getElement();
+        this.head = this.head.getNextElement();
+        this.size--;
+//      Verificação após ser tamanho decrementado
+        if(isEmpty()) this.next = null;
+        return firstElement;
+    }
+
+    /**
      * Metodo responsavel pela busca de um No na lista encadeada pela posicao, sem remove-lo da lista.
      * @param position posicao do elemento a ser procurado
      * @return Retorna o No da posicao informada

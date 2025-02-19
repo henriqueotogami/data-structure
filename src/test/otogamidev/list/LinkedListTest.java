@@ -151,7 +151,29 @@ public class LinkedListTest {
         final String resultLinkedList = this.linkedList.toString();
         logger.debug("appendEndTest() - Expected Linked List = {}", expectedLinkedList);
         logger.info("appendEndTest() - Result Linked List = {}", resultLinkedList);
-        logger.debug("appenappendEndTestdMiddleTest() - END\n");
+        logger.debug("appendEndTest() - END\n");
+        Assertions.assertEquals(expectedLinkedList, resultLinkedList);
+    }
+
+    /**
+     * @Test 8 - Remover o primeiro elemento da lista encadeada
+     * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
+     */
+    @Test
+    @Order(8)
+    void removeFirstElementTest() {
+        logger.debug("removeFirstElementTest() - BEGIN");
+        this.linkedList.append(1);
+        this.linkedList.append(2);
+        this.linkedList.append(3);
+        this.linkedList.append(4);
+        this.linkedList.append(5);
+        final Object elementRemoved = this.linkedList.removeFirstElement();
+        final String expectedLinkedList = "[2,3,4,5]";
+        final String resultLinkedList = this.linkedList.toString();
+        logger.debug("removeFirstElementTest() - Expected Linked List = {}", expectedLinkedList);
+        logger.info("removeFirstElementTest() - Result Linked List = {}", resultLinkedList);
+        logger.debug("removeFirstElementTest() - END\n");
         Assertions.assertEquals(expectedLinkedList, resultLinkedList);
     }
 

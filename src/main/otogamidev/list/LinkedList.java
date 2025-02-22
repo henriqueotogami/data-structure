@@ -28,7 +28,7 @@ public class LinkedList<T> {
     public LinkedList() {
         this.head = null;
         this.size = 0;
-        logger.info("LinkedList() - head = null | size = 0");
+        logger.info("LinkedList() - head = null | size = 0\n");
     }
 
     /**
@@ -38,7 +38,7 @@ public class LinkedList<T> {
     public LinkedList(final Node<T> element) {
         this.head = element;
         this.size++;
-        logger.info("LinkedList() - head = {} | size = {}", this.head, this.size);
+        logger.info("LinkedList() - head = {} | size = {}\n", this.head, this.size);
     }
 
     /**
@@ -68,8 +68,9 @@ public class LinkedList<T> {
      * Metodo responsavel pela adicao de um nó dentro de uma lista encadeada.
      * @param position posição do nó a ser adicionado
      * @param element elemento a ser adicionado
+     * @throws IllegalArgumentException Lanca exceção se a posição informada for menor que zero ou maior que o tamanho da lista
      */
-    public void append(final int position, final T element) {
+    public void append(final int position, final T element) throws IllegalArgumentException {
 
         final boolean isInvalidPosition = (0 > position) || (position > this.size);
         if(isInvalidPosition) throw new IllegalArgumentException("Posição inválida.");
@@ -146,8 +147,9 @@ public class LinkedList<T> {
     /**
      * Metodo responsável pela remoção do primeiro elemento da lista encadeada.
      * @return Retorna o primeiro elemento da lista encadeada, que foi removido
+     * @throws RuntimeException Lança uma exceção se a lista extiver vazia
      */
-    public T removeFirstElement() {
+    public T removeFirstElement() throws RuntimeException {
 
         if(this.isEmpty()) throw new RuntimeException("A lista está vazia");
 
@@ -160,9 +162,34 @@ public class LinkedList<T> {
     }
 
     /**
+     * Metodo responsável pela remoção do ultimo elemento da lista encadeada.
+     * @return Retorna o ultimo elemento da lista encadeada, que foi removido
+     * @throws RuntimeException Lança uma exceção se a lista extiver vazia
+     */
+    public T removeLastElement() throws RuntimeException {
+
+        if(this.isEmpty()) throw new RuntimeException("A lista está vazia");
+
+        if(this.size == 1) return this.removeFirstElement();
+
+//      Aqui considerando que o Java inicia o index em zero, subtraimos 1 do tamanho pra obter o real index.
+//      Para obter o antepenultimo, subtraimos 1 novamente. Por isso subtraimos 2.
+        final int penultimateIndex = this.size - 2;
+        final Node<T> penultimateNode = this.searchNode(penultimateIndex);
+        final T lastElement = penultimateNode.getNextElement().getElement();
+
+        penultimateNode.setNextElement(null);
+        this.next = penultimateNode;
+        this.size--;
+
+        return lastElement;
+    }
+
+    /**
      * Metodo responsavel pela busca de um No na lista encadeada pela posicao, sem remove-lo da lista.
      * @param position posicao do elemento a ser procurado
      * @return Retorna o No da posicao informada
+     * @throws IllegalArgumentException Lanca exceção se a posição informada for menor que zero ou maior que o tamanho da lista
      */
     private Node<T> searchNode(final int position) throws IllegalArgumentException {
         final boolean isValidSize = (position >= 0) && (this.size >= position);
@@ -177,7 +204,8 @@ public class LinkedList<T> {
     /**
      * Metodo responsavel pela busca de um elemento pela posicao, sem remove-lo da lista.
      * @param position posicao do elemento a ser procurado
-     * @return
+     * @return Retorna o elemento da posição informada
+     * @throws IllegalArgumentException Lanca exceção se a posição informada for menor que zero ou maior que o tamanho da lista
      */
     public T searchElementByPosition(final int position) throws IllegalArgumentException {
         return this.searchNode(position).getElement();

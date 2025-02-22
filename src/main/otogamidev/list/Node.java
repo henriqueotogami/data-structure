@@ -56,7 +56,7 @@ public class Node <T> {
      * @return retorna conteudo formatado em string
      */
     @Override
-    public String toString() { return "Node { nextElement = " + nextElement + ", element = " + element + " } "; }
+    public String toString() { return "Node { element = " + element + ", nextElement = " + nextElement + " } "; }
 
     /**
      * Metodo responsavel pela obtencao do nome da classe

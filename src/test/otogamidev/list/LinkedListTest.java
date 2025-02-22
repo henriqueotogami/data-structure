@@ -177,6 +177,28 @@ public class LinkedListTest {
         Assertions.assertEquals(expectedLinkedList, resultLinkedList);
     }
 
+    /**
+     * @Test 9 - Remover o ultimo elemento da lista encadeada
+     * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
+     */
+    @Test
+    @Order(9)
+    void removeLastElementTest() {
+        logger.debug("removeLastElementTest() - BEGIN");
+        this.linkedList.append(1);
+        this.linkedList.append(2);
+        this.linkedList.append(3);
+        this.linkedList.append(4);
+        this.linkedList.append(5);
+        final Object elementRemoved = this.linkedList.removeLastElement();
+        final String expectedLinkedList = "[1,2,3,4]";
+        final String resultLinkedList = this.linkedList.toString();
+        logger.debug("removeLastElementTest() - Expected Linked List = {}", expectedLinkedList);
+        logger.info("removeLastElementTest() - Result Linked List = {}", resultLinkedList);
+        logger.debug("removeLastElementTest() - END\n");
+        Assertions.assertEquals(expectedLinkedList, resultLinkedList);
+    }
+
 //    ===========================
 //    Testes Unitarios - Fim
 //    ===========================

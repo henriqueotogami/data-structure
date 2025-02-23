@@ -2,6 +2,7 @@ package test.otogamidev.queue;
 
 import main.otogamidev.queue.utils.DefaultValues;
 import main.otogamidev.queue.Queue;
+import main.otogamidev.utils.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
@@ -22,16 +23,6 @@ class QueueTest {
     private final Queue queue = new Queue();
 
     private final int QUEUE_MAX_SIZE = 34;
-
-    /**
-     * Metodo para gerar numero aleatorio de tamanho de lista
-     * @return Retorna um índice "aleatorio" para que os metodos dos testes abaixos utilizem tipos de objetos diferentes.
-     */
-    private int getRandomIndexQueueSize() {
-        final int size = queue.getSize();
-        final int randomIndex = (int) (Math.random() * size);
-        return randomIndex;
-    }
 
     /**
      * @Test 1 - Criação de Fila.
@@ -117,7 +108,7 @@ class QueueTest {
 //      Por isso, chamei aqui o metodo addElementTest.
         this.addElementTest();
 
-        final int randomIndex = getRandomIndexQueueSize();
+        final int randomIndex = Utils.getRandomIndex(this.queue.getSize());
         logger.debug(CLASS_NAME + " - removeElementTest(): randomIndex = {}", randomIndex);
         final Object element = queue.getElement(randomIndex);
 
@@ -142,7 +133,7 @@ class QueueTest {
 //      Parece que o Junit reinicia a instancia depois de terminar os metodos.
 //      Por isso, chamei aqui o metodo addElementTest.
         this.addElementTest();
-        final int randomIndex = getRandomIndexQueueSize();
+        final int randomIndex = Utils.getRandomIndex(this.queue.getSize());
         final Object element = queue.getElement(randomIndex);
         final boolean isFoundElement = ( queue.searchElement(element) != Queue.NOT_FOUND );
         logger.info(CLASS_NAME + " - searchElementTest(): isFoundElement = {}", isFoundElement);
@@ -183,7 +174,7 @@ class QueueTest {
     void containsTest() {
         logger.debug(CLASS_NAME.concat(" - containsTest(): BEGIN"));
         this.addElementTest();
-        final int randomIndex = getRandomIndexQueueSize();
+        final int randomIndex = Utils.getRandomIndex(this.queue.getSize());
         final Object randomElement = queue.getElement(randomIndex);
         logger.info(CLASS_NAME + " - containsTest(): randomElement.getType = {}", queue.getObjectType(randomElement));
         final boolean isFoundElement = queue.contains(randomElement);

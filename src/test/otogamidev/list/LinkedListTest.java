@@ -1,6 +1,7 @@
 package test.otogamidev.list;
 
 import main.otogamidev.list.LinkedList;
+import main.otogamidev.utils.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
@@ -168,8 +169,8 @@ public class LinkedListTest {
         this.linkedList.append(3);
         this.linkedList.append(4);
         this.linkedList.append(5);
+        final String expectedLinkedList = Utils.getListWithoutSpecificIndex(this.linkedList, 0);
         final Object elementRemoved = this.linkedList.removeFirstElement();
-        final String expectedLinkedList = "[2,3,4,5]";
         final String resultLinkedList = this.linkedList.toString();
         logger.debug("removeFirstElementTest() - Expected Linked List = {}", expectedLinkedList);
         logger.info("removeFirstElementTest() - Result Linked List = {}", resultLinkedList);
@@ -190,12 +191,39 @@ public class LinkedListTest {
         this.linkedList.append(3);
         this.linkedList.append(4);
         this.linkedList.append(5);
+        final String expectedLinkedList = Utils.getListWithoutSpecificIndex(this.linkedList, this.linkedList.getLastIndex());
         final Object elementRemoved = this.linkedList.removeLastElement();
-        final String expectedLinkedList = "[1,2,3,4]";
         final String resultLinkedList = this.linkedList.toString();
         logger.debug("removeLastElementTest() - Expected Linked List = {}", expectedLinkedList);
         logger.info("removeLastElementTest() - Result Linked List = {}", resultLinkedList);
         logger.debug("removeLastElementTest() - END\n");
+        Assertions.assertEquals(expectedLinkedList, resultLinkedList);
+    }
+
+    /**
+     * @Test 10 - Remover um elemento da lista encadeada
+     * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
+     */
+    @Test
+    @Order(10)
+    void removeElementTest() {
+        logger.debug("removeElementTest() - BEGIN");
+        this.linkedList.append(1);
+        this.linkedList.append(2);
+        this.linkedList.append(3);
+        this.linkedList.append(4);
+        this.linkedList.append(5);
+        final String originalLinkedList = this.linkedList.toString();
+
+        final int randomIndex = Utils.getRandomIndex(this.linkedList.getSize());
+        final String expectedLinkedList = Utils.getListWithoutSpecificIndex(this.linkedList, randomIndex);
+
+        final Object elementRemoved = this.linkedList.removeElement(randomIndex);
+        final String resultLinkedList = this.linkedList.toString();
+
+        logger.debug("removeElementTest() - Expected Linked List = {}", expectedLinkedList);
+        logger.info("removeElementTest() - Result Linked List = {}", resultLinkedList);
+        logger.debug("removeElementTest() - END\n");
         Assertions.assertEquals(expectedLinkedList, resultLinkedList);
     }
 

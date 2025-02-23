@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger;
 /**
  * Classe responsavel pela implementacao de Lista Encadeada.
  *
+ * Implementação baseada no curso da Loiane Groner, porém com alterações minhas.
+ *
  * @author henriquematheusalvespereira
  */
 public class LinkedList<T> {
@@ -13,14 +15,21 @@ public class LinkedList<T> {
     /** Nome da Classe LinkedList */
     final String CLASS_NAME = "LinkedList";
 
+    /** Instancia da classe de logs Log4J */
     private final Logger logger = LogManager.getLogger(LinkedList.class);
 
     private Node<T> head = null;
     private Node<T> next = null;
     private int size = 0;
 
-    /** Constante indica objeto nao encontrado */
-    private final int NOT_FOUND = -1;
+    /** Constante indica objeto não encontrado */
+    private final int NOT_FOUND_INDEX = -1;
+
+    /** Constante indica posição inválida */
+    final String INVALID_POSITION = "Posição inválida.";
+
+    /** Constante indica lista vazia */
+    final String EMPTY_LIST = "Posição inválida.";
 
     /**
      * Metodo construtor da classe de Lista Encadeada.
@@ -72,8 +81,7 @@ public class LinkedList<T> {
      */
     public void append(final int position, final T element) throws IllegalArgumentException {
 
-        final boolean isInvalidPosition = (0 > position) || (position > this.size);
-        if(isInvalidPosition) throw new IllegalArgumentException("Posição inválida.");
+        if(this.isInvalidPosition(position)) throw new IllegalArgumentException(this.INVALID_POSITION);
 
         if(position == 0) {
             this.appendBegin(element);
@@ -126,10 +134,24 @@ public class LinkedList<T> {
     public int getSize() { return this.size; }
 
     /**
+     * Metodo responsável pelo retorno do último índice da lista.
+     * @return retorna valor inteiro indicando o último índicee.
+     */
+    public int getLastIndex() { return this.size - 1; }
+
+    /**
      * Metodo responsavel pela verificacao de tamanho da lista
      * @return retorna valor true indicando que esta vazia e false indicando que esta cheia
      */
     public boolean isEmpty() { return (this.size == 0); }
+
+    /**
+     * Metodo responsável pela invalidacão da posição, ou seja, utilizando a lógica invertida.
+     * Se a posição for menor que zero ou se a posição for maior que o tamanho, será inválida.
+     * @param position posição informada
+     * @return retorna valor true indicando posição inválida e false para posição válida.
+     */
+    private boolean isInvalidPosition(final int position) { return ((position < 0) || (this.size < position)); }
 
     /**
      * Metodo responsavel pela limpeza das variaveis, utilizando recurso similar ao garbage collector.
@@ -147,11 +169,11 @@ public class LinkedList<T> {
     /**
      * Metodo responsável pela remoção do primeiro elemento da lista encadeada.
      * @return Retorna o primeiro elemento da lista encadeada, que foi removido
-     * @throws RuntimeException Lança uma exceção se a lista extiver vazia
+     * @throws RuntimeException Lança uma exceção se a lista estiver vazia
      */
     public T removeFirstElement() throws RuntimeException {
 
-        if(this.isEmpty()) throw new RuntimeException("A lista está vazia");
+        if(this.isEmpty()) throw new RuntimeException(this.EMPTY_LIST);
 
         final T firstElement = this.head.getElement();
         this.head = this.head.getNextElement();
@@ -164,11 +186,11 @@ public class LinkedList<T> {
     /**
      * Metodo responsável pela remoção do ultimo elemento da lista encadeada.
      * @return Retorna o ultimo elemento da lista encadeada, que foi removido
-     * @throws RuntimeException Lança uma exceção se a lista extiver vazia
+     * @throws RuntimeException Lança uma exceção se a lista estiver vazia
      */
     public T removeLastElement() throws RuntimeException {
 
-        if(this.isEmpty()) throw new RuntimeException("A lista está vazia");
+        if(this.isEmpty()) throw new RuntimeException(this.EMPTY_LIST);
 
         if(this.size == 1) return this.removeFirstElement();
 
@@ -186,14 +208,41 @@ public class LinkedList<T> {
     }
 
     /**
+     * Metodo responsável pela remoção de um elemento na lista, através da posição.
+     * @param position posição do elemento na lista
+     * @return retorna o elemento da lista encadeada, que foi removido
+     * @throws IllegalArgumentException Lança uma exceção se a lista estiver vazia
+     */
+    public T removeElement(final int position) throws IllegalArgumentException{
+
+        if(this.isInvalidPosition(position)) throw new IllegalArgumentException(this.INVALID_POSITION);
+
+        if(position == 0) return this.removeFirstElement();
+
+        if(position == getLastIndex()) return this.removeLastElement();
+
+//      A partir daqui, é a tratativa de elemento no meio da lista
+        final int middlePosition = position - 1;
+        final Node<T> previousNode = this.searchNode(middlePosition);
+        final Node<T> actualNode = previousNode.getNextElement();
+        final Node<T> nextnode = actualNode.getNextElement();
+
+        previousNode.setNextElement(nextnode);
+        actualNode.setNextElement(null);
+        this.size--;
+
+        return actualNode.getElement();
+    }
+
+    /**
      * Metodo responsavel pela busca de um No na lista encadeada pela posicao, sem remove-lo da lista.
      * @param position posicao do elemento a ser procurado
      * @return Retorna o No da posicao informada
      * @throws IllegalArgumentException Lanca exceção se a posição informada for menor que zero ou maior que o tamanho da lista
      */
     private Node<T> searchNode(final int position) throws IllegalArgumentException {
-        final boolean isValidSize = (position >= 0) && (this.size >= position);
-        if(!isValidSize) throw new IllegalArgumentException("Position is not exist");
+
+        if(this.isInvalidPosition(position)) throw new IllegalArgumentException(this.INVALID_POSITION);
 
         Node<T> actualNode = this.head;
         for(int index = 0; position > index; index++) actualNode = actualNode.getNextElement();
@@ -227,7 +276,7 @@ public class LinkedList<T> {
             position++;
             actualNode = actualNode.getNextElement();
         }
-        return this.NOT_FOUND;
+        return this.NOT_FOUND_INDEX;
     }
 
     /**
@@ -241,15 +290,15 @@ public class LinkedList<T> {
 
         final StringBuilder stringBuilder = new StringBuilder("[");
         Node<T> linkedNodes = this.head;
+        final int lastIndex = getLastIndex();
 
-        for(int index = 0; (this.size - 1) > index; index++) {
+        for(int index = 0; lastIndex > index; index++) {
             final Object contents = linkedNodes.getElement();
             stringBuilder.append(contents).append(",");
             linkedNodes = linkedNodes.getNextElement();
         }
         stringBuilder.append(linkedNodes.getElement()).append("]");
         return stringBuilder.toString();
-
     }
 
     /**

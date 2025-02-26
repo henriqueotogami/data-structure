@@ -47,7 +47,18 @@ public class LinkedList<T> {
     public LinkedList(final Node<T> element) {
         this.head = element;
         this.size++;
-        logger.info("LinkedList() - head = {} | size = {}\n", this.head, this.size);
+        logger.info("LinkedList() - Element - head = {} | size = {}\n", this.head, this.size);
+    }
+
+    /**
+     * Metodo construtor da classe de Lista Encadeada.
+     * @param elements Lista de elementos a serem adicionados na lista.
+     */
+    public LinkedList(final Node<T>[] elements) {
+        for (Node<T> element : elements) {
+            this.append(element);
+        }
+        logger.info("LinkedList() - Element List - head = {} | size = {}\n", this.head, this.size);
     }
 
     /**

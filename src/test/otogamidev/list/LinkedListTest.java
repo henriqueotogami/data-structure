@@ -1,6 +1,7 @@
 package test.otogamidev.list;
 
 import main.otogamidev.list.LinkedList;
+import main.otogamidev.list.Node;
 import main.otogamidev.utils.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,33 +18,72 @@ public class LinkedListTest {
     /** Nome da Classe LinkedListTest */
     private static final String CLASS_NAME = "LinkedListTest";
 
+    /** Intancia de Logs de Testes da Classe LinkedListTest */
     private final Logger logger = LogManager.getLogger(LinkedListTest.class);
-    private final LinkedList<Object> linkedList = new LinkedList();
 
-//    ===========================
+//    =================================================================================================================
+//    Variáveis dos Testes Unitarios - Inicio
+//    =================================================================================================================
+
+    private LinkedList linkedList = new LinkedList();
+
+    private final String linkedListEmpty = "[]";
+    private final String linkedListFull  = "[1,2,3,4,5]";
+
+    private final int linkedListEmptySize = 0;
+    private final int linkedListFullSize  = 5;
+
+//    =================================================================================================================
+//    Variáveis dos Testes Unitarios - Fim
+//    =================================================================================================================
+
+
+//    =================================================================================================================
 //    Testes Unitarios - Inicio
-//    ===========================
+//    =================================================================================================================
 
     /**
-     * @Test 1 - Criação de Lista Encadeada
-     * @Scenario Instanciar a classe e possuir o tamanho zero.
+     * @Test 1 - Criação de Lista Encadeada vazia
+     * @Scenario Instanciar a classe e verificar se possui o tamanho zero.
      */
     @Test
     @Order(1)
-    void createLinkedListTest() {
-        logger.debug("createLinkedListTest() - BEGIN");
+    void createEmptyListTest() {
+        logger.debug("createEmptyListTest() - BEGIN");
         final int initialSize = this.linkedList.getSize();
-        logger.info("createLinkedListTest() - initialSize = {}", initialSize);
-        logger.debug("createLinkedListTest() - END\n");
-        Assertions.assertEquals(0, initialSize);
+        final String expectedLinkedList = linkedListEmpty;
+        final String resultLinkedList = this.linkedList.toString();
+        logger.info("createFullListTest() - result list = {} | initial size = {}", resultLinkedList, initialSize);
+        logger.debug("createEmptyListTest() - END\n");
+        Assertions.assertEquals(linkedListEmptySize, initialSize);
+        Assertions.assertEquals(expectedLinkedList, resultLinkedList);
     }
 
     /**
-     * @Test 2 - Adicionar elementos na lista encadeada.
-     * @Scenario Verificar se o tamanho da lista encadeada é o mesmo que a quantidade de elementos adicionados.
+     * @Test 2 - Criação de Lista Encadeada cheia
+     * @Scenario Instanciar a classe e verificar se possui o tamanho cinco.
      */
     @Test
     @Order(2)
+    void createFullListTest() {
+        logger.debug("createFullListTest() - BEGIN");
+        final Node[] nodes = new Node[]{ new Node(1), new Node(2), new Node(3), new Node(4), new Node(5)};
+        linkedList = new LinkedList<>(nodes);
+        final int resultSize = this.linkedList.getSize();
+        final String expectedLinkedList = linkedListFull;
+        final String resultLinkedList = this.linkedList.toString();
+        logger.info("createFullListTest() - result list = {} | result size = {}", resultLinkedList, resultSize);
+        logger.debug("createFullListTest() - END\n");
+        Assertions.assertEquals(linkedListFullSize, resultSize);
+        Assertions.assertEquals(expectedLinkedList, resultLinkedList);
+    }
+
+    /**
+     * @Test 3 - Adicionar elementos na lista encadeada.
+     * @Scenario Verificar se o tamanho da lista encadeada é o mesmo que a quantidade de elementos adicionados.
+     */
+    @Test
+    @Order(3)
     void appendTest() {
         logger.debug("appendTest() - BEGIN");
         this.linkedList.append(1);
@@ -56,11 +96,11 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 3 - Limpeza de Lista Encadeada contendo elementos.
+     * @Test 4 - Limpeza de Lista Encadeada contendo elementos.
      * @Scenario Verificar se o tamanho final da lista é zero, após limpar toda a lista.
      */
     @Test
-    @Order(3)
+    @Order(4)
     void clearTest() {
         logger.debug("clearTest() - BEGIN");
         this.linkedList.append(1);
@@ -76,11 +116,11 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 4 - Busca por tipo de elemento
+     * @Test 5 - Busca por tipo de elemento
      * @Scenario Verificar se o indice do elemento encontrado eh o mesmo do valor esperado
      */
     @Test
-    @Order(4)
+    @Order(5)
     void searchElementTest() {
         logger.debug("searchElementTest() - BEGIN");
         this.linkedList.append(1);
@@ -94,11 +134,11 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 5 - Adicionar elemento no início da lista encadeada.
+     * @Test 6 - Adicionar elemento no início da lista encadeada.
      * @Scenario Verificar se o elemento será adicionado na primeira posição e se irá preservar a conexão inteira de nós
      */
     @Test
-    @Order(5)
+    @Order(6)
     void appendBeginTest() {
         logger.debug("appendPositionBegin() - BEGIN");
         this.linkedList.append(2);
@@ -115,11 +155,11 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 6 - Adicionar elemento no meio da lista encadeada
+     * @Test 7 - Adicionar elemento no meio da lista encadeada
      * @Scenario Verificar se o elemento será adicionado na posição informada e se irá preservar a conexão inteira de nós
      */
     @Test
-    @Order(6)
+    @Order(7)
     void appendMiddleTest() {
         logger.debug("appendMiddleTest() - BEGIN");
         this.linkedList.append(1);
@@ -136,11 +176,11 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 7 - Adicionar elemento no fim da lista encadeada
+     * @Test 8 - Adicionar elemento no fim da lista encadeada
      * @Scenario Verificar se o elemento será adicionado na posição final e se irá preservar a conexão inteira de nós
      */
     @Test
-    @Order(7)
+    @Order(8)
     void appendEndTest() {
         logger.debug("appendEndTest() - BEGIN");
         this.linkedList.append(1);
@@ -157,11 +197,11 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 8 - Remover o primeiro elemento da lista encadeada
+     * @Test 9 - Remover o primeiro elemento da lista encadeada
      * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
      */
     @Test
-    @Order(8)
+    @Order(9)
     void removeFirstElementTest() {
         logger.debug("removeFirstElementTest() - BEGIN");
         this.linkedList.append(1);
@@ -179,11 +219,11 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 9 - Remover o ultimo elemento da lista encadeada
+     * @Test 10 - Remover o ultimo elemento da lista encadeada
      * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
      */
     @Test
-    @Order(9)
+    @Order(10)
     void removeLastElementTest() {
         logger.debug("removeLastElementTest() - BEGIN");
         this.linkedList.append(1);
@@ -201,11 +241,11 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 10 - Remover um elemento da lista encadeada
+     * @Test 11 - Remover um elemento da lista encadeada
      * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
      */
     @Test
-    @Order(10)
+    @Order(11)
     void removeElementTest() {
         logger.debug("removeElementTest() - BEGIN");
         this.linkedList.append(1);
@@ -227,7 +267,7 @@ public class LinkedListTest {
         Assertions.assertEquals(expectedLinkedList, resultLinkedList);
     }
 
-//    ===========================
+//    =================================================================================================================
 //    Testes Unitarios - Fim
-//    ===========================
+//    =================================================================================================================
 }

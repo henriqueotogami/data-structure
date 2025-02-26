@@ -1,7 +1,6 @@
 package main.otogamidev.utils;
 
 import main.otogamidev.list.LinkedList;
-import main.otogamidev.list.Node;
 
 public class Utils {
 

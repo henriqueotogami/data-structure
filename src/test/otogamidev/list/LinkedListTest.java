@@ -1,7 +1,6 @@
 package test.otogamidev.list;
 
 import main.otogamidev.list.LinkedList;
-import main.otogamidev.list.Node;
 import main.otogamidev.utils.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -67,8 +66,7 @@ public class LinkedListTest {
     @Order(2)
     void createFullListTest() {
         logger.debug("createFullListTest() - BEGIN");
-        final Node[] nodes = new Node[]{ new Node(1), new Node(2), new Node(3), new Node(4), new Node(5)};
-        linkedList = new LinkedList<>(nodes);
+        linkedList = new LinkedList<>(Utils.generateArrayNodes(linkedListFullSize));
         final int resultSize = this.linkedList.getSize();
         final String expectedLinkedList = linkedListFull;
         final String resultLinkedList = this.linkedList.toString();

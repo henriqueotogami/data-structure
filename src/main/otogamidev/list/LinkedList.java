@@ -23,7 +23,7 @@ public class LinkedList<T> {
     private int size = 0;
 
     /** Constante indica objeto não encontrado */
-    private final int NOT_FOUND_INDEX = -1;
+    public static final int NOT_FOUND_INDEX = -1;
 
     /** Constante indica posição inválida */
     final String INVALID_POSITION = "Posição inválida.";
@@ -168,6 +168,12 @@ public class LinkedList<T> {
      * Metodo responsavel pela limpeza das variaveis, utilizando recurso similar ao garbage collector.
      */
     public void clear() {
+
+        if(this.isEmpty()) {
+            logger.debug("clear() - linked list is empty already");
+            return;
+        }
+
         for(Node<T> actualNode = this.head; actualNode != null;) {
             final Node nextNode = actualNode.getNextElement();
             actualNode.setElement(null);

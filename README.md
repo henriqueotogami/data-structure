@@ -85,24 +85,24 @@
 <br>
 
 > Métodos:
-> [x] append(final Node<T> element): void
-> [x] append(final T element): void
-> [x] append(final int position, final T element): void
-> [x] appendBegin(final T element): void
-> [x] appendMiddle(final int position, final T element): void
-> [x] getSize(): int
-> [x] getLastIndex(): int
-> [x] isEmpty(): boolean
-> [x] isInvalidPosition(final int position): boolean
-> [x] clear(): void
-> [x] removeFirstElement(): T
-> [x] removeLastElement(): T
-> [x] removeElement(final int position): T
-> [x] searchNode(final int position): Node<T>
-> [x] searchElementByPosition(final int position): T
-> [x] searchElement(final T element): int
-> [x] toString(): String
-> [x] getClassName(): String
+> - [x] append(final Node<T> element): void
+> - [x] append(final T element): void
+> - [x] append(final int position, final T element): void
+> - [x] appendBegin(final T element): void
+> - [x] appendMiddle(final int position, final T element): void
+> - [x] getSize(): int
+> - [x] getLastIndex(): int
+> - [x] isEmpty(): boolean
+> - [x] isInvalidPosition(final int position): boolean
+> - [x] clear(): void
+> - [x] removeFirstElement(): T
+> - [x] removeLastElement(): T
+> - [x] removeElement(final int position): T
+> - [x] searchNode(final int position): Node<T>
+> - [x] searchElementByPosition(final int position): T
+> - [x] searchElement(final T element): int
+> - [x] toString(): String
+> - [x] getClassName(): String
 
 > Testes Unitários:
 > - [x] createEmptyListTest(): void

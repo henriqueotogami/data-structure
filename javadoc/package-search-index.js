@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"main.otogamidev.list"},{"l":"main.otogamidev.queue"},{"l":"main.otogamidev.queue.utils"},{"l":"main.otogamidev.utils"},{"l":"test.otogamidev.list"}];updateSearchResults();

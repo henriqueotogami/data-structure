@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 1.4
+##### Readme versão 2.0
 
 </div>
 <br>
@@ -37,14 +37,21 @@
 <hr>
 
 ### Sumário
-- [x] Filas
+#### Principal
+- [x] Fila | Queue.java
+- [x] Lista Encadeada | LinkedList.java
+- [x] Nó | Node.java
 
+#### Secundário
+- [x] Valores padrão | DefaultValues.java
+- [x] Mapeamento de tipos de dados | MapTypes.java
+- [x] Utilidades | Utils.java
 <hr>
 
 ### Resumos
 
 <details>
-    <summary> Implementação de Listas </summary>
+    <summary> Implementação de Fila | Queue.java </summary>
 <br>
 
 > Métodos:
@@ -71,6 +78,82 @@
 > - [x] searchElementTest(): void
 > - [x] toStringTest(): void
 <hr>
+</details>
+
+<details>
+    <summary> Implementação de Lista Encadeada | LinkedList.java</summary>
+<br>
+
+> Métodos:
+> [x] append(final Node<T> element): void
+> [x] append(final T element): void
+> [x] append(final int position, final T element): void
+> [x] appendBegin(final T element): void
+> [x] appendMiddle(final int position, final T element): void
+> [x] getSize(): int
+> [x] getLastIndex(): int
+> [x] isEmpty(): boolean
+> [x] isInvalidPosition(final int position): boolean
+> [x] clear(): void
+> [x] removeFirstElement(): T
+> [x] removeLastElement(): T
+> [x] removeElement(final int position): T
+> [x] searchNode(final int position): Node<T>
+> [x] searchElementByPosition(final int position): T
+> [x] searchElement(final T element): int
+> [x] toString(): String
+> [x] getClassName(): String
+
+> Testes Unitários:
+> - [x] createEmptyListTest(): void
+> - [x] createFullListTest(): void
+> - [x] appendTest(): void
+> - [x] clearTest(): void
+> - [x] clearEmptyListTest(): void
+> - [x] searchElementTest(): void
+> - [x] searchElementNonExistentTest(): void
+> - [x] appendBeginTest(): void
+> - [x] appendMiddleTest(): void
+> - [x] appendEndTest(): void
+> - [x] appendOutOfBoundsTest(): void
+> - [x] removeFirstElementTest(): void
+> - [x] removeLastElementTest(): void
+> - [x] removeElementTest(): void
+> - [x] removeElementOutOfBoundsTest(): void
+> - [x] removeFirstElementEmptyListTest(): void
+> - [x] removeEndElementEmptyListTest(): void
+> - [x] createFullListTest(): void
+> - [x] createFullListTest(): void
+> - [x] createFullListTest(): void
+<hr>
+</details>
+
+<details>
+    <summary> Implementação de Nó | Node.java </summary>
+<br>
+
+> Métodos:
+> - [x] getElement(): T
+> - [x] setElement(final T element): void
+> - [x] getNextElement(): Node<T>
+> - [x] setNextElement(final Node<T> nextObject): void
+> - [x] toString(): String
+> - [x] getClassName(): String
+</details>
+
+<details>
+    <summary> Implementação de Mapeamento de tipos de dados | MapTypes.java </summary>
+<br>
+
+> Métodos:
+> - [x] getObjectArrayToString(Object element, String elementType): String
+> - [x] getPrimitiveArrayToString(Object element, String elementType): String
+> - [x] getObjectToString(Object element, String elementType): String
+> - [x] getPrimitiveToString(Object element, String elementType): String
+> - [x] getElementContentsToString(final Object[] objectArray): String
+> - [x] getElementContentsToString(Object element): String
+> - [x] getGroup(final String typeElement): String
+> - [x] getObjectType(final Object element): String
 </details>
 
 <hr>

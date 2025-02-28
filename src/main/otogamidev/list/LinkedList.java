@@ -88,7 +88,7 @@ public class LinkedList<T> {
      * Metodo responsavel pela adicao de um nó dentro de uma lista encadeada.
      * @param position posição do nó a ser adicionado
      * @param element elemento a ser adicionado
-     * @throws IllegalArgumentException Lanca exceção se a posição informada for menor que zero ou maior que o tamanho da lista
+     * @throws IllegalArgumentException Lanca exceção se a posição informada for menor que zero
      */
     public void append(final int position, final T element) throws IllegalArgumentException {
 
@@ -162,7 +162,7 @@ public class LinkedList<T> {
      * @param position posição informada
      * @return retorna valor true indicando posição inválida e false para posição válida.
      */
-    private boolean isInvalidPosition(final int position) { return ((position < 0) || (this.size < position)); }
+    private boolean isInvalidPosition(final int position) { return ((0 > position) || (position > this.size)); }
 
     /**
      * Metodo responsavel pela limpeza das variaveis, utilizando recurso similar ao garbage collector.

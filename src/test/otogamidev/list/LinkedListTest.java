@@ -28,11 +28,14 @@ public class LinkedListTest {
 
     private final String linkedListEmpty = "[]";
     private final String linkedListFull  = "[1,2,3,4,5]";
+    private final String expectedLinkedListNoBegin = "[2,3,4,5]";
+    private final String expectedLinkedListNoMiddle = "[1,2,4,5]";
+    private final String expectedLinkedListNoEnd = "[1,2,3,4]";
 
     private final int linkedListEmptySize = 0;
     private final int linkedListFullSize  = 5;
 
-    private final int[] arrayOutOfBounds = new int[] { -5, -1, 0, 10 };
+    private final int[] arrayOutOfBounds = new int[] { -5, -1, 99 };
 
 //    =================================================================================================================
 //    Variáveis dos Testes Unitarios - Fim
@@ -230,15 +233,20 @@ public class LinkedListTest {
         this.linkedList.append(3);
         this.linkedList.append(4);
         this.linkedList.append(5);
+        final String resultLinkedListNoBegin = this.linkedList.toString();
 
         this.linkedList.append(0, 1);
-        final String expectedLinkedList = "[1,2,3,4,5]";
+        final String resultLinkedListFull = this.linkedList.toString();
+
+        final String expectedLinkedList = this.linkedListFull;
         final String resultLinkedList = this.linkedList.toString();
 
         logger.debug("appendPositionBegin() - Expected Linked List = {}", expectedLinkedList);
         logger.info("appendPositionBegin() - Result Linked List = {}", resultLinkedList);
         logger.debug("appendPositionBegin() - END\n");
 
+        Assertions.assertEquals(linkedListFull, resultLinkedListFull);
+        Assertions.assertEquals(expectedLinkedListNoBegin, resultLinkedListNoBegin);
         Assertions.assertEquals(expectedLinkedList, resultLinkedList);
     }
 
@@ -255,15 +263,20 @@ public class LinkedListTest {
         this.linkedList.append(2);
         this.linkedList.append(4);
         this.linkedList.append(5);
+        final String resultLinkedListNoMiddle = this.linkedList.toString();
 
         this.linkedList.append(2, 3);
-        final String expectedLinkedList = "[1,2,3,4,5]";
+        final String resultLinkedListFull = this.linkedList.toString();
+
+        final String expectedLinkedList = this.linkedListFull;
         final String resultLinkedList = this.linkedList.toString();
 
         logger.debug("appendMiddleTest() - Expected Linked List = {}", expectedLinkedList);
         logger.info("appendMiddleTest() - Result Linked List = {}", resultLinkedList);
         logger.debug("appendMiddleTest() - END\n");
 
+        Assertions.assertEquals(linkedListFull, resultLinkedListFull);
+        Assertions.assertEquals(expectedLinkedListNoMiddle, resultLinkedListNoMiddle);
         Assertions.assertEquals(expectedLinkedList, resultLinkedList);
     }
 
@@ -280,24 +293,50 @@ public class LinkedListTest {
         this.linkedList.append(2);
         this.linkedList.append(3);
         this.linkedList.append(4);
-        this.linkedList.append(4, 5);
+        final String resultLinkedListNoEnd = this.linkedList.toString();
 
-        final String expectedLinkedList = "[1,2,3,4,5]";
+        this.linkedList.append(4, 5);
+        final String resultLinkedListFull = this.linkedList.toString();
+
+        final String expectedLinkedList = this.linkedListFull;
         final String resultLinkedList = this.linkedList.toString();
 
         logger.debug("appendEndTest() - Expected Linked List = {}", expectedLinkedList);
         logger.info("appendEndTest() - Result Linked List = {}", resultLinkedList);
         logger.debug("appendEndTest() - END\n");
 
+        Assertions.assertEquals(linkedListFull, resultLinkedListFull);
+        Assertions.assertEquals(expectedLinkedListNoEnd, resultLinkedListNoEnd);
         Assertions.assertEquals(expectedLinkedList, resultLinkedList);
     }
 
     /**
-     * @Test 11 - Remover o primeiro elemento da lista encadeada
-     * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
+     * @Test 11 - Adicionar elemento em posições inválidas
+     * @Scenario Verificar se o metodo append irá lançar a excecão IllegalArgumentException
      */
     @Test
     @Order(11)
+    void appendOutOfBoundsTest() {
+        logger.debug("appendOutOfBoundsTest() - BEGIN");
+
+        this.linkedList.append(1);
+        this.linkedList.append(2);
+        this.linkedList.append(3);
+        this.linkedList.append(4);
+        this.linkedList.append(5);
+
+        for(final int indexOutOfBounds : arrayOutOfBounds) {
+            Assertions.assertThrows(IllegalArgumentException.class, () -> this.linkedList.append(indexOutOfBounds, 99));
+        }
+        logger.debug("appendOutOfBoundsTest() - END");
+    }
+
+    /**
+     * @Test 12 - Remover o primeiro elemento da lista encadeada
+     * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
+     */
+    @Test
+    @Order(12)
     void removeFirstElementTest() {
         logger.debug("removeFirstElementTest() - BEGIN");
 
@@ -319,11 +358,11 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 12 - Remover o ultimo elemento da lista encadeada
+     * @Test 13 - Remover o ultimo elemento da lista encadeada
      * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
      */
     @Test
-    @Order(12)
+    @Order(13)
     void removeLastElementTest() {
         logger.debug("removeLastElementTest() - BEGIN");
 
@@ -345,11 +384,11 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 13 - Remover um elemento da lista encadeada
+     * @Test 14 - Remover um elemento da lista encadeada
      * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
      */
     @Test
-    @Order(13)
+    @Order(14)
     void removeElementTest() {
         logger.debug("removeElementTest() - BEGIN");
 
@@ -358,7 +397,7 @@ public class LinkedListTest {
         this.linkedList.append(3);
         this.linkedList.append(4);
         this.linkedList.append(5);
-        final String originalLinkedList = this.linkedList.toString();
+        final int expectedLinkedListSize = this.linkedList.getSize()-1;
 
         final int randomIndex = Utils.getRandomIndex(this.linkedList.getSize());
         final String expectedLinkedList = Utils.getListWithoutSpecificIndex(this.linkedList, randomIndex);
@@ -370,6 +409,7 @@ public class LinkedListTest {
         logger.info("removeElementTest() - Result Linked List = {}", resultLinkedList);
         logger.debug("removeElementTest() - END\n");
 
+        Assertions.assertEquals(expectedLinkedListSize, this.linkedList.getSize());
         Assertions.assertEquals(expectedLinkedList, resultLinkedList);
     }
 

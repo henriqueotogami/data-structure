@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * Classe responsavel pela implementacao do No de Lista Encadeada
- *
+ *  @param <T> Tipo Generics
  * @author henriquematheusalvespereira
  */
 public class Node <T> {
@@ -17,11 +17,20 @@ public class Node <T> {
     private T element = null;
     private Node nextElement = null;
 
+    /**
+     * Construtor de um Nó.
+     * @param element Elemento que inicia esse nó.
+     */
     public Node(final T element) {
         this.element = element;
         this.nextElement = null;
     }
 
+    /**
+     * Construtor de um Nó.
+     * @param element Elemento que inicia esse nó.
+     * @param nextElement Próximo elemento que conecta a esse nó
+     */
     public Node(final T element, final Node<T> nextElement) {
         this.element = element;
         this.nextElement = nextElement;

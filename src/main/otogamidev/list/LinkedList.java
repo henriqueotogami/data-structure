@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
  * Classe responsavel pela implementacao de Lista Encadeada.
  *
  * Implementação baseada no curso da Loiane Groner, porém com alterações minhas.
- *
+ * @param <T> Tipo Generics
  * @author henriquematheusalvespereira
  */
 public class LinkedList<T> {

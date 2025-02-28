@@ -28,47 +28,85 @@ public class MapTypes {
 
     private static final Map<String, String> typeConverters = new HashMap<>();
 
+    /** Tipo Primitivo: Integer */
     public static final String TYPE_PRIMITIVE_INTEGER   = "integer";
+    /** Tipo Primitivo: Double */
     public static final String TYPE_PRIMITIVE_DOUBLE    = "double";
+    /** Tipo Primitivo: Float */
     public static final String TYPE_PRIMITIVE_FLOAT     = "float";
+    /** Tipo Primitivo: Long */
     public static final String TYPE_PRIMITIVE_LONG      = "long";
+    /** Tipo Primitivo: Short */
     public static final String TYPE_PRIMITIVE_SHORT     = "short";
+    /** Tipo Primitivo: Byte */
     public static final String TYPE_PRIMITIVE_BYTE      = "byte";
+    /** Tipo Primitivo: Char */
     public static final String TYPE_PRIMITIVE_CHAR      = "char";
+    /** Tipo Primitivo: Boolean */
     public static final String TYPE_PRIMITIVE_BOOLEAN   = "boolean";
 
+    /** Tipo Objeto: Integer */
     public static final String TYPE_OBJECT_INTEGER      = "Integer";
+    /** Tipo Objeto: Double */
     public static final String TYPE_OBJECT_DOUBLE       = "Double";
+    /** Tipo Objeto: Float */
     public static final String TYPE_OBJECT_FLOAT        = "Float";
+    /** Tipo Objeto: Long */
     public static final String TYPE_OBJECT_LONG         = "Long";
+    /** Tipo Objeto: Short */
     public static final String TYPE_OBJECT_SHORT        = "Short";
+    /** Tipo Objeto: Byte */
     public static final String TYPE_OBJECT_BYTE         = "Byte";
+    /** Tipo Objeto: Char */
     public static final String TYPE_OBJECT_CHAR         = "Character";
+    /** Tipo Objeto: Boolean */
     public static final String TYPE_OBJECT_BOOLEAN      = "Boolean";
+    /** Tipo Objeto: String */
     public static final String TYPE_OBJECT_STRING       = "String";
 
+    /** Tipo Array Primitivo: Integer */
     public static final String TYPE_PRIMITIVE_ARRAY_INTEGER     = "int[]";
+    /** Tipo Array Primitivo: Double */
     public static final String TYPE_PRIMITIVE_ARRAY_DOUBLE      = "double[]";
+    /** Tipo Array Primitivo: Float */
     public static final String TYPE_PRIMITIVE_ARRAY_FLOAT       = "float[]";
+    /** Tipo Array Primitivo: Long */
     public static final String TYPE_PRIMITIVE_ARRAY_LONG        = "long[]";
+    /** Tipo Array Primitivo: Short */
     public static final String TYPE_PRIMITIVE_ARRAY_SHORT       = "short[]";
+    /** Tipo Array Primitivo: Byte */
     public static final String TYPE_PRIMITIVE_ARRAY_BYTE        = "byte[]";
+    /** Tipo Array Primitivo: Char */
     public static final String TYPE_PRIMITIVE_ARRAY_CHAR        = "char[]";
+    /** Tipo Array Primitivo: Boolean */
     public static final String TYPE_PRIMITIVE_ARRAY_BOOLEAN     = "boolean[]";
 
+    /** Tipo Array de Objetos: Integer */
     public static final String TYPE_OBJECT_ARRAY_INTEGER    = "Integer[]";
+    /** Tipo Array de Objetos: Doubke */
     public static final String TYPE_OBJECT_ARRAY_DOUBLE     = "Double[]";
+    /** Tipo Array de Objetos: Float */
     public static final String TYPE_OBJECT_ARRAY_FLOAT      = "Float[]";
+    /** Tipo Array de Objetos: Long */
     public static final String TYPE_OBJECT_ARRAY_LONG       = "Long[]";
+    /** Tipo Array de Objetos: Short */
     public static final String TYPE_OBJECT_ARRAY_SHORT      = "Short[]";
+    /** Tipo Array de Objetos: Byte */
     public static final String TYPE_OBJECT_ARRAY_BYTE       = "Byte[]";
+    /** Tipo Array de Objetos: Character */
     public static final String TYPE_OBJECT_ARRAY_CHAR       = "Character[]";
+    /** Tipo Array de Objetos: Boolean */
     public static final String TYPE_OBJECT_ARRAY_BOOLEAN    = "Boolean[]";
+    /** Tipo Array de Objetos: String */
     public static final String TYPE_OBJECT_ARRAY_STRING     = "String[]";
 
+    /** Categoria: Grupo de tipos primitivos */
     public static final String GROUP_PRIMITIVE          = "Primitive";
+    /** Categoria: Grupo de tipos de objetos */
     public static final String GROUP_OBJECT             = "Object";
+    /** Categoria: Grupo de tipos de arrays primitivos */
     public static final String GROUP_PRIMITIVE_ARRAY    = "Primitive Array";
+    /** Categoria: Grupo de tipos de arrays de objetos */
     public static final String GROUP_OBJECT_ARRAY       = "Object Array";
 
     static {
@@ -113,6 +151,12 @@ public class MapTypes {
         typeConverters.put(TYPE_OBJECT_ARRAY_CHAR,      GROUP_OBJECT_ARRAY);
         typeConverters.put(TYPE_OBJECT_ARRAY_BOOLEAN,   GROUP_OBJECT_ARRAY);
         typeConverters.put(TYPE_OBJECT_ARRAY_STRING,    GROUP_OBJECT_ARRAY);
+    }
+
+    /**
+     * Classe de mapeamento dos tipos de objetos e tipos primitivos do Java,
+     */
+    public MapTypes() {
     }
 
     /**

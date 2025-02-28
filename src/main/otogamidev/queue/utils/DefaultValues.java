@@ -9,13 +9,28 @@ public class DefaultValues {
 
 // Tipos primitivos - BEGIN
 
+    /** Exemplo de primitivo inteiro: numero 42*/
     public static final int     PRIMITIVE_INTEGER   = 42;
+
+    /** Exemplo de primitivo double: numero 3.14159d */
     public static final double  PRIMITIVE_DOUBLE    = 3.14159d;
+
+    /** Exemplo de primitivo float: numero 2.718f*/
     public static final float   PRIMITIVE_FLOAT     = 2.718f;
+
+    /** Exemplo de primitivo long: numero 123456789L*/
     public static final long    PRIMITIVE_LONG      = 123456789L;
+
+    /** Exemplo de primitivo short: numero 120*/
     public static final short   PRIMITIVE_SHORT     = 120;
+
+    /** Exemplo de primitivo byte: numero 100*/
     public static final byte    PRIMITIVE_BYTE      = 100;
+
+    /** Exemplo de primitivo char: letra A*/
     public static final char    PRIMITIVE_CHAR      = 'A';
+
+    /** Exemplo de primitivo boolean: false*/
     public static final boolean PRIMITIVE_BOOLEAN   = false;
 
 // Tipos primitivos - END
@@ -24,14 +39,31 @@ public class DefaultValues {
 
 // Tipos de objetos - BEGIN
 
+    /** Exemplo de objeto Inteiro: valor máximo 2147483647 */
     public static final Integer     OBJECT_INTEGER   = Integer.MAX_VALUE;   // Qualquer número inteiro.
+
+    /** Exemplo de objeto Double: valor máximo 1.7976931348623157E308*/
     public static final Double      OBJECT_DOUBLE    = Double.MAX_VALUE;    // Número de ponto flutuante com dupla precisão.
+
+    /** Exemplo de objeto Float: valor máximo 3.4028235E38f*/
     public static final Float       OBJECT_FLOAT     = Float.MAX_VALUE;     // Número de ponto flutuante com precisão simples.
+
+    /** Exemplo de objeto Long: valor máximo 9223372036854775807L*/
     public static final Long        OBJECT_LONG      = Long.MAX_VALUE;      // Número inteiro longo.
+
+    /** Exemplo de objeto Short: valor máximo 32767*/
     public static final Short       OBJECT_SHORT     = Short.MAX_VALUE;     // Valores dentro do intervalo de -32.768 a 32.767.
+
+    /** Exemplo de objeto Byte: valor máximo 127*/
     public static final Byte        OBJECT_BYTE      = Byte.MAX_VALUE;      // Valores entre -128 e 127.
+
+    /** Exemplo de objeto Character: valor máximo '\uFFFF'*/
     public static final Character   OBJECT_CHAR      = Character.MAX_VALUE; // Qualquer caractere Unicode.
+
+    /** Exemplo de objeto Boolean: FALSE*/
     public static final Boolean     OBJECT_BOOLEAN   = Boolean.FALSE;       // Pode ser apenas `true` ou `false`.
+
+    /** Exemplo de objeto String: valor MAXXXXX*/
     public static final String      OBJECT_STRING    = "MAXXXXX";
 
 // Tipos de objetos - END
@@ -97,17 +129,31 @@ public class DefaultValues {
 
 // Array de tipos de objetos - BEGIN
 
+    /** Exemplo de Array de Objetos: Array de Inteiros */
     public static final Integer[]     OBJECT_ARRAY_INTEGER   = new Integer[] { Integer.MIN_VALUE, Integer.MAX_VALUE };
+
+    /** Exemplo de Array de Objetos: Array de Double */
     public static final Double[]      OBJECT_ARRAY_DOUBLE    = new Double[] { Double.MIN_VALUE, Double.MAX_VALUE };
+
+    /** Exemplo de Array de Objetos: Array de Float */
     public static final Float[]       OBJECT_ARRAY_FLOAT     = new Float[] { Float.MIN_VALUE, Float.MAX_VALUE };
+
+    /** Exemplo de Array de Objetos: Array de Long */
     public static final Long[]        OBJECT_ARRAY_LONG      = new Long[] { Long.MIN_VALUE, Long.MAX_VALUE };
+
+    /** Exemplo de Array de Objetos: Array de Short */
     public static final Short[]       OBJECT_ARRAY_SHORT     = new Short[] { Short.MIN_VALUE, Short.MAX_VALUE };
+
+    /** Exemplo de Array de Objetos: Array de Byte */
     public static final Byte[]        OBJECT_ARRAY_BYTE      = new Byte[] { Byte.MIN_VALUE, Byte.MAX_VALUE };
+
+    /** Exemplo de Array de Objetos: Array de Character */
     public static final Character[]   OBJECT_ARRAY_CHAR      = new Character[] { 'B', 'C'};
+
+    /** Exemplo de Array de Objetos: Array de Boolean */
     public static final Boolean[]     OBJECT_ARRAY_BOOLEAN   = new Boolean[] { Boolean.FALSE, Boolean.TRUE };
-    /**
-     * 15 valores de grandezas físicas do sistema internacional de unidades
-     */
+
+    /** 15 valores de grandezas físicas do sistema internacional de unidades */
     public static final String[] OBJECT_ARRAY_STRING = {
             "Newton (N)     - Unidade de força",
             "Joule (J)      - Unidade de energia",
@@ -128,4 +174,10 @@ public class DefaultValues {
 
 // Array de tipos de objetos - END
 
+
+    /**
+     * Valores padronizados para os testes unitários.
+     */
+    public DefaultValues() {
+    }
 }

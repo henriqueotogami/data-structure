@@ -41,18 +41,25 @@ public class LinkedListTest {
 //    Variáveis dos Testes Unitarios - Fim
 //    =================================================================================================================
 
+    /**
+     * Construtor da classe de testes da LinkedList
+     */
+    public LinkedListTest() {
+
+    }
+
 
 //    =================================================================================================================
 //    Testes Unitarios - Inicio
 //    =================================================================================================================
 
     /**
-     * @Test 1 - Criação de Lista Encadeada vazia
-     * @Scenario Instanciar a classe e verificar se possui o tamanho zero.
+     * Test 1 - Criação de Lista Encadeada vazia
+     * Scenario: Instanciar a classe e verificar se possui o tamanho zero.
      */
     @Test
     @Order(1)
-    void createEmptyListTest() {
+    public void createEmptyListTest() {
         logger.debug("createEmptyListTest() - BEGIN");
         final int initialSize = this.linkedList.getSize();
 
@@ -67,12 +74,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 2 - Criação de Lista Encadeada cheia
-     * @Scenario Instanciar a classe e verificar se possui o tamanho cinco.
+     * Test 2 - Criação de Lista Encadeada cheia
+     * Scenario: Instanciar a classe e verificar se possui o tamanho cinco.
      */
     @Test
     @Order(2)
-    void createFullListTest() {
+    public void createFullListTest() {
         logger.debug("createFullListTest() - BEGIN");
         this.linkedList = new LinkedList(Utils.generateArrayNodes(linkedListFullSize));
         final int resultSize = this.linkedList.getSize();
@@ -88,12 +95,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 3 - Adicionar elementos na lista encadeada.
-     * @Scenario Verificar se o tamanho da lista encadeada é o mesmo que a quantidade de elementos adicionados.
+     * Test 3 - Adicionar elementos na lista encadeada.
+     * Scenario: Verificar se o tamanho da lista encadeada é o mesmo que a quantidade de elementos adicionados.
      */
     @Test
     @Order(3)
-    void appendTest() {
+    public void appendTest() {
         logger.debug("appendTest() - BEGIN");
         final int initialSize = this.linkedList.getSize();
         logger.info("appendTest() - initialSize = {}", initialSize);
@@ -116,12 +123,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 4 - Limpeza de Lista Encadeada contendo elementos.
-     * @Scenario Verificar se o tamanho final da lista é zero, após limpar toda a lista.
+     * Test 4 - Limpeza de Lista Encadeada contendo elementos.
+     * Scenario: Verificar se o tamanho final da lista é zero, após limpar toda a lista.
      */
     @Test
     @Order(4)
-    void clearTest() {
+    public void clearTest() {
         logger.debug("clearTest() - BEGIN");
         final int initialSize = this.linkedList.getSize();
         logger.info("clearTest() - initial size = {}", initialSize);
@@ -149,12 +156,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 5 - Limpeza de Lista Encadeada vazia
-     * @Scenario Verificar se o tamanho final da lista é zero
+     * Test 5 - Limpeza de Lista Encadeada vazia
+     * Scenario: Verificar se o tamanho final da lista é zero
      */
     @Test
     @Order(5)
-    void clearEmptyListTest() {
+    public void clearEmptyListTest() {
         logger.debug("clearEmptyListTest() - BEGIN");
         final int initialSize = this.linkedList.getSize();
         logger.info("clearEmptyListTest() - initial size = {}", initialSize);
@@ -173,12 +180,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 6 - Busca pelo elemento que existe na lista encadeada
-     * @Scenario Verificar se o indice do elemento encontrado eh o mesmo do valor esperado
+     * Test 6 - Busca pelo elemento que existe na lista encadeada
+     * Scenario: Verificar se o indice do elemento encontrado eh o mesmo do valor esperado
      */
     @Test
     @Order(6)
-    void searchElementTest() {
+    public void searchElementTest() {
         logger.debug("searchElementTest() - BEGIN");
 
         this.linkedList.append(1);
@@ -197,12 +204,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 7 - Busca pelo elemento não existente na lista encadeada
-     * @Scenario Verificar se o indice do elemento encontrado eh o mesmo do valor esperado
+     * Test 7 - Busca pelo elemento não existente na lista encadeada
+     * Scenario: Verificar se o indice do elemento encontrado eh o mesmo do valor esperado
      */
     @Test
     @Order(7)
-    void searchElementNonExistentTest() {
+    public void searchElementNonExistentTest() {
         logger.debug("searchElementNonExistentTest() - BEGIN");
 
         this.linkedList.append(1);
@@ -221,12 +228,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 8 - Adicionar elemento no início da lista encadeada.
-     * @Scenario Verificar se o elemento será adicionado na primeira posição e se irá preservar a conexão inteira de nós
+     * Test 8 - Adicionar elemento no início da lista encadeada.
+     * Scenario: Verificar se o elemento será adicionado na primeira posição e se irá preservar a conexão inteira de nós
      */
     @Test
     @Order(8)
-    void appendBeginTest() {
+    public void appendBeginTest() {
         logger.debug("appendPositionBegin() - BEGIN");
 
         this.linkedList.append(2);
@@ -251,12 +258,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 9 - Adicionar elemento no meio da lista encadeada
-     * @Scenario Verificar se o elemento será adicionado na posição informada e se irá preservar a conexão inteira de nós
+     * Test 9 - Adicionar elemento no meio da lista encadeada
+     * Scenario: Verificar se o elemento será adicionado na posição informada e se irá preservar a conexão inteira de nós
      */
     @Test
     @Order(9)
-    void appendMiddleTest() {
+    public void appendMiddleTest() {
         logger.debug("appendMiddleTest() - BEGIN");
 
         this.linkedList.append(1);
@@ -281,12 +288,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 10 - Adicionar elemento no fim da lista encadeada
-     * @Scenario Verificar se o elemento será adicionado na posição final e se irá preservar a conexão inteira de nós
+     * Test 10 - Adicionar elemento no fim da lista encadeada
+     * Scenario: Verificar se o elemento será adicionado na posição final e se irá preservar a conexão inteira de nós
      */
     @Test
     @Order(10)
-    void appendEndTest() {
+    public void appendEndTest() {
         logger.debug("appendEndTest() - BEGIN");
 
         this.linkedList.append(1);
@@ -311,12 +318,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 11 - Adicionar elemento em posições inválidas
-     * @Scenario Verificar se o metodo append irá lançar a excecão IllegalArgumentException
+     * Test 11 - Adicionar elemento em posições inválidas
+     * Scenario: Verificar se o metodo append irá lançar a excecão IllegalArgumentException
      */
     @Test
     @Order(11)
-    void appendOutOfBoundsTest() {
+    public void appendOutOfBoundsTest() {
         logger.debug("appendOutOfBoundsTest() - BEGIN");
 
         this.linkedList.append(1);
@@ -332,12 +339,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 12 - Remover o primeiro elemento da lista encadeada
-     * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
+     * Test 12 - Remover o primeiro elemento da lista encadeada
+     * Scenario: Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
      */
     @Test
     @Order(12)
-    void removeFirstElementTest() {
+    public void removeFirstElementTest() {
         logger.debug("removeFirstElementTest() - BEGIN");
 
         this.linkedList.append(1);
@@ -358,12 +365,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 13 - Remover o ultimo elemento da lista encadeada
-     * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
+     * Test 13 - Remover o ultimo elemento da lista encadeada
+     * Scenario: Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
      */
     @Test
     @Order(13)
-    void removeLastElementTest() {
+    public void removeLastElementTest() {
         logger.debug("removeLastElementTest() - BEGIN");
 
         this.linkedList.append(1);
@@ -384,12 +391,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 14 - Remover um elemento da lista encadeada
-     * @Scenario Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
+     * Test 14 - Remover um elemento da lista encadeada
+     * Scenario: Verificar se apenas o elemento será removido e permcanece a conexão inteira da lista
      */
     @Test
     @Order(14)
-    void removeElementTest() {
+    public void removeElementTest() {
         logger.debug("removeElementTest() - BEGIN");
 
         this.linkedList.append(1);
@@ -414,12 +421,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 15 - Remover um elemento da lista encadeada de posição inválida
-     * @Scenario Verificar se o metodo remove irá lançar a excecão RuntimeException
+     * Test 15 - Remover um elemento da lista encadeada de posição inválida
+     * Scenario: Verificar se o metodo remove irá lançar a excecão RuntimeException
      */
     @Test
     @Order(15)
-    void removeElementOutOfBoundsTest() {
+    public void removeElementOutOfBoundsTest() {
         logger.debug("removeElementOutOfBoundsTest() - BEGIN");
         this.linkedList = new LinkedList(Utils.generateArrayNodes(linkedListFullSize));
 
@@ -435,12 +442,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 16 - Remover um elemento do inicio da lista encadeada
-     * @Scenario Verificar se o metodo remove irá lançar a excecão RuntimeException
+     * Test 16 - Remover um elemento do inicio da lista encadeada
+     * Scenario: Verificar se o metodo remove irá lançar a excecão RuntimeException
      */
     @Test
     @Order(16)
-    void removeFirstElementEmptyListTest() {
+    public void removeFirstElementEmptyListTest() {
         logger.debug("removeFirstElementEmptyListTest() - BEGIN");
         this.linkedList = new LinkedList(Utils.generateArrayNodes(linkedListFullSize));
         this.linkedList.clear();
@@ -453,12 +460,12 @@ public class LinkedListTest {
     }
 
     /**
-     * @Test 17 - Remover um elemento do fim da lista encadeada
-     * @Scenario Verificar se o metodo remove irá lançar a excecão RuntimeException
+     * Test 17 - Remover um elemento do fim da lista encadeada
+     * Scenario: Verificar se o metodo remove irá lançar a excecão RuntimeException
      */
     @Test
     @Order(17)
-    void removeEndElementEmptyListTest() {
+    public void removeEndElementEmptyListTest() {
         logger.debug("removeEndElementEmptyListTest() - BEGIN");
         this.linkedList = new LinkedList(Utils.generateArrayNodes(linkedListFullSize));
         this.linkedList.clear();

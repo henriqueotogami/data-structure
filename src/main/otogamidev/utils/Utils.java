@@ -3,10 +3,22 @@ package main.otogamidev.utils;
 import main.otogamidev.list.LinkedList;
 import main.otogamidev.list.Node;
 
+/**
+ * Classe responsável pela implementação de métodos de "utilidades", para suporte das implementações de outras classes.
+ * @param <T> Tipo Genérico
+ */
 public class Utils<T> {
 
     /**
+     * Construtor da classe Utils
+     */
+    public Utils() {
+
+    }
+
+    /**
      * Metodo para gerar numero aleatorio de tamanho de lista
+     * @param size tamanho da lista
      * @return Retorna um índice "aleatorio" para que os metodos dos testes abaixos utilizem tipos de objetos diferentes.
      */
     public static int getRandomIndex(final int size) { return (int) (Math.random() * size); }

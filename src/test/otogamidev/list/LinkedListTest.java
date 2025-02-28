@@ -74,7 +74,7 @@ public class LinkedListTest {
     @Order(2)
     void createFullListTest() {
         logger.debug("createFullListTest() - BEGIN");
-        linkedList = new LinkedList(Utils.generateArrayNodes(linkedListFullSize));
+        this.linkedList = new LinkedList(Utils.generateArrayNodes(linkedListFullSize));
         final int resultSize = this.linkedList.getSize();
 
         final String expectedLinkedList = this.linkedListFull;
@@ -202,8 +202,8 @@ public class LinkedListTest {
      */
     @Test
     @Order(7)
-    void searchElementNonExistent() {
-        logger.debug("searchElementNonExistent() - BEGIN");
+    void searchElementNonExistentTest() {
+        logger.debug("searchElementNonExistentTest() - BEGIN");
 
         this.linkedList.append(1);
         this.linkedList.append(2);
@@ -214,8 +214,8 @@ public class LinkedListTest {
         for(int indexOutOfBounds : arrayOutOfBounds) {
             final int elementIndex = this.linkedList.searchElement(indexOutOfBounds);
 
-            logger.info("searchElementNonExistent() - indexOutOfBounds = {} | elementIndex = {}", indexOutOfBounds, elementIndex);
-            logger.debug("searchElementNonExistent() - END\n");
+            logger.info("searchElementNonExistentTest() - indexOutOfBounds = {} | elementIndex = {}", indexOutOfBounds, elementIndex);
+            logger.debug("searchElementNonExistentTest() - END\n");
             Assertions.assertEquals(LinkedList.NOT_FOUND_INDEX, elementIndex);
         }
     }
@@ -411,6 +411,64 @@ public class LinkedListTest {
 
         Assertions.assertEquals(expectedLinkedListSize, this.linkedList.getSize());
         Assertions.assertEquals(expectedLinkedList, resultLinkedList);
+    }
+
+    /**
+     * @Test 15 - Remover um elemento da lista encadeada de posição inválida
+     * @Scenario Verificar se o metodo remove irá lançar a excecão RuntimeException
+     */
+    @Test
+    @Order(15)
+    void removeElementOutOfBoundsTest() {
+        logger.debug("removeElementOutOfBoundsTest() - BEGIN");
+        this.linkedList = new LinkedList(Utils.generateArrayNodes(linkedListFullSize));
+
+        final int resultSize = this.linkedList.getSize();
+        final String resultLinkedList = this.linkedList.toString();
+
+        for(final int indexOutOfBounds : arrayOutOfBounds) {
+            Assertions.assertThrows(RuntimeException.class, () -> this.linkedList.removeElement(indexOutOfBounds));
+        }
+
+        logger.debug("removeElementOutOfBoundsTest() - result list = {} | result size = {}", resultLinkedList, resultSize);
+        logger.debug("removeElementOutOfBoundsTest() - END\n");
+    }
+
+    /**
+     * @Test 16 - Remover um elemento do inicio da lista encadeada
+     * @Scenario Verificar se o metodo remove irá lançar a excecão RuntimeException
+     */
+    @Test
+    @Order(16)
+    void removeFirstElementEmptyListTest() {
+        logger.debug("removeFirstElementEmptyListTest() - BEGIN");
+        this.linkedList = new LinkedList(Utils.generateArrayNodes(linkedListFullSize));
+        this.linkedList.clear();
+        final int resultSize = this.linkedList.getSize();
+        final String resultLinkedList = this.linkedList.toString();
+
+        Assertions.assertThrows(RuntimeException.class, () -> this.linkedList.removeFirstElement());
+        logger.debug("removeFirstElementEmptyListTest() - result list = {} | result size = {}", resultLinkedList, resultSize);
+        logger.debug("removeFirstElementEmptyListTest() - END\n");
+    }
+
+    /**
+     * @Test 17 - Remover um elemento do fim da lista encadeada
+     * @Scenario Verificar se o metodo remove irá lançar a excecão RuntimeException
+     */
+    @Test
+    @Order(17)
+    void removeEndElementEmptyListTest() {
+        logger.debug("removeEndElementEmptyListTest() - BEGIN");
+        this.linkedList = new LinkedList(Utils.generateArrayNodes(linkedListFullSize));
+        this.linkedList.clear();
+        final int resultSize = this.linkedList.getSize();
+        final String resultLinkedList = this.linkedList.toString();
+
+        Assertions.assertThrows(RuntimeException.class, () -> this.linkedList.removeLastElement());
+
+        logger.debug("removeEndElementEmptyListTest() - result list = {} | result size = {}", resultLinkedList, resultSize);
+        logger.debug("removeEndElementEmptyListTest() - END\n");
     }
 
 //    =================================================================================================================

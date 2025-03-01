@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 2.0
+##### Readme versão 2.1
 
 </div>
 <br>
@@ -175,6 +175,11 @@
 
 ### Dependências
 ### Bibliotecas
+
+#### Java
+> Open JDK Oracle Java SE 19
+- [x] [openjdk-19.0.1](https://openjdk.org/projects/jdk/19/)
+- 
 #### Log4j
 > API para gerenciamento de logs.
 - [x] [log4j-api-2.3.2.jar](https://logging.apache.org/log4j/2.3.x/download.html)

@@ -19,11 +19,11 @@ public class Vector {
 
     /**
      * Metodo responsável pela construção da classe Vector.
-     * @param size tamanho do Vetor
+     * @param capable capacidade do Vetor
      */
-    public Vector(final int size) {
-        this.elements = new String[size];
-        this.size = size;
+    public Vector(final int capable) {
+        this.elements = new String[capable];
+        this.size = 0;
     }
 
     /**
@@ -38,5 +38,21 @@ public class Vector {
      */
     public String[] getElements() { return this.elements; }
 
+    /**
+     * Metodo responsável pela adicão de elemento no Vetor.
+     * @param element Elemento a ser adicionado
+     * @throws IllegalArgumentException Lança exceção se:
+     * 1 - Vetor está vazio, se não foi instanciado com valor maior que zero;
+     * 2 - Vetor está cheio, após ter adicionado todos os elementos de capacidade máxima
+     */
+    public void append(final String element) throws IllegalArgumentException {
+
+        if(this.elements.length == 0) throw new IllegalArgumentException("Vector is empty");
+
+        if(this.elements.length == this.size) throw new IllegalArgumentException("Vector is full");
+
+        this.elements[this.size] = element;
+        this.size++;
+    }
 
 }

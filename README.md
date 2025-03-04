@@ -3,12 +3,12 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 2.1
+##### Readme versão 2.2
 
 </div>
 <br>
 <div align="center">
-<img width="500" src="https://github.com/henriqueotogami/todolistyoutube/blob/master/JAVA-Cover.png?raw=true">
+<img width="auto" src="https://github.com/henriqueotogami/data-structure/blob/main/resources/cover-data-structures.png?raw=true">
 </div>
 <br>
 <div align="center">

@@ -22,7 +22,8 @@ public class VectorTest {
     private final Logger logger = LogManager.getLogger(VectorTest.class);
 
     private final String vectorEmpty = "[]";
-    private final String vectorFull[]  = new String[] { "elemento 1", "elemento 2", "elemento 3", "elemento 4", "elemento 5" };
+    private final String[] vectorFull  = new String[] { "elemento 1", "elemento 2", "elemento 3", "elemento 4", "elemento 5" };
+    private final String vectorFullToString = "[elemento 1, elemento 2, elemento 3, elemento 4, elemento 5]";
 
     private final int vectorEmptySize = 0;
     private final int vectorFullSize = 5;
@@ -34,7 +35,7 @@ public class VectorTest {
 //    =================================================================================================================
 
     /**
-     * Test 1 - Criação de Fila.
+     * Teste 1 - Criação de Fila.
      * Cenário: Verificar se a fila é criada corretamente e está vazia.
      */
     @Test
@@ -52,7 +53,7 @@ public class VectorTest {
     }
 
     /**
-     * Test 2 - Adicionar elementos no Vetor
+     * Teste 2 - Adicionar elementos no Vetor
      * Cenário: Instanciar o Vetor com capacidade de 5 elementos, depois adicionar os elementos e
      * verificar se o tamanho é incrementado
      */
@@ -76,6 +77,35 @@ public class VectorTest {
         Assertions.assertEquals(vectorFullSize, capable);
         logger.info("appendTest() - SUCCESS");
         logger.debug("appendTest() - END");
+    }
+
+    /**
+     * Teste 3 - Converter o conteúdo do Vetor em uma String
+     * Cenário: O formato de string final será como um array [elemento 1, elemento 2]
+     * possuindo os colchetes no início e fim, e os elementos separados por vírgula seguida de espaço
+     */
+    @Test
+    @Order(3)
+    public void toStringTest() {
+        logger.debug("toStringTest() - BEGIN");
+        this.vector = new Vector(vectorFullSize);
+        try {
+            for (String element : vectorFull) this.vector.append(element);
+        } catch (final IllegalArgumentException illegalArgumentException) {
+            logger.debug("toStringTest() - IllegalArgumentException");
+            logger.info("toStringTest() - FAILED");
+            illegalArgumentException.getStackTrace();
+        } catch (final Exception exception) {
+            logger.debug("toStringTest() - Exception");
+            logger.info("toStringTest() - FAILED");
+            exception.getStackTrace();
+        }
+        final int capable = this.vector.getElements().length;
+        final String vectorToString = this.vector.toString();
+        Assertions.assertEquals(vectorFullSize, capable);
+        Assertions.assertEquals(vectorFullToString, vectorToString);
+        logger.info("toStringTest() - SUCCESS");
+        logger.debug("toStringTest() - END");
     }
 
 }

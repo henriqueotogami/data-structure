@@ -3,6 +3,8 @@ package main.otogamidev.vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
+
 /**
  * Classe responsável pela implementação de Vetor, inspirada no curso da Loiane Groner no Youtube.
  *
@@ -53,6 +55,21 @@ public class Vector {
 
         this.elements[this.size] = element;
         this.size++;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder arrayElements = new StringBuilder().append("[");
+        final int length = this.elements.length;
+        for(int index = 0; length > index; index++) {
+            if((length - 1) > index) {
+                final String elementWithComma = this.elements[index] + ", ";
+                arrayElements.append(elementWithComma);
+            }
+        }
+        final String lastElement = this.elements[length - 1] + "]";
+        arrayElements.append(lastElement);
+        return arrayElements.toString();
     }
 
 }

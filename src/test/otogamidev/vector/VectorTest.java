@@ -1,5 +1,6 @@
 package test.otogamidev.vector;
 
+import main.otogamidev.utils.Utils;
 import main.otogamidev.vector.Vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -106,6 +107,38 @@ public class VectorTest {
         Assertions.assertEquals(vectorFullToString, vectorToString);
         logger.info("toStringTest() - SUCCESS");
         logger.debug("toStringTest() - END");
+    }
+
+    /**
+     * Teste 4 - Buscar um elemento pela posição informada no Vetor
+     * Cenário:
+     */
+    @Test
+    @Order(4)
+    public void searchTest() {
+        logger.debug("searchElement() - BEGIN");
+        this.vector = new Vector(vectorFullSize);
+        String foundElement = "";
+        try {
+            for (String element : vectorFull) this.vector.append(element);
+
+            final int randomIndex = Utils.getRandomIndex(this.vectorFullSize);
+            foundElement = this.vector.search(randomIndex);
+        } catch (final IllegalArgumentException illegalArgumentException) {
+            logger.debug("searchElement() - IllegalArgumentException");
+            logger.info("searchElement() - FAILED");
+            illegalArgumentException.getStackTrace();
+        } catch (final NullPointerException nullPointerException) {
+            logger.debug("searchElement() - Exception");
+            logger.info("searchElement() - FAILED");
+            nullPointerException.getStackTrace();
+        } catch (final Exception exception) {
+            logger.debug("searchElement() - Exception");
+            logger.info("searchElement() - FAILED");
+            exception.getStackTrace();
+        }
+        logger.info("searchElement() - SUCCESS");
+        logger.debug("searchElement() - END");
     }
 
 }

@@ -57,6 +57,23 @@ public class Vector {
         this.size++;
     }
 
+    /**
+     * Metodo responsável pela busca no Vetor de um elemento pela posiçãp informada.
+     * @param position posição informada do elemento no Vetor
+     * @return Retorna o elemento encontrado
+     * @throws ArrayIndexOutOfBoundsException Lança uma exception indicando posição inválida
+     * @throws NullPointerException Lança uma exception indicando elemento que não existe
+     */
+    public String search(final int position) throws ArrayIndexOutOfBoundsException, NullPointerException {
+
+        if( 0 > position && position > this.size) throw new ArrayIndexOutOfBoundsException("Posicão inválida");
+
+        final String foundElement = this.elements[position];
+        if(foundElement == "null") throw new NullPointerException("Não existe elemento nessa posição");
+
+        return foundElement;
+    }
+
     @Override
     public String toString() {
         StringBuilder arrayElements = new StringBuilder().append("[");

@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 2.2
+##### Readme versão 2.3
 
 </div>
 <br>
@@ -220,19 +220,15 @@
 > Qualquer ajuda é bem-vinda.
 
 - [x] Faça um **fork** deste repositório (https://github.com/henriqueotogami/data-structure/fork);
+- [x] Faça um **clone** no seu computador desse repositório "forkado" no seu perfil
 - [x] Crie um **branch** com as suas modificações ` git checkout -b meu-novo-recurso `;
 - [x] Faça um **commit** ` git commit -am 'Adicionando um novo recurso ...'`;
 - [x] Faça um **push** ` git push origin meu-novo-recurso ` ;
-- [x] Crie uma nova **pull request** neste repositório.
+- [x] Crie uma **pull request** do seu repositório no meu repositório.
 
 **Depois que sua solicitação (pull request) for aceita e adicionada (merged) ao ramo principal (branch main), você pode excluir sua branch tranquilamente.**
 
-<div align="center">
-
 <br>
-
-> ### **Muito obrigado, e que a força esteja com você.**
->
-> ### Desenvolvido por **Henrique Otogami** 🦁
-
+<div align="center">
+<img width="auto" src="https://github.com/henriqueotogami/data-structure/blob/main/resources/kofi-henrique-otogami.jpg?raw=true">
 </div>

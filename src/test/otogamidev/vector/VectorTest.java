@@ -111,34 +111,99 @@ public class VectorTest {
 
     /**
      * Teste 4 - Buscar um elemento pela posição informada no Vetor
-     * Cenário:
+     * Cenário: busca um elemento com posição válida
      */
     @Test
     @Order(4)
-    public void searchTest() {
-        logger.debug("searchElement() - BEGIN");
+    public void searchByPositionTest() {
+        logger.debug("searchByPositionTest() - BEGIN");
         this.vector = new Vector(vectorFullSize);
         String foundElement = "";
         try {
             for (String element : vectorFull) this.vector.append(element);
-
             final int randomIndex = Utils.getRandomIndex(this.vectorFullSize);
-            foundElement = this.vector.search(randomIndex);
+            foundElement = this.vector.searchByPosition(randomIndex);
         } catch (final IllegalArgumentException illegalArgumentException) {
-            logger.debug("searchElement() - IllegalArgumentException");
-            logger.info("searchElement() - FAILED");
+            logger.debug("searchByPositionTest() - IllegalArgumentException");
+            logger.info("searchByPositionTest() - FAILED");
             illegalArgumentException.getStackTrace();
         } catch (final NullPointerException nullPointerException) {
-            logger.debug("searchElement() - Exception");
-            logger.info("searchElement() - FAILED");
+            logger.debug("searchByPositionTest() - Exception");
+            logger.info("searchByPositionTest() - FAILED");
             nullPointerException.getStackTrace();
         } catch (final Exception exception) {
-            logger.debug("searchElement() - Exception");
-            logger.info("searchElement() - FAILED");
+            logger.debug("searchByPositionTest() - Exception");
+            logger.info("searchByPositionTest() - FAILED");
             exception.getStackTrace();
         }
-        logger.info("searchElement() - SUCCESS");
-        logger.debug("searchElement() - END");
+        logger.info("searchByPositionTest() - SUCCESS");
+        logger.debug("searchByPositionTest() - END");
+    }
+
+    /**
+     * Teste 5 - Buscar um elemento no Vetor
+     * Cenário: busca um elemento que existe no Vetor, retornando o índice do elemento encontrado
+     */
+    @Test
+    @Order(5)
+    public void searchByElementTest(){
+        logger.debug("searchByElementTest() - BEGIN");
+        this.vector = new Vector(vectorFullSize);
+        int foundElementIndex = 0;
+        int randomIndex = 0;
+        try {
+            for (String element : vectorFull) this.vector.append(element);
+            randomIndex = Utils.getRandomIndex(this.vectorFullSize);
+            foundElementIndex = this.vector.searchByElement(this.vectorFull[randomIndex]);
+        } catch (final IllegalArgumentException illegalArgumentException) {
+            logger.debug("searchByElementTest() - IllegalArgumentException");
+            logger.info("searchByElementTest() - FAILED");
+            illegalArgumentException.getStackTrace();
+        } catch (final NullPointerException nullPointerException) {
+            logger.debug("searchByElementTest() - Exception");
+            logger.info("searchByElementTest() - FAILED");
+            nullPointerException.getStackTrace();
+        } catch (final Exception exception) {
+            logger.debug("searchByElementTest() - Exception");
+            logger.info("searchByElementTest() - FAILED");
+            exception.getStackTrace();
+        }
+        Assertions.assertEquals(randomIndex, foundElementIndex);
+        logger.info("searchByElementTest() - SUCCESS");
+        logger.debug("searchByElementTest() - END");
+    }
+
+    /**
+     * Teste 6 - Buscar um elemento no Vetor
+     * Cenário: busca um elemento que existe no Vetor, retornando valor boolean
+     */
+    @Test
+    @Order(6)
+    public void isFoundElementTest(){
+        logger.debug("isFoundElementTest() - BEGIN");
+        this.vector = new Vector(vectorFullSize);
+        boolean foundElementIndex = false;
+        int randomIndex = 0;
+        try {
+            for (String element : vectorFull) this.vector.append(element);
+            randomIndex = Utils.getRandomIndex(this.vectorFullSize);
+            foundElementIndex = this.vector.isFoundElement(this.vectorFull[randomIndex]);
+        } catch (final IllegalArgumentException illegalArgumentException) {
+            logger.debug("isFoundElementTest() - IllegalArgumentException");
+            logger.info("isFoundElementTest() - FAILED");
+            illegalArgumentException.getStackTrace();
+        } catch (final NullPointerException nullPointerException) {
+            logger.debug("isFoundElementTest() - Exception");
+            logger.info("isFoundElementTest() - FAILED");
+            nullPointerException.getStackTrace();
+        } catch (final Exception exception) {
+            logger.debug("isFoundElementTest() - Exception");
+            logger.info("isFoundElementTest() - FAILED");
+            exception.getStackTrace();
+        }
+        Assertions.assertTrue(foundElementIndex);
+        logger.info("isFoundElementTest() - SUCCESS");
+        logger.debug("isFoundElementTest() - END");
     }
 
 }

@@ -3,8 +3,6 @@ package main.otogamidev.vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
-
 /**
  * Classe responsável pela implementação de Vetor, inspirada no curso da Loiane Groner no Youtube.
  *
@@ -18,6 +16,8 @@ public class Vector {
 
     private String[] elements;
     private int size = 0;
+
+    private final int NOT_FOUND = -1;
 
     /**
      * Metodo responsável pela construção da classe Vector.
@@ -64,7 +64,7 @@ public class Vector {
      * @throws ArrayIndexOutOfBoundsException Lança uma exception indicando posição inválida
      * @throws NullPointerException Lança uma exception indicando elemento que não existe
      */
-    public String search(final int position) throws ArrayIndexOutOfBoundsException, NullPointerException {
+    public String searchByPosition(final int position) throws ArrayIndexOutOfBoundsException, NullPointerException {
 
         if( 0 > position && position > this.size) throw new ArrayIndexOutOfBoundsException("Posicão inválida");
 
@@ -73,6 +73,21 @@ public class Vector {
 
         return foundElement;
     }
+
+    public int searchByElement(final String element) {
+        for(int index = 0; this.size > index; index++) {
+            if(this.elements[index].equals(element)) {
+                return index;
+            }
+        }
+        return NOT_FOUND;
+    }
+
+
+    public boolean isFoundElement(final String element) {
+        return (this.searchByElement(element) != NOT_FOUND);
+    }
+
 
     @Override
     public String toString() {

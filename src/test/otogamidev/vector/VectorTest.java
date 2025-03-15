@@ -49,7 +49,7 @@ public class VectorTest {
         final int updateCapable = this.vector.getElements().length;
         Assertions.assertEquals(initialCapable, vectorEmptySize);
         Assertions.assertEquals(updateCapable, vectorFullSize);
-        logger.info("createVectorTest() - SUCCESS");
+        logger.info("createVectorTest()     - SUCCESS");
         logger.debug("createVectorTest() - END");
     }
 
@@ -65,19 +65,19 @@ public class VectorTest {
         this.vector = new Vector(vectorFullSize);
         try {
             for (String element : vectorFull) this.vector.append(element);
+
+            final int capable = this.vector.getElements().length;
+            Assertions.assertEquals(vectorFullSize, capable);
+            logger.info("appendTest()           - SUCCESS");
+            logger.debug("appendTest() - END");
+
         } catch (final IllegalArgumentException illegalArgumentException) {
-            logger.debug("appendTest() - IllegalArgumentException");
-            logger.info("appendTest() - FAILED");
+            logger.info("appendTest() - IllegalArgumentException - FAILED");
             illegalArgumentException.getStackTrace();
         } catch (final Exception exception) {
-            logger.debug("appendTest() - Exception");
-            logger.info("appendTest() - FAILED");
+            logger.info("appendTest() - Exception - FAILED");
             exception.getStackTrace();
         }
-        final int capable = this.vector.getElements().length;
-        Assertions.assertEquals(vectorFullSize, capable);
-        logger.info("appendTest() - SUCCESS");
-        logger.debug("appendTest() - END");
     }
 
     /**
@@ -92,21 +92,21 @@ public class VectorTest {
         this.vector = new Vector(vectorFullSize);
         try {
             for (String element : vectorFull) this.vector.append(element);
+
+            final int capable = this.vector.getElements().length;
+            final String vectorToString = this.vector.toString();
+            Assertions.assertEquals(vectorFullSize, capable);
+            Assertions.assertEquals(vectorFullToString, vectorToString);
+            logger.info("toStringTest()         - SUCCESS");
+            logger.debug("toStringTest() - END");
+
         } catch (final IllegalArgumentException illegalArgumentException) {
-            logger.debug("toStringTest() - IllegalArgumentException");
-            logger.info("toStringTest() - FAILED");
+            logger.info("toStringTest() - IllegalArgumentException - FAILED");
             illegalArgumentException.getStackTrace();
         } catch (final Exception exception) {
-            logger.debug("toStringTest() - Exception");
-            logger.info("toStringTest() - FAILED");
+            logger.info("toStringTest() - Exception - FAILED");
             exception.getStackTrace();
         }
-        final int capable = this.vector.getElements().length;
-        final String vectorToString = this.vector.toString();
-        Assertions.assertEquals(vectorFullSize, capable);
-        Assertions.assertEquals(vectorFullToString, vectorToString);
-        logger.info("toStringTest() - SUCCESS");
-        logger.debug("toStringTest() - END");
     }
 
     /**
@@ -123,21 +123,20 @@ public class VectorTest {
             for (String element : vectorFull) this.vector.append(element);
             final int randomIndex = Utils.getRandomIndex(this.vectorFullSize);
             foundElement = this.vector.searchByPosition(randomIndex);
+
+            logger.info("searchByPositionTest() - SUCCESS");
+            logger.debug("searchByPositionTest() - END");
+
         } catch (final IllegalArgumentException illegalArgumentException) {
-            logger.debug("searchByPositionTest() - IllegalArgumentException");
-            logger.info("searchByPositionTest() - FAILED");
+            logger.info("searchByPositionTest() - IllegalArgumentException - FAILED");
             illegalArgumentException.getStackTrace();
         } catch (final NullPointerException nullPointerException) {
-            logger.debug("searchByPositionTest() - Exception");
-            logger.info("searchByPositionTest() - FAILED");
+            logger.info("searchByPositionTest() - NullPointerException - FAILED");
             nullPointerException.getStackTrace();
         } catch (final Exception exception) {
-            logger.debug("searchByPositionTest() - Exception");
-            logger.info("searchByPositionTest() - FAILED");
+            logger.info("searchByPositionTest() - Exception - FAILED");
             exception.getStackTrace();
         }
-        logger.info("searchByPositionTest() - SUCCESS");
-        logger.debug("searchByPositionTest() - END");
     }
 
     /**
@@ -155,22 +154,21 @@ public class VectorTest {
             for (String element : vectorFull) this.vector.append(element);
             randomIndex = Utils.getRandomIndex(this.vectorFullSize);
             foundElementIndex = this.vector.searchByElement(this.vectorFull[randomIndex]);
+
+            Assertions.assertEquals(randomIndex, foundElementIndex);
+            logger.info("searchByElementTest()  - SUCCESS");
+            logger.debug("searchByElementTest() - END");
+
         } catch (final IllegalArgumentException illegalArgumentException) {
-            logger.debug("searchByElementTest() - IllegalArgumentException");
-            logger.info("searchByElementTest() - FAILED");
+            logger.info("searchByElementTest() - IllegalArgumentException - FAILED");
             illegalArgumentException.getStackTrace();
         } catch (final NullPointerException nullPointerException) {
-            logger.debug("searchByElementTest() - Exception");
-            logger.info("searchByElementTest() - FAILED");
+            logger.info("searchByElementTest() - NullPointerException - FAILED");
             nullPointerException.getStackTrace();
         } catch (final Exception exception) {
-            logger.debug("searchByElementTest() - Exception");
-            logger.info("searchByElementTest() - FAILED");
+            logger.info("searchByElementTest() - Exception - FAILED");
             exception.getStackTrace();
         }
-        Assertions.assertEquals(randomIndex, foundElementIndex);
-        logger.info("searchByElementTest() - SUCCESS");
-        logger.debug("searchByElementTest() - END");
     }
 
     /**
@@ -188,22 +186,55 @@ public class VectorTest {
             for (String element : vectorFull) this.vector.append(element);
             randomIndex = Utils.getRandomIndex(this.vectorFullSize);
             foundElementIndex = this.vector.isFoundElement(this.vectorFull[randomIndex]);
+
+            Assertions.assertTrue(foundElementIndex);
+            logger.info("isFoundElementTest()   - SUCCESS");
+            logger.debug("isFoundElementTest() - END");
+
         } catch (final IllegalArgumentException illegalArgumentException) {
-            logger.debug("isFoundElementTest() - IllegalArgumentException");
-            logger.info("isFoundElementTest() - FAILED");
+            logger.info("isFoundElementTest() - IllegalArgumentException - FAILED");
             illegalArgumentException.getStackTrace();
         } catch (final NullPointerException nullPointerException) {
-            logger.debug("isFoundElementTest() - Exception");
-            logger.info("isFoundElementTest() - FAILED");
+            logger.info("isFoundElementTest() - NullPointerException - FAILED");
             nullPointerException.getStackTrace();
         } catch (final Exception exception) {
-            logger.debug("isFoundElementTest() - Exception");
-            logger.info("isFoundElementTest() - FAILED");
+            logger.info("isFoundElementTest() - Exception - FAILED");
             exception.getStackTrace();
         }
-        Assertions.assertTrue(foundElementIndex);
-        logger.info("isFoundElementTest() - SUCCESS");
-        logger.debug("isFoundElementTest() - END");
+    }
+
+    /**
+     * Teste 7 - Adicionar um elemento na posição informada no Vetor
+     * Cenário: Intancia um Vetor com espaço disponível e depois adiciona elemento na posicão informada
+     */
+    @Test
+    @Order(7)
+    public void appendElementTest() {
+        logger.debug("appendElementTest() - BEGIN");
+        this.vector = new Vector(this.vectorFullSize);
+        try {
+            final int randomIndex = Utils.getRandomIndex(this.vectorFullSize);
+            final int randomSize = this.vectorFull.length - 2;
+
+            for(int index = 0; randomSize >= index; index++) this.vector.append(this.vectorFull[index]);
+            logger.debug("appendElementTest() - Vector inicial = {}",this.vector.toString());
+
+            final String elementModified = vectorFull[randomIndex].concat("MO");
+            this.vector.append(randomIndex, elementModified);
+            logger.debug("appendElementTest() - Vector modificado = {}",this.vector.toString());
+
+            final int capable = this.vector.getElements().length;
+            Assertions.assertEquals(vectorFullSize, capable);
+            logger.info("appendElementTest()    - SUCCESS");
+            logger.debug("appendElementTest() - END");
+
+        } catch (final IllegalArgumentException illegalArgumentException) {
+            logger.info("appendElementTest() - IllegalArgumentException - FAILED");
+            illegalArgumentException.getStackTrace();
+        } catch (final Exception exception) {
+            logger.info("appendElementTest() - Exception - FAILED");
+            exception.getStackTrace();
+        }
     }
 
 }

@@ -14,7 +14,7 @@ public class Vector {
     private static final String CLASS_NAME = "Vector";
     private static final Logger logger = LogManager.getLogger(Vector.class);
 
-    private String[] elements;
+    private final String[] elements;
     private int size = 0;
 
     private final int NOT_FOUND = -1;
@@ -41,11 +41,11 @@ public class Vector {
     public String[] getElements() { return this.elements; }
 
     /**
-     * Metodo responsável pela adicão de elemento no Vetor.
+     * Metodo responsável pela adicão de elemento na última posicão do Vetor.
      * @param element Elemento a ser adicionado
      * @throws IllegalArgumentException Lança exceção se:
-     * 1 - Vetor está vazio, se não foi instanciado com valor maior que zero;
-     * 2 - Vetor está cheio, após ter adicionado todos os elementos de capacidade máxima
+     * <br> 1 - Vetor está vazio, se não foi instanciado com valor maior que zero;
+     * <br> 2 - Vetor está cheio, após ter adicionado todos os elementos de capacidade máxima
      */
     public void append(final String element) throws IllegalArgumentException {
 
@@ -54,6 +54,22 @@ public class Vector {
         if(this.elements.length == this.size) throw new IllegalArgumentException("Vector is full");
 
         this.elements[this.size] = element;
+        this.size++;
+    }
+
+    /**
+     * Metodo responsável pela adição de um elemento em qualquer posição do Vetor.
+     * @param position posição do Vetor
+     * @param element elemento que será adicionado
+     * @throws IllegalArgumentException Lança uma exception indicando se a posição é inválida
+     */
+    public void append(final int position, final String element) throws IllegalArgumentException {
+
+        if(!(position >= 0) && (this.size > position)) throw new IllegalArgumentException("Posição inválida");
+
+        for(int index = (this.size-1); index >= position; index--) this.elements[(index+1)] = this.elements[index];
+
+        this.elements[position] = element;
         this.size++;
     }
 
@@ -69,25 +85,32 @@ public class Vector {
         if( 0 > position && position > this.size) throw new ArrayIndexOutOfBoundsException("Posicão inválida");
 
         final String foundElement = this.elements[position];
-        if(foundElement == "null") throw new NullPointerException("Não existe elemento nessa posição");
+        if(foundElement.equals("null")) throw new NullPointerException("Não existe elemento nessa posição");
 
         return foundElement;
     }
 
+    /**
+     * Metodo responsável pela busca de um elemento no Vetor.
+     * @param element elemento a ser buscado no Vetor
+     * @return Retorna o índice do elemento encontrado.
+     * <br> Se não encontrar o elemento, retorna o valor "-1".
+     */
     public int searchByElement(final String element) {
         for(int index = 0; this.size > index; index++) {
-            if(this.elements[index].equals(element)) {
-                return index;
-            }
+            if(this.elements[index].equals(element)) return index;
         }
         return NOT_FOUND;
     }
 
-
+    /**
+     * Metodo responsável pela verificação da existência de um elemento no Vetor.
+     * @param element elemento a ser buscado no Vetor
+     * @return Retorna valor boolean indicando se o elemento está ou não no Vetor.
+     */
     public boolean isFoundElement(final String element) {
         return (this.searchByElement(element) != NOT_FOUND);
     }
-
 
     @Override
     public String toString() {

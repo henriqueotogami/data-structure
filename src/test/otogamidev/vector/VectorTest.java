@@ -6,6 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 
+import java.util.Arrays;
+
 /**
  * Classe responsável pelos testes da classe Vector.
  *
@@ -235,6 +237,23 @@ public class VectorTest {
             logger.info("appendElementTest() - Exception - FAILED");
             exception.getStackTrace();
         }
+    }
+
+    /**
+     * Teste 8 - Obtenção de todos os índices vazios do Vetor.
+     * Cenário: Localizar todos os índices do Vetor com valor null.
+     */
+    @Test
+    @Order(8)
+    public void getEmptyIndexesTest() {
+        logger.info("gelEmptyIndexesTest() - BEGIN");
+        this.vector = new Vector(5);
+        this.vector.append(1, "A");
+        this.vector.append(3, "B");
+        final int[] emptyIndexes = this.vector.getEmptyIndexes();
+        logger.debug("gelEmptyIndexesTest() - emptyIndexes = {}", Arrays.toString(emptyIndexes));
+        logger.debug("gelEmptyIndexesTest() - vector = {}", this.vector.toString());
+        logger.info("gelEmptyIndexesTest()    - SUCCESS");
     }
 
 }

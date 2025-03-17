@@ -112,6 +112,27 @@ public class Vector {
         return (this.searchByElement(element) != NOT_FOUND);
     }
 
+    /**
+     * Metodo responsavel pela obtencão de todos os índices vazios (com o valor null) do Vetor.
+     * @return Retorna um array com os índices vazios do Vetor.
+     */
+    public int[] getEmptyIndexes(){
+        int[] emptyIndexes = new int[0];
+
+        for(int index = 0; this.elements.length > index; index++){
+            if(this.elements[index] == null) {
+                final int[] temporaryIndexes = new int[emptyIndexes.length];
+                System.arraycopy(emptyIndexes, 0, temporaryIndexes, 0, emptyIndexes.length);
+
+                emptyIndexes = new int[emptyIndexes.length + 1];
+                System.arraycopy(temporaryIndexes, 0, emptyIndexes, 0, temporaryIndexes.length);
+
+                emptyIndexes[emptyIndexes.length - 1] = index;
+            }
+        }
+        return emptyIndexes;
+    }
+
     @Override
     public String toString() {
         StringBuilder arrayElements = new StringBuilder().append("[");

@@ -3,6 +3,8 @@ package main.otogamidev.vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.EmptyStackException;
+
 /**
  * Classe responsável pela implementação de Vetor, inspirada no curso da Loiane Groner no Youtube.
  *
@@ -14,7 +16,7 @@ public class Vector {
     private static final String CLASS_NAME = "Vector";
     private static final Logger logger = LogManager.getLogger(Vector.class);
 
-    private final String[] elements;
+    private String[] elements;
     private int size = 0;
 
     private final int NOT_FOUND = -1;
@@ -51,7 +53,8 @@ public class Vector {
 
         if(this.elements.length == 0) throw new IllegalArgumentException("Vector is empty");
 
-        if(this.elements.length == this.size) throw new IllegalArgumentException("Vector is full");
+        this.increaseCapacity();
+//        if(this.elements.length == this.size) throw new IllegalArgumentException("Vector is full");
 
         this.elements[this.size] = element;
         this.size++;
@@ -67,6 +70,7 @@ public class Vector {
 
         if(!(position >= 0) && (this.size > position)) throw new IllegalArgumentException("Posição inválida");
 
+        this.increaseCapacity();
         for(int index = (this.size-1); index >= position; index--) this.elements[(index+1)] = this.elements[index];
 
         this.elements[position] = element;
@@ -131,6 +135,23 @@ public class Vector {
             }
         }
         return emptyIndexes;
+    }
+
+    /**
+     * Metodo responsável pelo aumento da capacidade do Vetor.
+     * O aumento da capacidade será o dobro do tamanho atual do Vetor.
+     * @throws EmptyStackException Lança uma exception indicando que o Vetor está vazio.
+     */
+    private void increaseCapacity() {
+        final int length = this.elements.length;
+
+        if(length == 0) throw new EmptyStackException();
+
+        if(this.size == length){
+            final String[] newElements = new String[length * 2];
+            for(int index = 0; length > index; index++) newElements[index] = this.elements[index];
+            this.elements = newElements;
+        }
     }
 
     @Override

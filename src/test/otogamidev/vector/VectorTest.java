@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
+import java.util.EmptyStackException;
 
 /**
  * Classe responsável pelos testes da classe Vector.
@@ -246,14 +247,40 @@ public class VectorTest {
     @Test
     @Order(8)
     public void getEmptyIndexesTest() {
-        logger.info("gelEmptyIndexesTest() - BEGIN");
+        logger.debug("getEmptyIndexesTest() - BEGIN");
         this.vector = new Vector(5);
         this.vector.append(1, "A");
         this.vector.append(3, "B");
         final int[] emptyIndexes = this.vector.getEmptyIndexes();
-        logger.debug("gelEmptyIndexesTest() - emptyIndexes = {}", Arrays.toString(emptyIndexes));
-        logger.debug("gelEmptyIndexesTest() - vector = {}", this.vector.toString());
-        logger.info("gelEmptyIndexesTest()    - SUCCESS");
+        logger.debug("getEmptyIndexesTest() - emptyIndexes = {}", Arrays.toString(emptyIndexes));
+        logger.debug("getEmptyIndexesTest() - vector = {}", this.vector.toString());
+        logger.info("getEmptyIndexesTest()  - SUCCESS");
+    }
+
+    /**
+     * Test 9 - Incremento do tamanho do Vetor instanciado.
+     * Cenário: Dobrar a capacidade do tamanho do Vetor informado na inicialização.
+     */
+    @Test
+    @Order(9)
+    public void increaseCapacityTest() {
+        try {
+            logger.debug("increaseCapacityTest() - BEGIN");
+            this.vector = new Vector(vectorFullSize);
+            for (String element : vectorFull) this.vector.append(element);
+            this.vector.append("Element 11");
+            this.vector.append("Element 12");
+            this.vector.append("Element 13");
+            this.vector.append("Element 14");
+            final int incrementedVectorFullSize = vectorFullSize * 2;
+            Assertions.assertEquals(incrementedVectorFullSize, this.vector.getElements().length);
+            logger.info("increaseCapacityTest() - SUCCESS");
+        } catch (EmptyStackException emptyStackException) {
+            logger.info("increaseCapacityTest()   - FAIL");
+            emptyStackException.printStackTrace();
+        } finally {
+            logger.debug("increaseCapacityTest() - END");
+        }
     }
 
 }

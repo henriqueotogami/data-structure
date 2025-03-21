@@ -283,4 +283,26 @@ public class VectorTest {
         }
     }
 
+    @Test
+    @Order(10)
+    public void removeTest() {
+        try {
+            logger.debug("removeTest() - BEGIN");
+            this.vector = new Vector(vectorFullSize);
+            for (String element : vectorFull) this.vector.append(element);
+            logger.info("Vector inicial = {}",vector.toString());
+            final int randomIndex = Utils.getRandomIndex(vectorFullSize);
+            this.vector.remove(randomIndex);
+            logger.info("Posição removida = {}",randomIndex);
+            logger.info("Vector final = {}",vector.toString());
+            Assertions.assertEquals(vectorFullSize-1, this.vector.getSize());
+            logger.info("removeTest() - SUCCESS");
+        } catch (EmptyStackException emptyStackException) {
+            logger.info("removeTest()   - FAIL");
+            emptyStackException.printStackTrace();
+        } finally {
+            logger.debug("removeTest() - END");
+        }
+    }
+
 }

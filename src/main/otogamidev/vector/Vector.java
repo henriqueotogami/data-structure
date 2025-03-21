@@ -154,6 +154,18 @@ public class Vector {
         }
     }
 
+    /**
+     * Metodo responsavel pela remoção de um elemento pela posição.
+     * @param position posição informada do elemento que será removido
+     * @throws ArrayIndexOutOfBoundsException Lança uma exception se a posicão for inválida.
+     */
+    public void remove(final int position) throws ArrayIndexOutOfBoundsException{
+        if( 0 > position && position > this.size) throw new ArrayIndexOutOfBoundsException("Posicão inválida");
+//        this.size--;
+        for(int index = position; this.size-1 > index; index++) this.elements[index] = this.elements[index+1];
+        this.size--;
+    }
+
     @Override
     public String toString() {
         StringBuilder arrayElements = new StringBuilder().append("[");

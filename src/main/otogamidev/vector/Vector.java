@@ -3,6 +3,7 @@ package main.otogamidev.vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Array;
 import java.util.EmptyStackException;
 
 /**
@@ -10,13 +11,13 @@ import java.util.EmptyStackException;
  *
  * @author henriquematheusalvespereira
  */
-public class Vector {
+public class Vector<T> {
 
     /** Nome da Classe Vector */
     private static final String CLASS_NAME = "Vector";
     private static final Logger logger = LogManager.getLogger(Vector.class);
 
-    private String[] elements;
+    private T[] elements;
     private int size = 0;
 
     private final int NOT_FOUND = -1;
@@ -26,7 +27,17 @@ public class Vector {
      * @param capable capacidade do Vetor
      */
     public Vector(final int capable) {
-        this.elements = new String[capable];
+        this.elements = (T[]) new Object[capable];
+        this.size = 0;
+    }
+
+    /**
+     * Metodo responsável pela construção da classe Vector.
+     * @param capable capacidade do Vetor
+     * @param classType tipo de objeto
+     */
+    public Vector(final int capable, final Class<T> classType) {
+        this.elements = (T[]) Array.newInstance(classType, capable);
         this.size = 0;
     }
 
@@ -40,7 +51,7 @@ public class Vector {
      * Metodo responsável pelos elementos armazenados nesse Vetor.
      * @return Retorna os elementos desse Vetor.
      */
-    public String[] getElements() { return this.elements; }
+    public T[] getElements() { return this.elements; }
 
     /**
      * Metodo responsável pela adicão de elemento na última posicão do Vetor.
@@ -49,7 +60,7 @@ public class Vector {
      * <br> 1 - Vetor está vazio, se não foi instanciado com valor maior que zero;
      * <br> 2 - Vetor está cheio, após ter adicionado todos os elementos de capacidade máxima
      */
-    public void append(final String element) throws IllegalArgumentException {
+    public void append(final T element) throws IllegalArgumentException {
 
         if(this.elements.length == 0) throw new IllegalArgumentException("Vector is empty");
 
@@ -66,7 +77,7 @@ public class Vector {
      * @param element elemento que será adicionado
      * @throws IllegalArgumentException Lança uma exception indicando se a posição é inválida
      */
-    public void append(final int position, final String element) throws IllegalArgumentException {
+    public void append(final int position, final T element) throws IllegalArgumentException {
 
         if(!(position >= 0) && (this.size > position)) throw new IllegalArgumentException("Posição inválida");
 
@@ -84,11 +95,11 @@ public class Vector {
      * @throws ArrayIndexOutOfBoundsException Lança uma exception indicando posição inválida
      * @throws NullPointerException Lança uma exception indicando elemento que não existe
      */
-    public String searchByPosition(final int position) throws ArrayIndexOutOfBoundsException, NullPointerException {
+    public T searchByPosition(final int position) throws ArrayIndexOutOfBoundsException, NullPointerException {
 
         if( 0 > position && position > this.size) throw new ArrayIndexOutOfBoundsException("Posicão inválida");
 
-        final String foundElement = this.elements[position];
+        final T foundElement = this.elements[position];
         if(foundElement.equals("null")) throw new NullPointerException("Não existe elemento nessa posição");
 
         return foundElement;
@@ -100,7 +111,7 @@ public class Vector {
      * @return Retorna o índice do elemento encontrado.
      * <br> Se não encontrar o elemento, retorna o valor "-1".
      */
-    public int searchByElement(final String element) {
+    public int searchByElement(final T element) {
         for(int index = 0; this.size > index; index++) {
             if(this.elements[index].equals(element)) return index;
         }
@@ -112,7 +123,7 @@ public class Vector {
      * @param element elemento a ser buscado no Vetor
      * @return Retorna valor boolean indicando se o elemento está ou não no Vetor.
      */
-    public boolean isFoundElement(final String element) {
+    public boolean isFoundElement(final T element) {
         return (this.searchByElement(element) != NOT_FOUND);
     }
 
@@ -148,7 +159,7 @@ public class Vector {
         if(length == 0) throw new EmptyStackException();
 
         if(this.size == length){
-            final String[] newElements = new String[length * 2];
+            final T[] newElements = (T[]) new Object[length * 2];
             for(int index = 0; length > index; index++) newElements[index] = this.elements[index];
             this.elements = newElements;
         }

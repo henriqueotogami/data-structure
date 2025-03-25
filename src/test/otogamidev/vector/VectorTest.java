@@ -125,7 +125,7 @@ public class VectorTest {
         try {
             for (String element : vectorFull) this.vector.append(element);
             final int randomIndex = Utils.getRandomIndex(this.vectorFullSize);
-            foundElement = this.vector.searchByPosition(randomIndex);
+            foundElement = (String) this.vector.searchByPosition(randomIndex);
 
             logger.info("searchByPositionTest() - SUCCESS");
             logger.debug("searchByPositionTest() - END");
@@ -258,7 +258,7 @@ public class VectorTest {
     }
 
     /**
-     * Test 9 - Incremento do tamanho do Vetor instanciado.
+     * Teste 9 - Incremento do tamanho do Vetor instanciado.
      * Cenário: Dobrar a capacidade do tamanho do Vetor informado na inicialização.
      */
     @Test
@@ -283,20 +283,24 @@ public class VectorTest {
         }
     }
 
+    /**
+     * Teste 10 - Remove elemento da posição do Vetor informada.
+     * Cenário: Ao remover um elemento, realoca os demais elementos.
+     */
     @Test
     @Order(10)
-    public void removeTest() {
+    public void removeElementByPositionTest() {
         try {
             logger.debug("removeTest() - BEGIN");
             this.vector = new Vector(vectorFullSize);
             for (String element : vectorFull) this.vector.append(element);
-            logger.info("Vector inicial = {}",vector.toString());
+            logger.debug("Vector inicial = {}",vector.toString());
             final int randomIndex = Utils.getRandomIndex(vectorFullSize);
             this.vector.remove(randomIndex);
-            logger.info("Posição removida = {}",randomIndex);
-            logger.info("Vector final = {}",vector.toString());
+            logger.debug("Posição removida = {}",randomIndex);
+            logger.debug("Vector final = {}",vector.toString());
             Assertions.assertEquals(vectorFullSize-1, this.vector.getSize());
-            logger.info("removeTest() - SUCCESS");
+            logger.info("removeTest()           - SUCCESS");
         } catch (EmptyStackException emptyStackException) {
             logger.info("removeTest()   - FAIL");
             emptyStackException.printStackTrace();

@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 2.3
+##### Readme versão 3.0
 
 </div>
 <br>
@@ -156,6 +156,37 @@
 > - [x] getObjectType(final Object element): String
 </details>
 
+<details>
+    <summary> Implementação de Vetores | Vector.java </summary>
+<br>
+
+> Métodos:
+> - [x] append(int position, T element): void
+> - [x] append(T element): void
+> - [x] getElements(): T[]
+> - [x] getEmptyIndexes(): int[]
+> - [x] getSize(): int
+> - [x] increaseCapacity(): void
+> - [x] isFoundElement(T element): boolean
+> - [x] remove(int position): void
+> - [x] searchByElement(T element): int
+> - [x] searchByPosition(int position): T
+> - [x] toString(): String
+
+> Testes unitários:
+> - [x] appendElementsTest(): void
+> - [x] appendTest(): void
+> - [x] createVectorTest(): void
+> - [x] getEmptyIndexesTest(): void
+> - [x] increaseCapacityTest(): void
+> - [x] isFoundElementTest(): void
+> - [x] removeElementByPositionTest(): void
+> - [x] searchByElementTest(): void
+> - [x] searchByPositionTest(): void
+> - [x] toStringTest(): void
+
+</details>
+
 <hr>
 
 ### Documentação
@@ -193,18 +224,20 @@
 
 ## 📝 Leia meus artigos
 
-### [Artigos no Medium](https://medium.com/@henriqueotogami)
-### [Artigos no Dev.to](https://dev.to/henriqueotogami)
+<br>
+<div align="center">
+    <a href="https://dev.to/henriqueotogami" target="_blank">
+        <img width="auto" src="https://github.com/henriqueotogami/data-structure/blob/main/resources/henrique-otogami-devto-profile.png?raw=true">
+    </a>
+    <a href="https://medium.com/@henriqueotogami" target="_blank">
+        <img width="auto" src="https://github.com/henriqueotogami/data-structure/blob/main/resources/henrique-otogami-medium-profile.png?raw=true">
+    </a>
+</div>
 
 <br>
 
 ## 💼 Conecte-se comigo
 ### [Perfil no LinkedIn](https://www.linkedin.com/in/henrique-matheus-alves-pereira)
-
-<br>
-
-## 🙏🏻 Apoie meu conteúdo
-### [Compre-me um cafézinho | Buy me a coffee](https://ko-fi.com/henriqueotogami) ☕
 
 <hr>
 

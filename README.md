@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 3.1
+##### Readme versão 3.2
 
 </div>
 <br>
@@ -41,6 +41,7 @@
 - [x] Fila | Queue.java
 - [x] Lista Encadeada | LinkedList.java
 - [x] Nó | Node.java
+- [x] Vetor | Vector.java
 
 #### Secundário
 - [x] Valores padrão | DefaultValues.java

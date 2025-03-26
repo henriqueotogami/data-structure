@@ -2,4 +2,6 @@ main.otogamidev.list
 main.otogamidev.queue
 main.otogamidev.queue.utils
 main.otogamidev.utils
+main.otogamidev.vector
 test.otogamidev.list
+test.otogamidev.vector

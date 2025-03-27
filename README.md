@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 3.0
+##### Readme versão 3.2
 
 </div>
 <br>
@@ -41,6 +41,7 @@
 - [x] Fila | Queue.java
 - [x] Lista Encadeada | LinkedList.java
 - [x] Nó | Node.java
+- [x] Vetor | Vector.java
 
 #### Secundário
 - [x] Valores padrão | DefaultValues.java
@@ -226,9 +227,12 @@
 
 <br>
 <div align="center">
+    <h3>Dev.to/henriqueotogami</h3>
     <a href="https://dev.to/henriqueotogami" target="_blank">
         <img width="auto" src="https://github.com/henriqueotogami/data-structure/blob/main/resources/henrique-otogami-devto-profile.png?raw=true">
     </a>
+    <br>
+    <h3>Medium/henriqueotogami</h3>
     <a href="https://medium.com/@henriqueotogami" target="_blank">
         <img width="auto" src="https://github.com/henriqueotogami/data-structure/blob/main/resources/henrique-otogami-medium-profile.png?raw=true">
     </a>

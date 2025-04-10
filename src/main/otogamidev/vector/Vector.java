@@ -177,6 +177,24 @@ public class Vector<T> {
         this.size--;
     }
 
+    /**
+     * Metodo responsavel pela verificacao da existencia de um elemento no Vetor.
+     * @param element elemento a ser buscado
+     * @return retorna valor boolean indicando se o elemento foi encontrado ou nao.
+     */
+    public boolean contains(final T element) {
+        return (this.searchByElement(element) > NOT_FOUND);
+    }
+
+    /**
+     * Metodo responsavel pela verificacao da existencia de um elemento no Vetor.
+     * @param position posicao do elemento a ser buscado
+     * @return retorna valor boolean indicando se o elemento foi encontrado ou nao.
+     */
+    public boolean contains(final int position) {
+        return(this.searchByPosition(position) != null);
+    }
+
     @Override
     public String toString() {
         StringBuilder arrayElements = new StringBuilder().append("[");

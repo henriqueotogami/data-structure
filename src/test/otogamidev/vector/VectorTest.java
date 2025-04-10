@@ -52,7 +52,7 @@ public class VectorTest {
         final int updateCapable = this.vector.getElements().length;
         Assertions.assertEquals(initialCapable, vectorEmptySize);
         Assertions.assertEquals(updateCapable, vectorFullSize);
-        logger.info("createVectorTest()     - SUCCESS");
+        logger.info("createVectorTest()       - SUCCESS");
         logger.debug("createVectorTest() - END");
     }
 
@@ -71,7 +71,7 @@ public class VectorTest {
 
             final int capable = this.vector.getElements().length;
             Assertions.assertEquals(vectorFullSize, capable);
-            logger.info("appendTest()           - SUCCESS");
+            logger.info("appendTest()             - SUCCESS");
             logger.debug("appendTest() - END");
 
         } catch (final IllegalArgumentException illegalArgumentException) {
@@ -100,7 +100,7 @@ public class VectorTest {
             final String vectorToString = this.vector.toString();
             Assertions.assertEquals(vectorFullSize, capable);
             Assertions.assertEquals(vectorFullToString, vectorToString);
-            logger.info("toStringTest()         - SUCCESS");
+            logger.info("toStringTest()           - SUCCESS");
             logger.debug("toStringTest() - END");
 
         } catch (final IllegalArgumentException illegalArgumentException) {
@@ -127,7 +127,7 @@ public class VectorTest {
             final int randomIndex = Utils.getRandomIndex(this.vectorFullSize);
             foundElement = (String) this.vector.searchByPosition(randomIndex);
 
-            logger.info("searchByPositionTest() - SUCCESS");
+            logger.info("searchByPositionTest()   - SUCCESS");
             logger.debug("searchByPositionTest() - END");
 
         } catch (final IllegalArgumentException illegalArgumentException) {
@@ -159,7 +159,7 @@ public class VectorTest {
             foundElementIndex = this.vector.searchByElement(this.vectorFull[randomIndex]);
 
             Assertions.assertEquals(randomIndex, foundElementIndex);
-            logger.info("searchByElementTest()  - SUCCESS");
+            logger.info("searchByElementTest()    - SUCCESS");
             logger.debug("searchByElementTest() - END");
 
         } catch (final IllegalArgumentException illegalArgumentException) {
@@ -191,7 +191,7 @@ public class VectorTest {
             foundElementIndex = this.vector.isFoundElement(this.vectorFull[randomIndex]);
 
             Assertions.assertTrue(foundElementIndex);
-            logger.info("isFoundElementTest()   - SUCCESS");
+            logger.info("isFoundElementTest()     - SUCCESS");
             logger.debug("isFoundElementTest() - END");
 
         } catch (final IllegalArgumentException illegalArgumentException) {
@@ -228,7 +228,7 @@ public class VectorTest {
 
             final int capable = this.vector.getElements().length;
             Assertions.assertEquals(vectorFullSize, capable);
-            logger.info("appendElementTest()    - SUCCESS");
+            logger.info("appendElementTest()      - SUCCESS");
             logger.debug("appendElementTest() - END");
 
         } catch (final IllegalArgumentException illegalArgumentException) {
@@ -254,7 +254,7 @@ public class VectorTest {
         final int[] emptyIndexes = this.vector.getEmptyIndexes();
         logger.debug("getEmptyIndexesTest() - emptyIndexes = {}", Arrays.toString(emptyIndexes));
         logger.debug("getEmptyIndexesTest() - vector = {}", this.vector.toString());
-        logger.info("getEmptyIndexesTest()  - SUCCESS");
+        logger.info("getEmptyIndexesTest()    - SUCCESS");
     }
 
     /**
@@ -274,7 +274,7 @@ public class VectorTest {
             this.vector.append("Element 14");
             final int incrementedVectorFullSize = vectorFullSize * 2;
             Assertions.assertEquals(incrementedVectorFullSize, this.vector.getElements().length);
-            logger.info("increaseCapacityTest() - SUCCESS");
+            logger.info("increaseCapacityTest()   - SUCCESS");
         } catch (EmptyStackException emptyStackException) {
             logger.info("increaseCapacityTest()   - FAIL");
             emptyStackException.printStackTrace();
@@ -300,12 +300,61 @@ public class VectorTest {
             logger.debug("Posição removida = {}",randomIndex);
             logger.debug("Vector final = {}",vector.toString());
             Assertions.assertEquals(vectorFullSize-1, this.vector.getSize());
-            logger.info("removeTest()           - SUCCESS");
+            logger.info("removeTest()             - SUCCESS");
         } catch (EmptyStackException emptyStackException) {
             logger.info("removeTest()   - FAIL");
             emptyStackException.printStackTrace();
         } finally {
             logger.debug("removeTest() - END");
+        }
+    }
+
+    /**
+     * Teste 11 - Verifica a existencia de um elemento no Vetor.
+     * Cenário: Busca o elemento desejado no Vetor.
+     */
+    @Test
+    @Order(11)
+    public void containsElementTest() {
+        try {
+            logger.debug("containsElementTest() - BEGIN");
+            this.vector = new Vector(vectorFullSize);
+            for (String element : vectorFull) this.vector.append(element);
+            logger.debug("Vector inicial = {}",vector.toString());
+            final int randomIndex = Utils.getRandomIndex(vectorFullSize);
+            final String randomElement = this.vectorFull[randomIndex];
+            final boolean containsElement = this.vector.contains(randomElement);
+            Assertions.assertTrue(containsElement);
+            logger.info("containsElementTest()    - SUCCESS");
+        } catch (EmptyStackException emptyStackException) {
+            logger.info("containsElementTest()   - FAIL");
+            emptyStackException.printStackTrace();
+        } finally {
+            logger.debug("containsElementTest() - END");
+        }
+    }
+
+    /**
+     * Teste 12 - Verifica a existencia de um elemento no Vetor.
+     * Cenário: Busca a posição do elemento desejado no Vetor.
+     */
+    @Test
+    @Order(12)
+    public void containsByPositionTest() {
+        try {
+            logger.debug("containsByPositionTest() - BEGIN");
+            this.vector = new Vector(vectorFullSize);
+            for (String element : vectorFull) this.vector.append(element);
+            logger.debug("Vector inicial = {}",vector.toString());
+            final int randomIndex = Utils.getRandomIndex(vectorFullSize);
+            final boolean containsElement = this.vector.contains(randomIndex);
+            Assertions.assertTrue(containsElement);
+            logger.info("containsByPositionTest() - SUCCESS");
+        } catch (EmptyStackException emptyStackException) {
+            logger.info("containsByPositionTest()   - FAIL");
+            emptyStackException.printStackTrace();
+        } finally {
+            logger.debug("containsByPositionTest() - END");
         }
     }
 

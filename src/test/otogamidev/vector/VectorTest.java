@@ -315,9 +315,9 @@ public class VectorTest {
      */
     @Test
     @Order(11)
-    public void containsElementTest() {
+    public void containsByElementTest() {
         try {
-            logger.debug("containsElementTest() - BEGIN");
+            logger.debug("containsByElementTest() - BEGIN");
             this.vector = new Vector(vectorFullSize);
             for (String element : vectorFull) this.vector.append(element);
             logger.debug("Vector inicial = {}",vector.toString());
@@ -325,12 +325,12 @@ public class VectorTest {
             final String randomElement = this.vectorFull[randomIndex];
             final boolean containsElement = this.vector.contains(randomElement);
             Assertions.assertTrue(containsElement);
-            logger.info("containsElementTest()    - SUCCESS");
+            logger.info("containsByElementTest()    - SUCCESS");
         } catch (EmptyStackException emptyStackException) {
-            logger.info("containsElementTest()   - FAIL");
+            logger.info("containsByElementTest()   - FAIL");
             emptyStackException.printStackTrace();
         } finally {
-            logger.debug("containsElementTest() - END");
+            logger.debug("containsByElementTest() - END");
         }
     }
 

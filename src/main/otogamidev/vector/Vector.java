@@ -195,6 +195,23 @@ public class Vector<T> {
         return(this.searchByPosition(position) != null);
     }
 
+    /**
+     * Metodo responsavel pela obtencao do indice da ultima ocorrencia de um elemento no Vetor.
+     * @param element elemento a ser buscado
+     * @return retorna valor int indicando o indice do elemento no Vetor
+     */
+    public int getLastIndexOfElement(final T element) {
+        int foundLastIndex = this.NOT_FOUND;
+        int lastPosition = this.size-1;
+        for(int index = lastPosition; index >= 0; index--) {
+            if(this.elements[index].equals(element)) {
+                foundLastIndex = index;
+                break;
+            }
+        }
+        return foundLastIndex;
+    }
+
     @Override
     public String toString() {
         StringBuilder arrayElements = new StringBuilder().append("[");

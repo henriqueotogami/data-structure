@@ -358,4 +358,30 @@ public class VectorTest {
         }
     }
 
+    /**
+     * Teste 13 - Verifica a última ocorrência de um elemento no Vetor.
+     * Cenário: Busca o elemento desejado no Vetor do fim para o comeco.
+     */
+    @Test
+    @Order(13)
+    public void lastIndexOfElementTest() {
+        try {
+            logger.debug("lastIndexOfElementTest() - BEGIN");
+            this.vector = new Vector(vectorFullSize);
+            this.vector.append("A");
+            this.vector.append("B");
+            this.vector.append("C");
+            this.vector.append("A");
+            this.vector.append("D");
+            final int foundLastIndex = this.vector.getLastIndexOfElement("A");
+            Assertions.assertEquals(3, foundLastIndex);
+            logger.info("lastIndexOfElementTest() - SUCCESS");
+        } catch (Exception exception) {
+            logger.info("lastIndexOfElementTest()   - FAIL");
+            exception.printStackTrace();
+        } finally {
+            logger.debug("lastIndexOfElementTest() - END");
+        }
+    }
+
 }

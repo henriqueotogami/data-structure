@@ -384,4 +384,29 @@ public class VectorTest {
         }
     }
 
+    @Test
+    @Order(14)
+    public void removeByElement() {
+        try {
+            logger.debug("removeByElement() - BEGIN");
+            this.vector = new Vector(vectorFullSize);
+            for (String element : vectorFull) this.vector.append(element);
+            logger.debug("Vector inicial = {}",vector.toString());
+            final int randomIndex = Utils.getRandomIndex(vectorFullSize);
+            final boolean containsElement = this.vector.contains(randomIndex);
+            Assertions.assertTrue(containsElement);
+
+            final Object randomElement = this.vector.searchByPosition(randomIndex);
+            this.vector.remove(randomElement);
+            final boolean wasRemovedElement = !this.vector.contains(randomElement);
+            Assertions.assertTrue(wasRemovedElement);
+            logger.info("removeByElement() - SUCCESS");
+        } catch (Exception exception) {
+            logger.info("removeByElement()   - FAIL");
+            exception.printStackTrace();
+        } finally {
+            logger.debug("removeByElement() - END");
+        }
+    }
+
 }

@@ -177,6 +177,11 @@ public class Vector<T> {
         this.size--;
     }
 
+    public void remove(final T element) {
+        final int position = this.searchByElement(element);
+        if(position > this.NOT_FOUND) this.remove(position);
+    }
+
     /**
      * Metodo responsavel pela verificacao da existencia de um elemento no Vetor.
      * @param element elemento a ser buscado

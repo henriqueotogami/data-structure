@@ -217,6 +217,14 @@ public class Vector<T> {
         return foundLastIndex;
     }
 
+    /**
+     * Metodo responsavel pela limpeza do Vetor, utilizando a estrategia de garbage collector.
+     */
+    public void clear() {
+        for(int index = 0; this.size > index; index++) this.elements[index] = null;
+        this.size = 0;
+    }
+
     @Override
     public String toString() {
         StringBuilder arrayElements = new StringBuilder().append("[");

@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.EmptyStackException;
 
@@ -25,7 +26,7 @@ public class VectorTest {
     private static final String CLASS_NAME = "VectorTest";
     private final Logger logger = LogManager.getLogger(VectorTest.class);
 
-    private final String vectorEmpty = "[]";
+    private final String[] vectorEmpty = new String[this.vectorFullSize];
     private final String[] vectorFull  = new String[] { "elemento 1", "elemento 2", "elemento 3", "elemento 4", "elemento 5" };
     private final String vectorFullToString = "[elemento 1, elemento 2, elemento 3, elemento 4, elemento 5]";
 
@@ -34,9 +35,18 @@ public class VectorTest {
 
     private Vector vector = null;
 
+    final String SUCCESS = "\t - SUCCESS";
 //    =================================================================================================================
 //    Variáveis dos Testes Unitarios - Fim
 //    =================================================================================================================
+
+    public void init() {
+        logger.info("init() - BEGIN");
+        for(Method method : this.getClass().getDeclaredMethods()) {
+            final String parsed = String.valueOf(method).replace("public void test.otogamidev.vector.VectorTest.","").replace("()","");
+            logger.info("init() - method = {}", parsed);
+        }
+    }
 
     /**
      * Teste 1 - Criação de Fila.
@@ -325,7 +335,7 @@ public class VectorTest {
             final String randomElement = this.vectorFull[randomIndex];
             final boolean containsElement = this.vector.contains(randomElement);
             Assertions.assertTrue(containsElement);
-            logger.info("containsByElementTest()    - SUCCESS");
+            logger.info("containsByElementTest()  - SUCCESS");
         } catch (EmptyStackException emptyStackException) {
             logger.info("containsByElementTest()   - FAIL");
             emptyStackException.printStackTrace();
@@ -384,6 +394,10 @@ public class VectorTest {
         }
     }
 
+    /**
+     * Teste 14 - Remove um elemento no Vetor.
+     * Cenário: Informa o elemento que precisa ser removido do Vetor.
+     */
     @Test
     @Order(14)
     public void removeByElement() {
@@ -400,12 +414,33 @@ public class VectorTest {
             this.vector.remove(randomElement);
             final boolean wasRemovedElement = !this.vector.contains(randomElement);
             Assertions.assertTrue(wasRemovedElement);
-            logger.info("removeByElement() - SUCCESS");
+            logger.info("removeByElement(){}", SUCCESS);
         } catch (Exception exception) {
             logger.info("removeByElement()   - FAIL");
             exception.printStackTrace();
         } finally {
             logger.debug("removeByElement() - END");
+        }
+    }
+
+    @Test
+    @Order(15)
+    public void clearTest() {
+        try {
+            logger.debug("clearTest() - BEGIN");
+            this.vector = new Vector(vectorFullSize);
+            for (String element : vectorFull) this.vector.append(element);
+            logger.debug("Vector inicial = {}",vector.toString());
+            Assertions.assertEquals(Arrays.toString(this.vectorFull), this.vector.toString());
+
+            this.vector.clear();
+            Assertions.assertEquals(Arrays.toString(this.vectorEmpty), this.vector.toString());
+            logger.info("clearTest(){}", SUCCESS);
+        } catch (Exception exception) {
+            logger.info("clearTest()   - FAIL");
+            exception.printStackTrace();
+        } finally {
+            logger.debug("clearTest() - END");
         }
     }
 

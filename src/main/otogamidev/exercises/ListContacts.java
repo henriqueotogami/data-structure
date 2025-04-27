@@ -14,6 +14,7 @@ public class ListContacts {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static final Vector<Contact> listContacts = new Vector<Contact>(20);
+    private static final int DEFAULT_VALUE = -1;
 
     public static class Contact {
 
@@ -61,33 +62,36 @@ public class ListContacts {
         logger.info("createContacts() - END");
     }
 
-    private static int getMenu(final Scanner scan) {
-
+    private static int getMenu() {
         boolean isValidInput = false;
-        boolean hasOnlyNumbers = false;
-        String input = "";
-        int option = 0;
+        int option = DEFAULT_VALUE;
 
         while(!isValidInput) {
-
             printMenu();
-
-            try {
-                input = scan.nextLine();
-                hasOnlyNumbers = input.matches("[0-9]");
-                if(!hasOnlyNumbers) throw new IllegalArgumentException("Utilize apenas números.");
-
-                option = Integer.parseInt(input);
-                isValidInput = (option > -1 && option < 12);
-
-            } catch (final Exception exception) {
-                logger.info("Entrada inválida. Tente novamente.");
-                logger.debug(exception.getStackTrace());
-            } finally {
-                logger.info("Entrada informada = {}\r\n", option);
-            }
+            option = validateReadValue();
+            isValidInput = (option > DEFAULT_VALUE && option < 12);
         }
         return option;
+    }
+
+    private static int validateReadValue() {
+        String input;
+        boolean hasOnlyNumbers;
+        int validValue = DEFAULT_VALUE;
+        try {
+            input = scanner.nextLine();
+            hasOnlyNumbers = input.matches("[0-9]");
+
+            if(!hasOnlyNumbers) throw new IllegalArgumentException("Utilize apenas números.");
+            validValue = Integer.parseInt(input);
+
+        } catch (final Exception exception) {
+            logger.info("Entrada inválida. Tente novamente.");
+            logger.debug(exception.getStackTrace());
+        } finally {
+            logger.info("Entrada informada = {}\r\n", validValue);
+        }
+        return validValue;
     }
 
     private static void printMenu() {
@@ -106,13 +110,60 @@ public class ListContacts {
         logger.info("11 - Imprime o vetor\r\n");
     }
 
+    private static void addContact(final Vector<Contact> list, final boolean isAddByPosition) {
+        logger.info("addContact() - BEGIN");
+        final String name   = readInfoString("Insira o nome");
+        final String phone  = readInfoString("Insira o telefone");
+        final String email  = readInfoString("Insira o email");
+        final Contact contact = new Contact(name, phone, email);
+
+        if(isAddByPosition) {
+            final int position = readInfoInt("Insira a posição do vetor para adicionar o contato");
+            list.append(position, contact);
+        } else {
+            list.append(contact);
+        }
+
+        logger.info("Contato adicionado com sucesso.");
+        logger.info(contact.toString());
+    }
+
+    private static String readInfoString(final String message) {
+        logger.info("readInfoString - Message = {}", message);
+        final String input = scanner.nextLine();
+        return input;
+    }
+
+    private static int readInfoInt(final String message) {
+        logger.info("readInfoInt - Message = {}", message);
+
+        boolean isValidInput = false;
+        int readValue = DEFAULT_VALUE;
+
+        while (!isValidInput) {
+            readValue = validateReadValue();
+            isValidInput = (readValue > DEFAULT_VALUE);
+        }
+        return readValue;
+    }
+
     public static void main(String[] args) {
         logger.info("Programa iniciado");
 
         int option = 1;
 
         while(option != 0) {
-            option = getMenu(scanner);
+            option = getMenu();
+            switch(option){
+                case 1:
+                    addContact(listContacts, false);
+                    break;
+                case 2:
+                    addContact(listContacts, true);
+                    break;
+                default:
+                    break;
+            }
         }
 
         logger.info("Programa terminado");

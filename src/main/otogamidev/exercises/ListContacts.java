@@ -147,6 +147,19 @@ public class ListContacts {
         return readValue;
     }
 
+    public static Contact getContactByPosition() {
+        final int position = readInfoInt("Insira a posição do contato desejado:");
+        try {
+            final Contact contact = listContacts.searchByPosition(position);
+            logger.info("Contato encontrado : {}", contact.toString());
+            return contact;
+        } catch (final Exception exception) {
+            logger.info("Entrada inválida. Tente novamente.");
+            logger.debug(exception.getStackTrace());
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
         logger.info("Programa iniciado");
 
@@ -160,6 +173,9 @@ public class ListContacts {
                     break;
                 case 2:
                     addContact(listContacts, true);
+                    break;
+                case 3:
+                    getContactByPosition();
                     break;
                 default:
                     break;

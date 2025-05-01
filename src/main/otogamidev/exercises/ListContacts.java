@@ -44,6 +44,11 @@ public class ListContacts {
         public String getEmail() { return this.email; }
 
         public void setEmail(final String email) { this.email = email; }
+
+        @Override
+        public String toString() {
+            return "Contact{" + "name='" + this.name + '\'' + ", phone='" + this.phone + '\'' + ", email='" + this.email + '\'' + '}';
+        }
     }
 
     private static void createContacts(final int quantity, final Vector<Contact> list) {
@@ -160,6 +165,18 @@ public class ListContacts {
         }
     }
 
+    public static int getPositionByContact() {
+        try {
+            final Contact contact = getContactByPosition();
+            if(contact == null) throw new NullPointerException("Contato não existe");
+            logger.info("Contato existe.");
+            return listContacts.searchByElement(contact);
+        } catch (Exception e) {
+            logger.info("Tente novamente");
+            return DEFAULT_VALUE;
+        }
+    }
+
     public static void main(String[] args) {
         logger.info("Programa iniciado");
 
@@ -176,6 +193,9 @@ public class ListContacts {
                     break;
                 case 3:
                     getContactByPosition();
+                    break;
+                case 4:
+                    getPositionByContact();
                     break;
                 default:
                     break;

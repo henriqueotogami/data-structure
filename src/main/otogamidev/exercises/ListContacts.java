@@ -4,6 +4,7 @@ import main.otogamidev.vector.Vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ListContacts {
@@ -99,6 +100,58 @@ public class ListContacts {
         return validValue;
     }
 
+    private static String validateReadName() {
+        boolean isValidRead = false;
+        String readString = "";
+        while(!isValidRead){
+            readString = readInfoString("Insira o nome: ");
+//           Regex:
+//           - [a-zà-ÿ]: letras minúsculas
+//           - \\s: espaços
+//           - '-: hifens e apóstrofos (nomes como "Ana-Clara", "D'Ávila")
+//           - +: uma ou mais repetições.
+            if(readString.toLowerCase().matches("[a-zà-ÿ\\\\s'-]+")) {
+                isValidRead = true;
+            } else {
+                logger.info("Formato inválido. Digite novamente.");
+            }
+        }
+        return readString;
+    }
+
+    private static String validateReadPhone() {
+        boolean isValidRead = false;
+        String readString = "";
+        while(!isValidRead){
+            readString = readInfoString("Insira o telefone: ");
+            if(readString.matches("[0-9]{9}")) {
+                isValidRead = true;
+            } else {
+                logger.info("Formato inválido. Digite novamente.");
+            }
+        }
+        return readString;
+    }
+
+    private static String validateReadEmail() {
+        boolean isValidRead = false;
+        String readString = "";
+        while(!isValidRead){
+            readString = readInfoString("Insira o email: ");
+//          Regex para formato de email: Henriqu3.map@outlook.com.br
+//          - ^[\\w._%+-]+      → parte antes do @: letras, números, . _ % + -.
+//          - @                 → separador obrigatório.
+//          - [\\w.-]+          → domínio (ex: outlook, gmail, etc.).
+//          - \\.[a-zA-Z]{2,}   → TLD (ex: .com, .br, .org, etc.), com pelo menos 2 letras.
+            if(readString.matches("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+                isValidRead = true;
+            } else {
+                logger.info("Formato inválido. Digite novamente.");
+            }
+        }
+        return readString;
+    }
+
     private static void printMenu() {
         logger.info("Digite a opção desejada:");
         logger.info("00 - Sair");
@@ -117,9 +170,9 @@ public class ListContacts {
 
     private static void addContact(final Vector<Contact> list, final boolean isAddByPosition) {
         logger.info("addContact() - BEGIN");
-        final String name   = readInfoString("Insira o nome");
-        final String phone  = readInfoString("Insira o telefone");
-        final String email  = readInfoString("Insira o email");
+        final String name   = validateReadName();
+        final String phone  = validateReadPhone();
+        final String email  = validateReadEmail();
         final Contact contact = new Contact(name, phone, email);
 
         if(isAddByPosition) {
@@ -135,8 +188,7 @@ public class ListContacts {
 
     private static String readInfoString(final String message) {
         logger.info("readInfoString - Message = {}", message);
-        final String input = scanner.nextLine();
-        return input;
+        return scanner.nextLine();
     }
 
     private static int readInfoInt(final String message) {
@@ -152,11 +204,11 @@ public class ListContacts {
         return readValue;
     }
 
-    public static Contact getContactByPosition() {
+    private static Contact getContactByPosition() {
         final int position = readInfoInt("Insira a posição do contato desejado:");
         try {
             final Contact contact = listContacts.searchByPosition(position);
-            logger.info("Contato encontrado : {}", contact.toString());
+            logger.info("Contato encontrado: {}", contact.toString());
             return contact;
         } catch (final Exception exception) {
             logger.info("Entrada inválida. Tente novamente.");
@@ -165,12 +217,25 @@ public class ListContacts {
         }
     }
 
-    public static int getPositionByContact() {
+    private static int getPositionByContact() {
         try {
             final Contact contact = getContactByPosition();
             if(contact == null) throw new NullPointerException("Contato não existe");
-            logger.info("Contato existe.");
+            logger.info("Contato existe: {}", contact);
             return listContacts.searchByElement(contact);
+        } catch (Exception e) {
+            logger.info("Tente novamente");
+            return DEFAULT_VALUE;
+        }
+    }
+
+    private static int getLastIndexOfContacts() {
+        try {
+            final int lastIndex = listContacts.getSize()-1;
+            final Contact contact = listContacts.searchByPosition(lastIndex);
+            if(contact == null) throw new NullPointerException("Contato não existe");
+            logger.info("Último contato na posição: {}", lastIndex);
+            return lastIndex;
         } catch (Exception e) {
             logger.info("Tente novamente");
             return DEFAULT_VALUE;
@@ -196,6 +261,9 @@ public class ListContacts {
                     break;
                 case 4:
                     getPositionByContact();
+                    break;
+                case 5:
+                    getLastIndexOfContacts();
                     break;
                 default:
                     break;

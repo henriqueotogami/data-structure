@@ -4,7 +4,6 @@ import main.otogamidev.vector.Vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class ListContacts {
@@ -168,7 +167,7 @@ public class ListContacts {
         logger.info("11 - Imprime o vetor\r\n");
     }
 
-    private static void addContact(final Vector<Contact> list, final boolean isAddByPosition) {
+    private static void addContact(final boolean isAddByPosition) {
         logger.info("addContact() - BEGIN");
         final String name   = validateReadName();
         final String phone  = validateReadPhone();
@@ -177,9 +176,9 @@ public class ListContacts {
 
         if(isAddByPosition) {
             final int position = readInfoInt("Insira a posição do vetor para adicionar o contato");
-            list.append(position, contact);
+            listContacts.append(position, contact);
         } else {
-            list.append(contact);
+            listContacts.append(contact);
         }
 
         logger.info("Contato adicionado com sucesso.");
@@ -208,7 +207,8 @@ public class ListContacts {
         final int position = readInfoInt("Insira a posição do contato desejado:");
         try {
             final Contact contact = listContacts.searchByPosition(position);
-            logger.info("Contato encontrado: {}", contact.toString());
+            logger.info("Posição: {}", position);
+            logger.info("Contato: {}", contact.toString());
             return contact;
         } catch (final Exception exception) {
             logger.info("Entrada inválida. Tente novamente.");
@@ -221,7 +221,7 @@ public class ListContacts {
         try {
             final Contact contact = getContactByPosition();
             if(contact == null) throw new NullPointerException("Contato não existe");
-            logger.info("Contato existe: {}", contact);
+            logger.info("Contato: {}", contact);
             return listContacts.searchByElement(contact);
         } catch (Exception e) {
             logger.info("Tente novamente");
@@ -242,6 +242,31 @@ public class ListContacts {
         }
     }
 
+    private static boolean hasFoundContact(Vector<Contact> listContacts) {
+//        Pelo que entendi, pelo fato de estar usando o contexto estático, quando tento acessar a variável global,
+//        o acesso estava disponível apenas para o metodo main e aqui era null.
+        try {
+            final String contactToSearch = readInfoString("Insira o nome do contato: ");
+            Contact foundContact = null;
+            final Contact[] allContacts = ListContacts.listContacts.getElements();
+            for(Contact oneContact : allContacts) {
+                final boolean hasFound = oneContact.getName().equals(contactToSearch);
+                if(hasFound) {
+                    foundContact = oneContact;
+                    break;
+                }
+            }
+
+            if(foundContact == null) throw new NullPointerException("Contato não existe");
+
+            logger.info("Contato encontrado: {}", foundContact);
+            return true;
+        } catch (Exception e) {
+            logger.info("Tente novamente");
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         logger.info("Programa iniciado");
 
@@ -251,10 +276,10 @@ public class ListContacts {
             option = getMenu();
             switch(option){
                 case 1:
-                    addContact(listContacts, false);
+                    addContact(false);
                     break;
                 case 2:
-                    addContact(listContacts, true);
+                    addContact(true);
                     break;
                 case 3:
                     getContactByPosition();
@@ -265,7 +290,11 @@ public class ListContacts {
                 case 5:
                     getLastIndexOfContacts();
                     break;
+                case 6:
+                    hasFoundContact(listContacts);
+                    break;
                 default:
+                    logger.info("Opção inexistente. Tente novamente.");
                     break;
             }
         }

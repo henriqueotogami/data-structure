@@ -267,6 +267,49 @@ public class ListContacts {
         }
     }
 
+    private static void removeByPosition(Vector<Contact> listContacts){
+        try {
+            final int position = readInfoInt("Insira a posição do contato a ser removido");
+
+            final int oldSize = listContacts.getSize();
+            final String oldList = listContacts.toString();
+
+            listContacts.remove(position);
+
+            final int newSize = listContacts.getSize();
+            final String newList = listContacts.toString();
+
+            if(oldSize > newSize) logger.info("Contato foi removido");
+
+//            logger.info("Size: {} | Lista anterior: {}", oldSize, oldList);
+//            logger.info("Size: {} | Lista atual: {}", newSize, newList);
+        } catch (Exception e) {
+            logger.info("Tente novamente");
+        }
+    }
+
+    private static void removeByContact(Vector<Contact> listContacts){
+        try {
+            final int position = readInfoInt("Insira a posição do contato a ser removido");
+
+            final int oldSize = listContacts.getSize();
+            final String oldList = listContacts.toString();
+
+            final Contact targetContact = listContacts.searchByPosition(position);
+            listContacts.remove(targetContact);
+
+            final int newSize = listContacts.getSize();
+            final String newList = listContacts.toString();
+
+            if(oldSize > newSize) logger.info("Contato foi removido");
+
+//            logger.info("Size: {} | Lista anterior: {}", oldSize, oldList);
+//            logger.info("Size: {} | Lista atual: {}", newSize, newList);
+        } catch (Exception e) {
+            logger.info("Tente novamente");
+        }
+    }
+
     public static void main(String[] args) {
         logger.info("Programa iniciado");
 
@@ -292,6 +335,12 @@ public class ListContacts {
                     break;
                 case 6:
                     hasFoundContact(listContacts);
+                    break;
+                case 7:
+                    removeByPosition(listContacts);
+                    break;
+                case 8:
+                    removeByContact(listContacts);
                     break;
                 default:
                     logger.info("Opção inexistente. Tente novamente.");

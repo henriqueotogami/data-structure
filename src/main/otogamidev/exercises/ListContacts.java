@@ -26,7 +26,7 @@ public class ListContacts {
             this.name   = name;
             this.phone  = phone;
             this.email  = email;
-            logger.info("Contact was created | name = {} | phone = {} | email = {}", name, phone, email);
+            logger.info("Contact was created | name = {} | phone = {} | email = {}\r\n", name, phone, email);
         }
 
         public Contact() {
@@ -64,7 +64,7 @@ public class ListContacts {
             final Contact contact = new Contact(contactName, contactPhone, contactEmail);
             list.append(contact);
         }
-        logger.info("createContacts() - END");
+        logger.info("createContacts() - END\r\n");
     }
 
     private static int getMenu() {
@@ -181,7 +181,7 @@ public class ListContacts {
             listContacts.append(contact);
         }
 
-        logger.info("Contato adicionado com sucesso.");
+        logger.info("Contato adicionado com sucesso.\r\n");
         logger.info(contact.toString());
     }
 
@@ -208,7 +208,7 @@ public class ListContacts {
         try {
             final Contact contact = listContacts.searchByPosition(position);
             logger.info("Posição: {}", position);
-            logger.info("Contato: {}", contact.toString());
+            logger.info("Contato: {}\r\n", contact.toString());
             return contact;
         } catch (final Exception exception) {
             logger.info("Entrada inválida. Tente novamente.");
@@ -221,7 +221,7 @@ public class ListContacts {
         try {
             final Contact contact = getContactByPosition();
             if(contact == null) throw new NullPointerException("Contato não existe");
-            logger.info("Contato: {}", contact);
+            logger.info("Contato: {}\r\n", contact);
             return listContacts.searchByElement(contact);
         } catch (Exception e) {
             logger.info("Tente novamente");
@@ -234,7 +234,7 @@ public class ListContacts {
             final int lastIndex = listContacts.getSize()-1;
             final Contact contact = listContacts.searchByPosition(lastIndex);
             if(contact == null) throw new NullPointerException("Contato não existe");
-            logger.info("Último contato na posição: {}", lastIndex);
+            logger.info("Último contato na posição: {}\r\n", lastIndex);
             return lastIndex;
         } catch (Exception e) {
             logger.info("Tente novamente");
@@ -259,7 +259,7 @@ public class ListContacts {
 
             if(foundContact == null) throw new NullPointerException("Contato não existe");
 
-            logger.info("Contato encontrado: {}", foundContact);
+            logger.info("Contato encontrado: {}\r\n", foundContact);
             return true;
         } catch (Exception e) {
             logger.info("Tente novamente");
@@ -279,7 +279,7 @@ public class ListContacts {
             final int newSize = listContacts.getSize();
             final String newList = listContacts.toString();
 
-            if(oldSize > newSize) logger.info("Contato foi removido");
+            if(oldSize > newSize) logger.info("Contato foi removido\r\n");
 
 //            logger.info("Size: {} | Lista anterior: {}", oldSize, oldList);
 //            logger.info("Size: {} | Lista atual: {}", newSize, newList);
@@ -301,7 +301,7 @@ public class ListContacts {
             final int newSize = listContacts.getSize();
             final String newList = listContacts.toString();
 
-            if(oldSize > newSize) logger.info("Contato foi removido");
+            if(oldSize > newSize) logger.info("Contato foi removido\r\n");
 
 //            logger.info("Size: {} | Lista anterior: {}", oldSize, oldList);
 //            logger.info("Size: {} | Lista atual: {}", newSize, newList);
@@ -310,9 +310,23 @@ public class ListContacts {
         }
     }
 
+    private static void getSizeContacts(){
+        logger.info("Tamanho total de contatos: {}\r\n", listContacts.getSize());
+    }
+
+    private static void removeAllContacts() {
+        listContacts.clear();
+        getSizeContacts();
+    }
+
+    private static void printListContacts(){
+        logger.info("Lista de contatos: {}\r\n", listContacts.toString());
+    }
+
     public static void main(String[] args) {
         logger.info("Programa iniciado");
 
+        createContacts(20, listContacts);
         int option = 1;
 
         while(option != 0) {
@@ -342,8 +356,17 @@ public class ListContacts {
                 case 8:
                     removeByContact(listContacts);
                     break;
+                case 9:
+                    getSizeContacts();
+                    break;
+                case 10:
+                    removeAllContacts();
+                    break;
+                case 11:
+                    printListContacts();
+                    break;
                 default:
-                    logger.info("Opção inexistente. Tente novamente.");
+                    logger.info("Opção inexistente. Tente novamente.\r\n");
                     break;
             }
         }

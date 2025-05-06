@@ -11,8 +11,8 @@ public class StaticStructure<T> {
     private static final String CLASS_NAME = "StaticStructure";
     private static final Logger logger = LogManager.getLogger(StaticStructure.class);
 
-    private T[] elements;
-    private int size;
+    protected T[] elements;
+    protected int size;
 
     public StaticStructure(final int capable) {
         this.elements = (T[]) new Object[capable];

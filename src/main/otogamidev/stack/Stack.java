@@ -9,9 +9,6 @@ public class Stack<T> extends StaticStructure<T> {
     private static final String CLASS_NAME = "Stack";
     private static final Logger logger = LogManager.getLogger(Stack.class);
 
-    private T[] elements;
-    private int size;
-
     public Stack(final int capable) {
         this.elements = (T[]) new Object[capable];
         this.size = 0;
@@ -19,4 +16,7 @@ public class Stack<T> extends StaticStructure<T> {
 
     public Stack() { this(10); }
 
+    public void push(final T element) {
+        this.append(element);
+    }
 }

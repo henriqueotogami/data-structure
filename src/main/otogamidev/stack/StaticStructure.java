@@ -80,6 +80,12 @@ public class StaticStructure<T> {
         }
     }
 
+    /**
+     * Metodo responsavel pela verificacao de tamanho da pilha
+     * @return retorna valor true indicando que esta vazia e false indicando que esta cheia
+     */
+    public boolean isEmpty() { return (this.size == 0); }
+
     @Override
     public String toString() {
         StringBuilder arrayElements = new StringBuilder().append("[");

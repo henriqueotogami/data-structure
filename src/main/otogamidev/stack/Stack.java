@@ -20,3 +20,4 @@ public class Stack<T> extends StaticStructure<T> {
         this.append(element);
     }
 }
+ 

@@ -27,6 +27,10 @@ public class StackTest {
 //    Variáveis dos Testes Unitarios - Fim
 //    =================================================================================================================
 
+    /**
+     * Teste 1 - Instancia de uma Pilha
+     * Cenário: Verificar se a pilha é criada com a capacidade padrao de 10 elementos null e está vazia.
+     */
     @Test
     @Order(1)
     public void initEmptyStackTest() {
@@ -37,6 +41,16 @@ public class StackTest {
         logger.info("initEmptyStackTest() - SUCESS");
     }
 
+    /**
+     * Teste 2 - Empilhar elementos
+     * Cenário: Adicionar elementos no fim da Pilha (LIFO - Last In First Out)
+     * <br>
+     * <br>     [3] - | valor 4 | -> Empilhando elemento
+     * <br>
+     * <br>     [2] - | valor 3 |
+     * <br>     [1] - | valor 2 |
+     * <br>     [0] - | valor 1 |
+     */
     @Test
     @Order(2)
     public void pushTest(){
@@ -52,5 +66,22 @@ public class StackTest {
         Assertions.assertEquals(Arrays.toString(array), stack.toString());
         Assertions.assertEquals(array.length, stack.getSize());
         logger.info("pushTest() - SUCESS");
+    }
+
+    /**
+     * Teste 2 - Pilha vazia
+     * Cenário: Criar uma pilha e verificar se o metodo isEmpty retorna true.
+     *          Adicionar elementos, e verificar se o metodo isEmpty retorna false.
+     */
+    @Test
+    @Order(3)
+    public void isEmptyTest() {
+        final Stack<Integer> stack = new Stack<Integer>();
+        Assertions.assertTrue(stack.isEmpty());
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        Assertions.assertFalse(stack.isEmpty());
+        logger.info("isEmptyTest() - SUCESS");
     }
 }

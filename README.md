@@ -42,7 +42,6 @@
 - [x] Lista Encadeada   | LinkedList.java
 - [x] Nó                | Node.java
 - [x] Vetor             | Vector.java
-- [x] 
 
 #### Secundário
 - [x] Valores padrão | DefaultValues.java

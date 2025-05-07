@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 3.2
+##### Readme versão 4.0
 
 </div>
 <br>
@@ -38,10 +38,11 @@
 
 ### Sumário
 #### Principal
-- [x] Fila | Queue.java
-- [x] Lista Encadeada | LinkedList.java
-- [x] Nó | Node.java
-- [x] Vetor | Vector.java
+- [x] Fila              | Queue.java
+- [x] Lista Encadeada   | LinkedList.java
+- [x] Nó                | Node.java
+- [x] Vetor             | Vector.java
+- [x] 
 
 #### Secundário
 - [x] Valores padrão | DefaultValues.java
@@ -164,12 +165,17 @@
 > Métodos:
 > - [x] append(int position, T element): void
 > - [x] append(T element): void
+> - [x] clear(): void
+> - [x] contains(int position): boolean 
+> - [x] contains(T element): boolean 
 > - [x] getElements(): T[]
 > - [x] getEmptyIndexes(): int[]
+> - [x] getLastIndexOfElement(T element): int
 > - [x] getSize(): int
 > - [x] increaseCapacity(): void
 > - [x] isFoundElement(T element): boolean
 > - [x] remove(int position): void
+> - [x] remove(T element): void
 > - [x] searchByElement(T element): int
 > - [x] searchByPosition(int position): T
 > - [x] toString(): String
@@ -177,10 +183,16 @@
 > Testes unitários:
 > - [x] appendElementsTest(): void
 > - [x] appendTest(): void
+> - [x] clearTest(): void
+> - [x] containsByElementTest(): void
+> - [x] containsByPositionTest(): void
 > - [x] createVectorTest(): void
 > - [x] getEmptyIndexesTest(): void
 > - [x] increaseCapacityTest(): void
+> - [x] init(): void
 > - [x] isFoundElementTest(): void
+> - [x] lastIndexOfElementTest(): void
+> - [x] removeByElement(): void
 > - [x] removeElementByPositionTest(): void
 > - [x] searchByElementTest(): void
 > - [x] searchByPositionTest(): void
@@ -258,10 +270,10 @@
 
 - [x] Faça um **fork** deste repositório (https://github.com/henriqueotogami/data-structure/fork);
 - [x] Faça um **clone** no seu computador desse repositório "forkado" no seu perfil
-- [x] Crie um **branch** com as suas modificações ` git checkout -b meu-novo-recurso `;
+- [x] Faça um **branch** com as suas modificações ` git checkout -b meu-novo-recurso `;
 - [x] Faça um **commit** ` git commit -am 'Adicionando um novo recurso ...'`;
 - [x] Faça um **push** ` git push origin meu-novo-recurso ` ;
-- [x] Crie uma **pull request** do seu repositório no meu repositório.
+- [x] Faça um **pull request** do seu repositório no meu repositório.
 
 **Depois que sua solicitação (pull request) for aceita e adicionada (merged) ao ramo principal (branch main), você pode excluir sua branch tranquilamente.**
 

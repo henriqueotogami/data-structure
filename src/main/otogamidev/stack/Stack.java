@@ -10,14 +10,26 @@ public class Stack<T> extends StaticStructure<T> {
     private static final Logger logger = LogManager.getLogger(Stack.class);
 
     public Stack(final int capable) {
-        this.elements = (T[]) new Object[capable];
-        this.size = 0;
+        super.elements = (T[]) new Object[capable];
+        super.size = 0;
     }
 
     public Stack() { this(10); }
 
     public void push(final T element) {
-        this.append(element);
+        super.append(element);
+    }
+
+    public T pull() {
+
+        if(super.isEmpty()) return null;
+
+        final T element = super.elements[--super.size];
+        super.elements[super.size] = null;
+        return element;
+//        A solucao abaixo nao remove o elemento do vetor, ocasionando que o ultimo elemtno permaneca na posicao
+//        que deveria ter sido removido
+//        return super.elements[--super.size];
     }
 }
  

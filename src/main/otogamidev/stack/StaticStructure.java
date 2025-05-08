@@ -14,11 +14,18 @@ public class StaticStructure<T> {
     protected T[] elements;
     protected int size;
 
+    /**
+     * Metodo construtor que instancia a pilha com a capacidade informada.
+     * @param capable capacidade da pilha
+     */
     public StaticStructure(final int capable) {
         this.elements = (T[]) new Object[capable];
         this.size = 0;
     }
 
+    /**
+     * Metodo construtor instanciando a capacidade padrao de dez elementos.
+     */
     public StaticStructure() { this(10); }
 
     /**

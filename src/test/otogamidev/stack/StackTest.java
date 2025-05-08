@@ -69,7 +69,7 @@ public class StackTest {
     }
 
     /**
-     * Teste 2 - Pilha vazia
+     * Teste 3 - Pilha vazia
      * Cenário: Criar uma pilha e verificar se o metodo isEmpty retorna true.
      *          Adicionar elementos, e verificar se o metodo isEmpty retorna false.
      */
@@ -83,5 +83,26 @@ public class StackTest {
         stack.push(3);
         Assertions.assertFalse(stack.isEmpty());
         logger.info("isEmptyTest() - SUCESS");
+    }
+
+    @Test
+    @Order(4)
+    public void pullTest() {
+        final String initStack      = "[1, 2, 3, null, null, null, null, null, null, null]";
+        final String alteredStack   = "[1, 2, null, null, null, null, null, null, null, null]";
+        final int initialSize = 3;
+        final Stack<Integer> stack = new Stack<Integer>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        Assertions.assertEquals(initStack, stack.toString());
+        Assertions.assertEquals(initialSize, stack.getSize());
+        final int element = stack.pull();
+        logger.info("pullTest() - element = {}", element);
+
+        logger.info("pullTest() - this.size = {}", stack.getSize());
+        Assertions.assertEquals(alteredStack, stack.toString());
+        Assertions.assertEquals(initialSize-1, stack.getSize());
+        logger.info("pullTest() - SUCESS");
     }
 }

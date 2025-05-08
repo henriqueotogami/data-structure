@@ -28,8 +28,8 @@ public class StackTest {
 //    =================================================================================================================
 
     /**
-     * Teste 1 - Instancia de uma Pilha
-     * Cenário: Verificar se a pilha é criada com a capacidade padrao de 10 elementos null e está vazia.
+     * <br> Teste 1 - Instancia de uma Pilha
+     * <br> Cenário: Verificar se a pilha é criada com a capacidade padrao de 10 elementos null e está vazia.
      */
     @Test
     @Order(1)
@@ -42,8 +42,8 @@ public class StackTest {
     }
 
     /**
-     * Teste 2 - Empilhar elementos
-     * Cenário: Adicionar elementos no fim da Pilha (LIFO - Last In First Out)
+     * <br> Teste 2 - Empilhar elementos
+     * <br> Cenário: Adicionar elementos no fim da Pilha (LIFO - Last In First Out)
      * <br>
      * <br>     [3] - | valor 4 | -> Empilhando elemento
      * <br>
@@ -69,9 +69,9 @@ public class StackTest {
     }
 
     /**
-     * Teste 3 - Pilha vazia
-     * Cenário: Criar uma pilha e verificar se o metodo isEmpty retorna true.
-     *          Adicionar elementos, e verificar se o metodo isEmpty retorna false.
+     * <br> Teste 3 - Pilha vazia
+     * <br> Cenário: Criar uma pilha e verificar se o metodo isEmpty retorna true.
+     * <br>          Adicionar elementos, e verificar se o metodo isEmpty retorna false.
      */
     @Test
     @Order(3)
@@ -85,8 +85,34 @@ public class StackTest {
         logger.info("isEmptyTest() - SUCESS");
     }
 
+    /**
+     * <br> Teste 4 - Topo da Pilha
+     * <br> Cenário: Criar uma pilha e verificar se o metodo peek localiza o elemento do topo da Pilha.
+     */
     @Test
     @Order(4)
+    public void peekTest() {
+        final String initStack      = "[1, 2, 3, null, null, null, null, null, null, null]";
+        final int initialSize = 3;
+        final Stack<Integer> stack = new Stack<Integer>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        Assertions.assertEquals(initStack, stack.toString());
+        Assertions.assertEquals(initialSize, stack.getSize());
+        final int element = stack.peek();
+        Assertions.assertEquals(3, stack.peek());
+        logger.debug("peekTest() - element = {}", element);
+        logger.debug("peekTest() - this.size = {}", stack.getSize());
+        logger.info("peekTest() - SUCESS");
+    }
+
+    /**
+     * <br> Teste 5 - Desempilhar elemento
+     * <br> Cenário: Criar uma pilha e verificar se o metodo pull desempilha o elemento do topo da Pilha.
+     */
+    @Test
+    @Order(5)
     public void pullTest() {
         final String initStack      = "[1, 2, 3, null, null, null, null, null, null, null]";
         final String alteredStack   = "[1, 2, null, null, null, null, null, null, null, null]";
@@ -98,9 +124,8 @@ public class StackTest {
         Assertions.assertEquals(initStack, stack.toString());
         Assertions.assertEquals(initialSize, stack.getSize());
         final int element = stack.pull();
-        logger.info("pullTest() - element = {}", element);
-
-        logger.info("pullTest() - this.size = {}", stack.getSize());
+        logger.debug("pullTest() - element = {}", element);
+        logger.debug("pullTest() - this.size = {}", stack.getSize());
         Assertions.assertEquals(alteredStack, stack.toString());
         Assertions.assertEquals(initialSize-1, stack.getSize());
         logger.info("pullTest() - SUCESS");

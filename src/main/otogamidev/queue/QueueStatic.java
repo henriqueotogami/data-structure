@@ -9,6 +9,8 @@ import main.otogamidev.stack.StaticStructure;
  */
 public class QueueStatic<T> extends StaticStructure<T> {
 
+    private final int FIRST_ELEMENT = 0;
+
     /**
      * Metodo construtor sem parametros da classe de Fila.
      */
@@ -31,9 +33,21 @@ public class QueueStatic<T> extends StaticStructure<T> {
      * @return Retorna o elemento do topo da lista, ou seja, o primeiro elemento.
      * @throws NullPointerException Lança uma exception se a fila estiver vazia.
      */
-    public T peekTop() throws NullPointerException{
+    public T peek() throws NullPointerException{
         if(super.isEmpty()) throw new NullPointerException("Empty queue");
-        return super.elements[0];
+        return super.elements[FIRST_ELEMENT];
+    }
+
+    /**
+     * Metodo responsavel pela remocao do elemento do topo da fila, ou seja, o primeiro elemento.
+     * @return Retorna o elemento removido da fila.
+     * @throws NullPointerException Lança uma exception se a fila estiver vazia.
+     */
+    public T dequeue() throws NullPointerException {
+        if(super.isEmpty()) throw new NullPointerException("Empty queue");
+        final T removedElement = super.elements[FIRST_ELEMENT];
+        super.remove(FIRST_ELEMENT);
+        return removedElement;
     }
 }
 

@@ -14,6 +14,8 @@ public class StaticStructure<T> {
     protected T[] elements;
     protected int size;
 
+    private final int NOT_FOUND = -1;
+
     /**
      * Metodo construtor que instancia a pilha com a capacidade informada.
      * @param capable capacidade da pilha
@@ -92,6 +94,36 @@ public class StaticStructure<T> {
      * @return retorna valor true indicando que esta vazia e false indicando que esta cheia
      */
     public boolean isEmpty() { return (this.size == 0); }
+
+    /**
+     * Metodo responsavel pela remoção de um elemento pela posição.
+     * @param position posição informada do elemento que será removido
+     * @throws ArrayIndexOutOfBoundsException Lança uma exception se a posicão for inválida.
+     */
+    public void remove(final int position) throws ArrayIndexOutOfBoundsException{
+        if( 0 > position && position > this.size) throw new ArrayIndexOutOfBoundsException("Posicão inválida");
+//        this.size--;
+        for(int index = position; this.size-1 > index; index++) this.elements[index] = this.elements[index+1];
+        this.size--;
+    }
+
+    public void remove(final T element) {
+        final int position = this.searchByElement(element);
+        if(position > this.NOT_FOUND) this.remove(position);
+    }
+
+    /**
+     * Metodo responsável pela busca de um elemento no Vetor.
+     * @param element elemento a ser buscado no Vetor
+     * @return Retorna o índice do elemento encontrado.
+     * <br> Se não encontrar o elemento, retorna o valor "-1".
+     */
+    public int searchByElement(final T element) {
+        for(int index = 0; this.size > index; index++) {
+            if(this.elements[index].equals(element)) return index;
+        }
+        return NOT_FOUND;
+    }
 
     @Override
     public String toString() {

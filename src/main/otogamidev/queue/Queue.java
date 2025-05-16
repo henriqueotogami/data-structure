@@ -1,17 +1,16 @@
 package main.otogamidev.queue;
 
 import main.otogamidev.queue.utils.MapTypes;
-import main.otogamidev.stack.StaticStructure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
 /**
- * Classe responsavel por uma implementacao de Fila.
+ * Classe responsavel por uma implementacao de Fila implementada manualmente.
  *
  * @author henriquematheusalvespereira
  */
-public class Queue<T> extends StaticStructure<T> {
+public class Queue {
 
     /** Nome da Classe Queue */
     final String CLASS_NAME = "Queue";
@@ -36,8 +35,6 @@ public class Queue<T> extends StaticStructure<T> {
      * Metodo construtor da classe de Fila.
      */
     public Queue() { super(); }
-
-    public Queue(final int capable){ super(capable); }
 
     /**
      * Metodo responsavel pelo tamanho da lista

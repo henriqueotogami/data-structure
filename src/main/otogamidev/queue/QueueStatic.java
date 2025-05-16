@@ -25,5 +25,15 @@ public class QueueStatic<T> extends StaticStructure<T> {
      * @param element elemento a ser adicionado
      */
     public void add(final T element) { super.append(element); }
+
+    /**
+     * Metodo responsavel para espiar o topo da fila, sem remover o elemento.
+     * @return Retorna o elemento do topo da lista, ou seja, o primeiro elemento.
+     * @throws NullPointerException Lança uma exception se a fila estiver vazia.
+     */
+    public T peekTop() throws NullPointerException{
+        if(super.isEmpty()) throw new NullPointerException("Empty queue");
+        return super.elements[0];
+    }
 }
 

@@ -26,7 +26,7 @@ public class QueueStatic<T> extends StaticStructure<T> {
      * Metodo responsavel por enfileirar os elementos ao final da fila. FIFO
      * @param element elemento a ser adicionado
      */
-    public void add(final T element) { super.append(element); }
+    public void enqueue(final T element) { super.append(element); }
 
     /**
      * Metodo responsavel para espiar o topo da fila, sem remover o elemento.

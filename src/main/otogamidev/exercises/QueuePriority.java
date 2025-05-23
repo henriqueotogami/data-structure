@@ -21,9 +21,9 @@ public class QueuePriority<T> extends QueueStatic<T> {
         private String name;
         private int priority;
 
-        private static final int PRIORITY_EQUALS    = 0;
-        private static final int PRIORITY_GREATER   = 1;
-        private static final int PRIORITY_MINOR     = -1;
+        public static final int PRIORITY_EQUALS    = 0;
+        public static final int PRIORITY_GREATER   = 1;
+        public static final int PRIORITY_MINOR     = -1;
 
         public Patient(String name, int priority) {
             this.name = name;

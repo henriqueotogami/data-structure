@@ -125,6 +125,22 @@ public class StaticStructure<T> {
         return NOT_FOUND;
     }
 
+    /**
+     * Metodo responsavel para pegar um elemento a partir do indice informado.
+     * @param index indice do elemento no Array
+     * @return Retorna o elemento do indice informado.
+     * @throws EmptyStackException Lança uma exception se a lista estiver vazia
+     * @throws ArrayIndexOutOfBoundsException Lança uma exception se a posicão for inválida.
+     */
+    public T getElement(final int index) {
+
+        if(this.isEmpty()) throw new EmptyStackException();
+
+        if( 0 > index && index > this.size) throw new ArrayIndexOutOfBoundsException("Posicão inválida");
+
+        return this.elements[index];
+    }
+
     @Override
     public String toString() {
         StringBuilder arrayElements = new StringBuilder().append("[");

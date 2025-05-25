@@ -1,5 +1,9 @@
 package main.otogamidev.exercises;
 
+import main.otogamidev.utils.Utils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Random;
 
 /**
@@ -14,12 +18,18 @@ import java.util.Random;
  */
 public class QueueEmergencyRoom {
 
+    /** Nome da Classe QueueEmergencyRoom */
+    private static final String CLASS_NAME = "QueueEmergencyRoom";
+    private static final Logger logger = LogManager.getLogger(QueueEmergencyRoom.class);
+
     public static class CaringEmergencyRoom implements Runnable {
 
         private final QueuePriority<QueuePriority.Patient> queuePriority;
-
-        public static final int NUMBER_INITIAL_PEOPLE_CARING = 6;
-
+        public static final int NUMBER_INITIAL_PEOPLE_CARING    = 6;
+        public final int CARING_TIME                            = 5000;
+        /* Variavel de controle para diminuir riscos de concorrência de threads*/
+        public static boolean hasNewPatientsArriving            = false;
+        
         public CaringEmergencyRoom(final QueuePriority<QueuePriority.Patient> queuePriority) {
             super();
             this.queuePriority = queuePriority;
@@ -27,25 +37,37 @@ public class QueueEmergencyRoom {
 
         @Override
         public void run() {
-
-            while(!queuePriority.isEmpty()) {
+            while(!queuePriority.isEmpty() || hasNewPatientsArriving) {
                 try {
                     final QueuePriority.Patient dequeue = queuePriority.dequeue();
-                    System.out.println(dequeue.getName() + " atendida com prioridade " + dequeue.getPriority());
-                    Thread.sleep(5000);
+                    logger.info("===================================================");
+                    logger.info("{} atendida com prioridade {}", dequeue.getName(), getPriorityName(dequeue.getPriority()));
+                    logger.info("===================================================");
+                    Thread.sleep(CARING_TIME);
                 } catch (InterruptedException interruptedException) {
+                    logger.info("Falha no atendimento dos pacientes");
                     interruptedException.printStackTrace();
                 }
             }
-            System.out.println("Atendimento concluído");
+            logger.info("Atendimento concluído");
+        }
+
+        private static String getPriorityName(final int priority) {
+            return switch (priority) {
+                case -1     -> "Verde";
+                case 0      -> "Amarelo";
+                case 1      -> "Vermelho";
+                default     -> "Desconhecida";
+            };
         }
     }
 
     public static class NewPatientsEmergencyRoom implements Runnable {
 
         private final QueuePriority<QueuePriority.Patient> queuePriority;
-        private final Random randomPriority = new Random();
-        private int cont = 7;
+        private final Random randomPriority     = new Random();
+        private final int NEW_PATIENTS_ARRIVE   = 4000;
+        private final int MAX_NEW_PATIENTS      = 8;
 
         public NewPatientsEmergencyRoom(QueuePriority<QueuePriority.Patient> queuePriority) {
             this.queuePriority = queuePriority;
@@ -53,17 +75,20 @@ public class QueueEmergencyRoom {
 
         @Override
         public void run() {
-            for(int index = 0; 8 > index; index++) {
+            for(int index = 0, newPatient = 0; MAX_NEW_PATIENTS > index; index++, newPatient++) {
+                CaringEmergencyRoom.hasNewPatientsArriving = true;
                 try {
-                    Thread.sleep(8000);
-                    final QueuePriority.Patient patient = new QueuePriority.Patient(("Pessoa " + cont), randomPriority.nextInt(3));
+                    Thread.sleep(NEW_PATIENTS_ARRIVE);
+                    final QueuePriority.Patient patient = new QueuePriority.Patient(("Pessoa " + newPatient), randomPriority.nextInt(3));
                     queuePriority.enqueue(patient);
-                    cont++;
-                    System.out.println(patient.getName() + " entrou na fila com prioridade " + patient.getPriority());
+                    logger.info("{} entrou na fila com prioridade {}", patient.getName(), CaringEmergencyRoom.getPriorityName(patient.getPriority()));
                 } catch (InterruptedException interruptedException) {
+                    logger.info("Falha no enfileiramento de novos pacientes.");
                     interruptedException.printStackTrace();
                 }
             }
+            logger.info("===================================================");
+            CaringEmergencyRoom.hasNewPatientsArriving = false;
         }
     }
 
@@ -74,28 +99,23 @@ public class QueueEmergencyRoom {
         // Amarelo      = Patient.PRIORITY_EQUALS
         // Vermelhor    = Patient.PRIORITY_GREATER
         final QueuePriority<QueuePriority.Patient> queuePriority = new QueuePriority<>();
-//        for(int index = 0; CaringEmergencyRoom.NUMBER_INITIAL_PEOPLE_CARING > queuePriority.getSize(); index++) queuePriority.enqueue(new QueuePriority.Patient(("Pessoa " + index+1), QueuePriority.Patient.PRIORITY_EQUALS));
-//
-//        try {
-//            final CaringEmergencyRoom caringEmergencyRoom           = new CaringEmergencyRoom(queuePriority);
-//            final NewPatientsEmergencyRoom newPatientsEmergencyRoom = new NewPatientsEmergencyRoom(queuePriority);
-//
-//            final Thread threadCaring       = new Thread(caringEmergencyRoom);
-//            final Thread threadNewPatients  = new Thread(newPatientsEmergencyRoom);
-//
-//            threadCaring.start();
-//            threadNewPatients.start();
-//
-//        } catch (Exception exception) {
-//            exception.printStackTrace();
-//        }
+        for(int index = 0; CaringEmergencyRoom.NUMBER_INITIAL_PEOPLE_CARING > queuePriority.getSize(); index++) {
+            final int randomPriority = (Utils.getRandomIndex(2) - 1);
+            queuePriority.enqueue(new QueuePriority.Patient(("Pessoa " + (index + 1)), randomPriority));
+        }
 
-        queuePriority.enqueue(new QueuePriority.Patient("Vermelho", 2));
-        queuePriority.enqueue(new QueuePriority.Patient("Verde", 0));
-        queuePriority.enqueue(new QueuePriority.Patient("Amarelo", 1));
+        try {
+            final CaringEmergencyRoom caringEmergencyRoom           = new CaringEmergencyRoom(queuePriority);
+            final NewPatientsEmergencyRoom newPatientsEmergencyRoom = new NewPatientsEmergencyRoom(queuePriority);
 
-        while(!queuePriority.isEmpty()) {
-            System.out.println(queuePriority.dequeue().getName());
+            final Thread threadCaring       = new Thread(caringEmergencyRoom);
+            final Thread threadNewPatients  = new Thread(newPatientsEmergencyRoom);
+
+            threadCaring.start();
+            threadNewPatients.start();
+        } catch (Exception exception) {
+            logger.info("Falha no sistema do pronto socorro.");
+            exception.printStackTrace();
         }
 
     }

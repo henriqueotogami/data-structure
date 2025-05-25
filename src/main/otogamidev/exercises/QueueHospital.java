@@ -50,7 +50,7 @@ public class QueueHospital extends QueuePriority<QueuePriority.Patient>{
                     countPeopleByPriority++;
                     countTotalPeopleMaxPriority--;
                 } else {
-                    caringPatients(queueGeneralLowPriority, Patient.PRIORITY_EQUALS);
+                    caringPatients(queueGeneralLowPriority, Patient.PRIORITY_NONE);
                     countPeopleByPriority = 0;
                 }
             } catch (Exception exception) {
@@ -72,7 +72,7 @@ public class QueueHospital extends QueuePriority<QueuePriority.Patient>{
         int randomIndex;
         for(int indexL = 0, indexH = 0; (MAX_PEOPLE > indexL) || (MAX_PEOPLE > indexH); indexL++, indexH++) {
             randomIndex = Utils.getRandomIndex(QUANTITY_PRIORITY_TYPES);
-            if(randomIndex == Patient.PRIORITY_EQUALS) queueGeneralLowPriority.enqueue(new Patient("Pessoa " + indexL, randomIndex));
+            if(randomIndex == Patient.PRIORITY_NONE) queueGeneralLowPriority.enqueue(new Patient("Pessoa " + indexL, randomIndex));
             else if (randomIndex == Patient.PRIORITY_GREATER) queueGeneralHighPriority.enqueue(new Patient("Pessoa " + indexH, randomIndex));
         }
     }
@@ -80,7 +80,7 @@ public class QueueHospital extends QueuePriority<QueuePriority.Patient>{
     private static void caringPatients(QueueStatic<Patient> queueGeneralPublic, final int typePriority) throws InterruptedException {
         final Patient patient = queueGeneralPublic.getElement(QUEUE_TOP);
         if(patient.getPriority() == typePriority) {
-            final String typePriorityName = (typePriority == Patient.PRIORITY_EQUALS) ? "Baixa" : "Alta";
+            final String typePriorityName = (typePriority == Patient.PRIORITY_NONE) ? "Baixa" : "Alta";
             System.out.println("Paciente que sera atendido: " + patient.getName() + " | Prioridade: " + typePriorityName);
             final long serviceTime = INITIAL_SERVICE_TIME * ((long) queueGeneralPublic.getSize());
             final long serviceTimeSeconds = (serviceTime / ONE_SECOND) > 1 ? (serviceTime / ONE_SECOND) : 1L;

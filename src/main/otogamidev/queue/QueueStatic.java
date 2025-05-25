@@ -1,6 +1,8 @@
 package main.otogamidev.queue;
 
 import main.otogamidev.stack.StaticStructure;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Classe responsavel por uma implementacao de Fila implementada utilizando a estrutura da classe StaticStructure.
@@ -8,6 +10,10 @@ import main.otogamidev.stack.StaticStructure;
  * @author henriquematheusalvespereira
  */
 public class QueueStatic<T> extends StaticStructure<T> {
+
+    /** Nome da Classe QueueStatic */
+    private static final String CLASS_NAME = "QueueStatic";
+    private static final Logger logger = LogManager.getLogger(QueueStatic.class);
 
     private final int FIRST_ELEMENT = 0;
 

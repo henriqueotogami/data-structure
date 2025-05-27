@@ -15,6 +15,7 @@ import java.util.Random;
  * <br>03. Pessoas com prioridade vermelha devem ser atendidas primeiro;
  * <br>04. O tempo de cada consulta dura cerca de 5 segundos;
  * <br>05. A cada 4 segundos, uma nova pessoa chega no pronto socorro com prioridade aleatória.
+ * @author henriquematheusalvespereira
  */
 public class QueueEmergencyRoom {
 
@@ -22,6 +23,10 @@ public class QueueEmergencyRoom {
     private static final String CLASS_NAME = "QueueEmergencyRoom";
     private static final Logger logger = LogManager.getLogger(QueueEmergencyRoom.class);
 
+    /**
+     * Classe responsavel pelo atendimento do Pronto Socorro.
+     * @author henriquematheusalvespereira
+     */
     public static class CaringEmergencyRoom implements Runnable {
 
         private final QueuePriority<QueuePriority.Patient> queuePriority;
@@ -29,7 +34,11 @@ public class QueueEmergencyRoom {
         public final int CARING_TIME                            = 5000;
         /* Variavel de controle para diminuir riscos de concorrência de threads*/
         public static boolean hasNewPatientsArriving            = false;
-        
+
+        /**
+         * Construtor do atendimento do Pronto Socorro.
+         * @param queuePriority Instancia da fila de atendimento do Pronto Socorro.
+         */
         public CaringEmergencyRoom(final QueuePriority<QueuePriority.Patient> queuePriority) {
             super();
             this.queuePriority = queuePriority;
@@ -52,6 +61,11 @@ public class QueueEmergencyRoom {
             logger.info("Atendimento concluído");
         }
 
+        /**
+         * Metodo responsavel pela obtenção do nome do valor tipo de prioridade de atendimento informada.
+         * @param priority valor do tipo de prioridade de atendimento.
+         * @return Retorna o nome do tipo de prioridade de atencimento.
+         */
         private static String getPriorityName(final int priority) {
             return switch (priority) {
                 case -1     -> "Verde";
@@ -62,6 +76,10 @@ public class QueueEmergencyRoom {
         }
     }
 
+    /**
+     * Classe responsavel pela recepcao de novos pacientes do Pronto Socorro.
+     * @author henriquematheusalvespereira
+     */
     public static class NewPatientsEmergencyRoom implements Runnable {
 
         private final QueuePriority<QueuePriority.Patient> queuePriority;
@@ -69,6 +87,10 @@ public class QueueEmergencyRoom {
         private final int NEW_PATIENTS_ARRIVE   = 4000;
         private final int MAX_NEW_PATIENTS      = 8;
 
+        /**
+         * Construtor da classe da recepcao de novos pacientes do Pronto Socorro.
+         * @param queuePriority Instancia da fila de atendimento do Pronto Socorro.
+         */
         public NewPatientsEmergencyRoom(QueuePriority<QueuePriority.Patient> queuePriority) {
             this.queuePriority = queuePriority;
         }
@@ -117,6 +139,5 @@ public class QueueEmergencyRoom {
             logger.info("Falha no sistema do pronto socorro.");
             exception.printStackTrace();
         }
-
     }
 }

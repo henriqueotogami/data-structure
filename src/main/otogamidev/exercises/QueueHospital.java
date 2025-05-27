@@ -40,6 +40,13 @@ public class QueueHospital extends QueuePriority<QueuePriority.Patient>{
         startCaringPeopleSystem(queueGeneralLowPriority, queueGeneralHighPriority, countPeopleByPriority, countTotalPeopleMaxPriority);
     }
 
+    /**
+     * Meotodo responsavel pelo sistema de atendimento de pacientes do Hospital.
+     * @param queueGeneralLowPriority Fila de pessoas com baixa prioridade de atendimento
+     * @param queueGeneralHighPriority Fila de pessoas com alta prioridade de atendimento
+     * @param countPeopleByPriority Contador de pessoas com alta prioridade de atendimento
+     * @param countTotalPeopleMaxPriority contador de pessoas com alta prioridade que foram atendidas
+     */
     private static void startCaringPeopleSystem(QueueStatic<Patient> queueGeneralLowPriority, QueueStatic<Patient> queueGeneralHighPriority, int countPeopleByPriority, int countTotalPeopleMaxPriority) {
         System.out.println("Iniciando sistema de atencimento do Hospital");
         System.out.println("============================================\r\n");
@@ -61,6 +68,12 @@ public class QueueHospital extends QueuePriority<QueuePriority.Patient>{
         }
     }
 
+    /**
+     * Metodo responsavel pela contagem de pessoas com alta prioridade de atendimento
+     * @param queueGeneralHighPriority lista de pessoas com alta prioridade de atendimento
+     * @param countTotalPeopleMaxPriority contagem total do numero de pessoas com alta prioridade
+     * @return Retorna o numero de pessoas com alta prioridade
+     */
     private static int getTotalPeopleMaxPriority(QueueStatic<Patient> queueGeneralHighPriority, int countTotalPeopleMaxPriority) {
         for(int index = 0; queueGeneralHighPriority.getSize() > index; index++) {
             if(queueGeneralHighPriority.getElement(index).getPriority() == Patient.PRIORITY_GREATER) countTotalPeopleMaxPriority++;
@@ -68,6 +81,11 @@ public class QueueHospital extends QueuePriority<QueuePriority.Patient>{
         return countTotalPeopleMaxPriority;
     }
 
+    /**
+     * Metodo responsavel pela geracao aleatoria de pessoas com niveis alto e baixo de prioridade de atendimento
+     * @param queueGeneralLowPriority lista de pessoas com baixa prioridade de atendimento
+     * @param queueGeneralHighPriority lista de pessoas com alta prioridade de atendimento
+     */
     private static void generatePublicQueue(QueueStatic<Patient> queueGeneralLowPriority, QueueStatic<Patient> queueGeneralHighPriority) {
         int randomIndex;
         for(int indexL = 0, indexH = 0; (MAX_PEOPLE > indexL) || (MAX_PEOPLE > indexH); indexL++, indexH++) {
@@ -77,6 +95,12 @@ public class QueueHospital extends QueuePriority<QueuePriority.Patient>{
         }
     }
 
+    /**
+     * Metodo responsavel pelo atendimento de pacientes do Hospital.
+     * @param queueGeneralPublic lista de pacientes
+     * @param typePriority valor do tipo de prioridade de atendimento
+     * @throws InterruptedException Lanca uma exception se falhar o tempo de servico de atendimento
+     */
     private static void caringPatients(QueueStatic<Patient> queueGeneralPublic, final int typePriority) throws InterruptedException {
         final Patient patient = queueGeneralPublic.getElement(QUEUE_TOP);
         if(patient.getPriority() == typePriority) {

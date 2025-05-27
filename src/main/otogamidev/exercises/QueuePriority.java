@@ -4,6 +4,11 @@ import main.otogamidev.queue.QueueStatic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Classe responsavel pela Lista de Prioridade
+ * @param <T> tipo generico nao especificado
+ * @author henriquematheusalvespereira
+ */
 public class QueuePriority<T> extends QueueStatic<T> {
 
     /** Nome da Classe QueuePriority */
@@ -25,6 +30,10 @@ public class QueuePriority<T> extends QueueStatic<T> {
         this.append(index, element);
     }
 
+    /**
+     * Classe responsavel pelo Paciente
+     * @param <T> tipo generico nao especificado
+     */
     public static class Patient<T> implements Comparable {
 
         private String name;
@@ -34,21 +43,43 @@ public class QueuePriority<T> extends QueueStatic<T> {
         public static final int PRIORITY_GREATER    = 1;
         public static final int PRIORITY_MINOR      = -1;
 
+        /**
+         * Construtor do Paciente
+         * @param name nome do paciente
+         * @param priority prioridade do atendimento do paciente
+         */
         public Patient(String name, int priority) {
             this.name = name;
             this.priority = priority;
         }
 
-        public Patient() { }
+        /**
+         * Construtor do paciente
+         */
+        public Patient() {
+            this("Paciente desconhecido", 0);
+        }
 
+        /**
+         * Metodo responsavel pelo nome do paciente
+         * @return Retorna o nome do paciente
+         */
         public String getName() { return name; }
 
-        public void setName(final String name) { this.name = name; }
-
+        /**
+         * Metodo responsavel pelo tipo de prioridade de atendimento do paciente
+         * @return Retorna o tipo de prioridade de atendimento do paciente
+         */
         public int getPriority() { return priority; }
 
-        public void setPriority(final int priority) { this.priority = priority; }
-
+        /**
+         * Metodo responsavel pela comparacao de prioridade de atendimento entre dois pacientes
+         * @param otherPatient outro paciente
+         * @return Retorna os seguintes valores:
+         * <br> Valor 0: indicando prioridades de atendimento iguais
+         * <br> Valor 1: indicando que o atual paciente tem prioridade de atendimento sobre o paciente informado
+         * <br> Valor -1: indicando que o atual paciente tem menos prioridade de atendimento em relacao ao paciente informado
+         */
         public int compareTo(final Patient otherPatient) {
 //            if(this.priority ==  otherPatient.getPriority()) return PRIORITY_NONE;
 //            return (this.priority >  otherPatient.getPriority()) ? PRIORITY_GREATER : PRIORITY_MINOR;

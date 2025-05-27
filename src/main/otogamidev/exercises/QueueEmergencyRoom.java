@@ -61,7 +61,6 @@ public class QueueEmergencyRoom {
             logger.info("Atendimento concluído");
         }
 
-
         /**
          * Metodo responsavel pela obtenção do nome do valor tipo de prioridade de atendimento informada.
          * @param priority valor do tipo de prioridade de atendimento.

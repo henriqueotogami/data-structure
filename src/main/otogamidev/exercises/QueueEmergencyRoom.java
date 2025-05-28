@@ -76,6 +76,8 @@ public class QueueEmergencyRoom {
         }
     }
 
+
+
     /**
      * Classe responsavel pela recepcao de novos pacientes do Pronto Socorro.
      * @author henriquematheusalvespereira

@@ -3,7 +3,7 @@
 ## Estrutura de Dados em Java
 ### Henrique Otogami
 #### Início: 26-11-2024
-##### Readme versão 4.1
+##### Readme versão 5.0
 
 
 </div>
@@ -38,16 +38,36 @@
 <hr>
 
 ### Sumário
-#### Principal
-- [x] Fila              | Queue.java
-- [x] Lista Encadeada   | LinkedList.java
-- [x] Nó                | Node.java
-- [x] Vetor             | Vector.java
+#### Classes Principais
+- [x] Fila                                  | Queue.java
+- [x] Lista Encadeada                       | LinkedList.java
+- [x] Nó                                    | Node.java
+- [x] Vetor                                 | Vector.java
+- [x] Pilha                                 | Stack.java
+- [x] Fila com Prioridade                   | QueuePriority.java
 
-#### Secundário
-- [x] Valores padrão | DefaultValues.java
-- [x] Mapeamento de tipos de dados | MapTypes.java
-- [x] Utilidades | Utils.java
+#### Classes Auxiliares
+- [x] Valores padrão                        | DefaultValues.java
+- [x] Mapeamento de tipos de dados          | MapTypes.java
+- [x] Utilidades                            | Utils.java
+- [x] Lista Estática                        | QueueStatic.java
+- [x] Pilha Estática                        | SecondStack.java
+- [x] Estrutura Estática                    | StaticStructure.java
+
+#### Exercícios
+- [x] Lista de Contatos                     | ListContacts.java
+- [x] Empilhar e Desempilhar Números        | PushAndPullNumbers.java
+- [x] Fila com Prioridade de Pronto Socorro | QueueEmergencyRoom.java
+- [x] Fila com Prioridade de Hospital       | QueueHospital.java
+- [x] Fila de Impressora                    | QueuePrinter.java
+
+#### Testes Unitários
+- [x] Testes de Fila                        | QueueTest.java
+- [x] Testes de Lista Encadeada             | LinkedListTest.java
+- [x] Testes de Vetor                       | VectorTest.java
+- [x] Testes de Pilha                       | StackTest.java
+- [x] Testes de Fila com Prioridade         | QueuePriorityTest.java
+
 <hr>
 
 ### Resumos
@@ -87,22 +107,22 @@
 <br>
 
 > Métodos:
-> - [x] append(final Node<T> element): void
-> - [x] append(final T element): void
-> - [x] append(final int position, final T element): void
-> - [x] appendBegin(final T element): void
-> - [x] appendMiddle(final int position, final T element): void
+> - [x] append(Node<T> element): void
+> - [x] append(T element): void
+> - [x] append(int position,  T element): void
+> - [x] appendBegin(T element): void
+> - [x] appendMiddle(int position,  T element): void
 > - [x] getSize(): int
 > - [x] getLastIndex(): int
 > - [x] isEmpty(): boolean
-> - [x] isInvalidPosition(final int position): boolean
+> - [x] isInvalidPosition( int position): boolean
 > - [x] clear(): void
 > - [x] removeFirstElement(): T
 > - [x] removeLastElement(): T
-> - [x] removeElement(final int position): T
-> - [x] searchNode(final int position): Node<T>
-> - [x] searchElementByPosition(final int position): T
-> - [x] searchElement(final T element): int
+> - [x] removeElement(int position): T
+> - [x] searchNode(int position): Node<T>
+> - [x] searchElementByPosition( int position): T
+> - [x] searchElement(T element): int
 > - [x] toString(): String
 > - [x] getClassName(): String
 
@@ -136,9 +156,9 @@
 
 > Métodos:
 > - [x] getElement(): T
-> - [x] setElement(final T element): void
+> - [x] setElement(T element): void
 > - [x] getNextElement(): Node<T>
-> - [x] setNextElement(final Node<T> nextObject): void
+> - [x] setNextElement(Node<T> nextObject): void
 > - [x] toString(): String
 > - [x] getClassName(): String
 </details>
@@ -152,10 +172,10 @@
 > - [x] getPrimitiveArrayToString(Object element, String elementType): String
 > - [x] getObjectToString(Object element, String elementType): String
 > - [x] getPrimitiveToString(Object element, String elementType): String
-> - [x] getElementContentsToString(final Object[] objectArray): String
+> - [x] getElementContentsToString(Object[] objectArray): String
 > - [x] getElementContentsToString(Object element): String
-> - [x] getGroup(final String typeElement): String
-> - [x] getObjectType(final Object element): String
+> - [x] getGroup(String typeElement): String
+> - [x] getObjectType(Object element): String
 </details>
 
 <details>
@@ -197,6 +217,52 @@
 > - [x] searchByElementTest(): void
 > - [x] searchByPositionTest(): void
 > - [x] toStringTest(): void
+
+</details>
+
+<hr>
+
+<details>
+    <summary> Implementação de Pilha | StackTest.java </summary>
+<br>
+
+> Métodos:
+- [x] append(T element): void
+- [x] append(int position, T element): void
+- [x] getElement(int index): T
+- [x] getSize(): int
+- [x] increaseCapacity(): void
+- [x] isEmpty(): boolean
+- [x] peek(): T
+- [x] pull(): T
+- [x] push(T element): void
+- [x] remove(int position): void
+- [x] remove(T element): void
+- [x] searchByElement(T element): int
+- [x] toString(): String
+
+> Testes unitários:
+- [x] initEmptyStackTest(): void
+- [x] isEmptyTest(): void
+- [x] peekTest(): void
+- [x] pullTest(): void
+
+</details>
+
+<hr>
+
+<details>
+    <summary> Implementação de Lista com Prioridade | QueuePriorityTest.java </summary>
+<br>
+
+> Métodos:
+- [x] enqueue(T element): void
+- [x] compareTo(Patient otherPatient): int
+- [x] compareTo(Object object): int
+
+> Testes unitários:
+- [x] createQueuePriorityTest(): void
+- [x] createQueuePriorityAnonymousTest(): void
 
 </details>
 

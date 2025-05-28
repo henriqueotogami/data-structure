@@ -5,6 +5,7 @@ main.otogamidev.queue.utils
 main.otogamidev.stack
 main.otogamidev.utils
 main.otogamidev.vector
+test.otogamidev.exercises
 test.otogamidev.list
 test.otogamidev.stack
 test.otogamidev.vector

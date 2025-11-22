@@ -17,23 +17,23 @@ public class BitMask {
      * Metodo para validar o bitmask recebido.
      * @param received Bitmask recebido.
      */
-    public String[] validateActivatedSensors(final int received) {
+    public String[] validateActivatedSensors(final byte received) {
 
-        final HashMap<Integer, String> sensors = this.getSensors();
         final String ENABLED  = "ENABLED";
         final String DISABLED = "DISABLED";
 
-        String[] statusSensors = new String[8];
+        final HashMap<Integer, String> sensors = this.getSensors();
+        final String[] statusSensors = new String[sensors.size()];
+
         String message = "";
         boolean isEnabled = false;
-        for(int index = 0; 8 > index; index++) {
+
+        for(int index = 0; sensors.size() > index; index++) {
             final int mask = 1 << index;
             isEnabled = (received & mask) != 0;
             message = sensors.get(index) + " - " + (isEnabled ? ENABLED : DISABLED);
             statusSensors[index] = message;
-//            logger.info(message);
         }
-
         return statusSensors;
     }
 

@@ -19,7 +19,7 @@ public class BitMaskTest {
     @Order(1)
     public void validateActivateSensors() {
         logger.debug("validateActivateSensors() - BEGIN");
-        final int received              = 0x7F;
+        final byte received             = 0x7F;
         final BitMask bitMask           = new BitMask();
         final String[] validatedSensors = bitMask.validateActivatedSensors(received);
         for(String sensor : validatedSensors) {
